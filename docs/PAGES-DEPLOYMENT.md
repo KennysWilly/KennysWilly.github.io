@@ -1,6 +1,6 @@
 # GitHub Pages deployment
 
-The repository deploys the Vite client through `.github/workflows/deploy.yml`. The workflow installs the pinned pnpm dependencies, runs `pnpm build:static` with `VITE_BASE_PATH=/kennyswilly/` and `VITE_STATIC_BUILD=true`, uploads `dist/public`, and deploys it with the official Pages artifact actions. The repository must have **Settings → Pages → Source → GitHub Actions** selected.
+The repository deploys the Vite client through `.github/workflows/deploy.yml`. The workflow installs the pinned pnpm dependencies, runs `pnpm build:static` with `VITE_BASE_PATH=/` and `VITE_STATIC_BUILD=true`, uploads `dist/public`, and deploys it with the official Pages artifact actions. The repository must have **Settings → Pages → Source → GitHub Actions** selected. The resulting root-domain site is `https://kennyswilly.github.io/`.
 
 GitHub Pages serves the static client only. Static mode disables the Express-backed `/api/music`, `/api/activity`, and `/api/clips` queries. The page remains useful through the checked-in Spotify snapshot, public Spotify embeds, and verified public YouTube fallback clips. Live Lanyard presence, authenticated Spotify playback, and credential-backed provider refreshes require the normal Node deployment.
 

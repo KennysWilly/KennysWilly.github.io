@@ -18,7 +18,7 @@ The supplied Spotify profile is [kw8640173](https://open.spotify.com/user/kw8640
 
 The current public snapshot explicitly includes the supplied playlists [Rapish](https://open.spotify.com/playlist/75MbiXFUmZCL4npjdbuH2Z), [Airbuds favorite roto](https://open.spotify.com/playlist/04FkPL3fH3f7WmrUG86dl8), [KANYEEZY](https://open.spotify.com/playlist/0xeqUxAUXJSJowN4iQ6dGj), and [mavi4mayor](https://open.spotify.com/playlist/086ONAFu5nnUzRyhzFTwJi). It excludes the profile entries named Other, Discover Weekly dupe, Mom, and 2K-Madden from the public carousel and album-wall source.
 
-The repository also contains `.github/workflows/deploy.yml`. GitHub Pages builds the Vite client with `VITE_BASE_PATH=/kennyswilly/` and `VITE_STATIC_BUILD=true`; static mode disables calls to `/api/music`, `/api/activity`, and `/api/clips`, then uses the checked-in public snapshot and public highlight fallbacks. A Node-capable deployment is still required for live Lanyard, authenticated Spotify playback, and credential-backed provider refreshes.
+The repository also contains `.github/workflows/deploy.yml`. The root-domain GitHub Pages site at `https://kennyswilly.github.io/` builds the Vite client with `VITE_BASE_PATH=/` and `VITE_STATIC_BUILD=true`; static mode disables calls to `/api/music`, `/api/activity`, and `/api/clips`, then uses the checked-in public snapshot and public highlight fallbacks. A Node-capable deployment is still required for live Lanyard, authenticated Spotify playback, and credential-backed provider refreshes.
 
 ## Spotify behavior and 2026 limitations
 

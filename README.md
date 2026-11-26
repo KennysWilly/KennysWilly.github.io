@@ -16,7 +16,7 @@ The application listens on port 3000 by default. Set `PORT` when required. `pnpm
 
 ## GitHub Pages
 
-The repository includes `.github/workflows/deploy.yml` for GitHub Pages. It builds the static Vite site with `VITE_BASE_PATH=/kennyswilly/`, uploads `dist/public`, and deploys it with the official Pages artifact actions. In the repository’s **Settings → Pages**, choose **GitHub Actions** as the source. The Pages version works without Express: it uses the checked-in public Spotify snapshot, public playlist embeds, and public YouTube highlights. Server-only features such as live Lanyard activity, authenticated Spotify playback, and credential-backed Twitch/YouTube refresh require the normal Node deployment.
+The repository includes `.github/workflows/deploy.yml` for the root-domain GitHub Pages site at `https://kennyswilly.github.io/`. It builds the static Vite site with `VITE_BASE_PATH=/`, uploads `dist/public`, and deploys it with the official Pages artifact actions. In the repository’s **Settings → Pages**, choose **GitHub Actions** as the source. The Pages version works without Express: it uses the checked-in public Spotify snapshot, public playlist embeds, and public YouTube highlights. Server-only features such as live Lanyard activity, authenticated Spotify playback, and credential-backed Twitch/YouTube refresh require the normal Node deployment.
 
 ## Content and data
 

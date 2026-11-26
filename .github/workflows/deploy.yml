@@ -31,7 +31,7 @@ jobs:
       - name: Build the static site
         run: pnpm build:static
         env:
-          VITE_BASE_PATH: /kennyswilly/
+          VITE_BASE_PATH: /
           VITE_STATIC_BUILD: true
       - name: Add GitHub Pages marker
         run: touch dist/public/.nojekyll
