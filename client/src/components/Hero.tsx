@@ -20,7 +20,7 @@ export default function Hero({ albums, paused, setPaused, connected }: { albums:
       <div className="hero-actions"><a className="brutal-button orange" href="https://www.twitch.tv/kennyswillyy" target="_blank" rel="noopener noreferrer"><Twitch size={20} /> WATCH LIVE <ArrowUpRight size={20} /></a><a className="brutal-button" href="#music">SEE WHAT'S PLAYING <ArrowDown size={19} /></a></div>
       <div className="hero-footnote"><Zap size={17} fill="currentColor" /> MUSIC ON. THUNDER UP.</div>
     </div>
-    <div className="wall-sticker"><span>NO SKIPS.</span><strong>IN<br />HEAVY ROTATION.</strong><span>KENNYSWILLY</span></div>
+    <div className="wall-sticker"><span>NO SKIPS.</span><strong>MY<br />ROTATION.</strong><span>KENNYSWILLY</span></div>
     <div className="wall-caption"><span>{connected ? "MY SPOTIFY LIBRARY" : "FROM MY SPOTIFY PLAYLISTS"}</span><button onClick={() => setPaused(!paused)} aria-label={paused ? "Resume album wallpaper animation" : "Pause album wallpaper animation"}>{paused ? <Play size={15} /> : <Pause size={15} />}</button></div>
   </section>;
 }

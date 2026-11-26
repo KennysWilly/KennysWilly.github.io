@@ -11,22 +11,22 @@ function SocialIcon({ id, size = 30 }: { id: string; size?: number }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3h3c.4 2.7 2 4.3 4 4.5v3a8 8 0 0 1-4-1.5v7a5 5 0 1 1-5-5h1v3a2 2 0 1 0 1 2Z" fill="currentColor" /></svg>;
 }
 
-function TikTokProfileEmbed() {
-  return <div className="tiktok-embed-shell">
+function TikTokProfileCard() {
+  return <div className="tiktok-profile-shell">
     <div className="tiktok-fallback-bar"><span>PUBLIC PROFILE / LATEST POSTS</span><a href="https://www.tiktok.com/@kennyswilly9" target="_blank" rel="noopener noreferrer">OPEN TIKTOK <ArrowUpRight size={14} /></a></div>
     <a className="tiktok-profile-preview" href="https://www.tiktok.com/@kennyswilly9" target="_blank" rel="noopener noreferrer" aria-label="Open the KennysWilly TikTok profile">
       <div className="tiktok-preview-mark">KW<span>✳</span></div>
       <div className="tiktok-preview-copy"><span className="tiny-label">@KENNYSWILLY9 / TIKTOK</span><strong>THE LATEST CUTS<br />LIVE ON THE PROFILE.</strong><span className="text-link">OPEN PROFILE <ArrowUpRight size={17} /></span></div>
       <div className="tiktok-preview-signal" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /></div>
     </a>
-    <p className="tiktok-embed-note">TikTok does not expose a verified post ID for an in-page player here. The profile link opens the real public videos without a broken third-party script.</p>
+    <p className="tiktok-profile-note">THE PROFILE IS THE FEED. TAP IN FOR THE REAL POSTS.</p>
   </div>;
 }
 
 export function BasketballSection() {
   return <section className="section basketball-section" id="basketball" aria-labelledby="basketball-title">
     <div className="section-top"><div><div className="eyebrow">03 / THE SHORT FORM</div><h2 id="basketball-title">THE QUICK FEED.<br />NO FILTER<span className="orange-text">.</span></h2></div><div className="basketball-intro"><p>The newest cuts live here first.<br />Watch the profile, then follow the thread.</p><a className="text-link" href="https://www.tiktok.com/@kennyswilly9" target="_blank" rel="noopener noreferrer">OPEN THE TIKTOK <ArrowUpRight size={17} /></a></div></div>
-    <div className="tiktok-feature"><div className="tiktok-feature-copy"><span className="tiktok-stamp">TIKTOK / 09</span><h3>THE FEED<br />MOVES FAST<span className="orange-text">.</span></h3><p>Basketball takes, quick reactions, and whatever earns a replay. The panel points straight to the public profile so the real videos open cleanly, without a broken third-party player.</p><div className="tiktok-meta"><span><Sparkles size={15} /> LATEST POSTS</span><span>SCROLL / WATCH / REPEAT</span></div></div><TikTokProfileEmbed /></div>
+    <div className="tiktok-feature"><div className="tiktok-feature-copy"><span className="tiktok-stamp">TIKTOK / 09</span><h3>THE FEED<br />MOVES FAST<span className="orange-text">.</span></h3><p>Basketball takes, quick reactions, and whatever earns a replay. No fake player, no dead embed — just a sharp door into the public profile.</p><div className="tiktok-meta"><span><Sparkles size={15} /> LATEST POSTS</span><span>OPEN / WATCH / REPEAT</span></div></div><TikTokProfileCard /></div>
   </section>;
 }
 
@@ -52,5 +52,5 @@ export function Socials() {
 }
 
 export function Footer() {
-  return <footer className="site-footer"><blockquote className="tutto-passa">“tutto passa”</blockquote><a href="#top" className="wordmark">KENNYS<span>WILLY</span><i /></a><p>Music, hoops, streams, and whatever is next.</p><a href="#top">BACK TO TOP ↑</a><div>© {new Date().getFullYear()} KENNETH WILLIAMS <span>KENNYSWILLY / MUSIC, HOOPS & STREAMS.</span></div></footer>;
+  return <footer className="site-footer"><div className="tutto-lockup"><span className="tutto-mark" aria-hidden="true">TP</span><blockquote className="tutto-passa">TUTTO PASSA</blockquote></div><a href="#top" className="wordmark">KENNYS<span>WILLY</span><i /></a><p>Music, hoops, streams, and whatever is next.</p><a href="#top">BACK TO TOP ↑</a><div>© {new Date().getFullYear()} KENNETH WILLIAMS <span>KENNYSWILLY / MUSIC, HOOPS & STREAMS.</span></div></footer>;
 }
