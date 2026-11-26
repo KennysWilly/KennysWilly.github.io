@@ -41,6 +41,31 @@ export interface MusicResponse {
   updatedAt: string;
 }
 
+export interface LiveActivity {
+  id: string;
+  name: string;
+  type: number;
+  details: string;
+  state: string;
+  platform: string;
+  largeImage: string;
+  largeText: string;
+  smallImage: string;
+  smallText: string;
+  url: string;
+  startedAt: number | null;
+  endsAt: number | null;
+}
+
+export interface ActivityResponse {
+  status: IntegrationStatus;
+  username: string;
+  discordStatus: string;
+  activities: LiveActivity[];
+  updatedAt: string;
+  message?: string;
+}
+
 export interface Clip {
   id: string;
   platform: ClipPlatform;

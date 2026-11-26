@@ -2,9 +2,11 @@ import { createHash } from "node:crypto";
 import type { Express } from "express";
 import type {
   Album,
+  ActivityResponse,
   Clip,
   ClipPlatform,
   ClipsResponse,
+  LiveActivity,
   MusicResponse,
   NowPlaying,
   Playlist,
@@ -12,6 +14,8 @@ import type {
 
 export const TWITCH_USERNAME = "kennyswillyy";
 export const YOUTUBE_CHANNEL_ID = "UCrk3hPLM7Po9C6qheU-591w";
+export const LANYARD_USER_ID = "1181246957390413827";
+const LANYARD_URL = `https://lanyard.callen.page/v1/users/${LANYARD_USER_ID}`;
 const SECOND = 1_000;
 const MINUTE = 60 * SECOND;
 const PAGE_SIZE = 50;
@@ -27,7 +31,7 @@ const ENV_NAMES = [
   "TWITCH_CLIENT_SECRET",
   "YOUTUBE_API_KEY",
 ] as const;
-type Provider = "Spotify" | "Twitch" | "YouTube";
+type Provider = "Spotify" | "Twitch" | "YouTube" | "Lanyard";
 type Json = Record<string, unknown>;
 type Env = Record<string, string | undefined>;
 const object = (value: unknown): Json =>
@@ -159,6 +163,59 @@ export function normalizeNowPlaying(value: unknown): NowPlaying | null {
     progressMs: Math.min(normalizeCount(state.progress_ms) ?? 0, durationMs),
     durationMs,
     isPlaying: state.is_playing === true,
+  };
+}
+
+function discordAsset(applicationId: unknown, asset: unknown): string {
+  const app = text(applicationId);
+  const key = text(asset).replace(/^mp:/, "");
+  if (!/^[0-9]{6,22}$/.test(app) || !/^[a-zA-Z0-9_-]{1,200}$/.test(key)) return "";
+  return `https://cdn.discordapp.com/app-assets/${app}/${key}.png?size=256`;
+}
+
+function timestamp(value: unknown): number | null {
+  return typeof value === "number" && Number.isSafeInteger(value) && value > 0 ? value : null;
+}
+
+export function normalizeLanyardActivity(value: unknown): LiveActivity[] {
+  return array(value).flatMap(raw => {
+    const row = object(raw);
+    const applicationId = text(row.application_id);
+    const activityId = text(row.id);
+    const name = text(row.name);
+    if (!activityId || !name) return [];
+    const assets = object(row.assets);
+    const timestamps = object(row.timestamps);
+    const buttons = array(row.buttons).map(text).filter(Boolean);
+    return [{
+      id: activityId,
+      name,
+      type: normalizeCount(row.type) ?? 0,
+      details: text(row.details),
+      state: text(row.state),
+      platform: text(row.platform),
+      largeImage: discordAsset(applicationId, assets.large_image),
+      largeText: text(assets.large_text),
+      smallImage: discordAsset(applicationId, assets.small_image),
+      smallText: text(assets.small_text),
+      url: buttons[0] && /^https:\/\//.test(buttons[0]) ? buttons[0] : "",
+      startedAt: timestamp(timestamps.start),
+      endsAt: timestamp(timestamps.end),
+    } satisfies LiveActivity];
+  });
+}
+
+export function normalizeLanyard(value: unknown, updatedAt = new Date().toISOString()): ActivityResponse {
+  const body = object(value);
+  const data = object(body.data);
+  const user = object(data.discord_user);
+  return {
+    status: body.success === true ? "connected" : "error",
+    username: text(user.global_name) || text(user.username) || "KennysWilly",
+    discordStatus: text(data.discord_status) || "offline",
+    activities: normalizeLanyardActivity(data.activities),
+    updatedAt,
+    ...(body.success === true ? {} : { message: "Discord activity is temporarily unavailable." }),
   };
 }
 function duration(seconds: number): string {
@@ -612,6 +669,23 @@ export function createIntegrations(options: Options = {}) {
       };
     });
   }
+  async function getActivity(): Promise<ActivityResponse> {
+    return memo("lanyard-activity", 15 * SECOND, async () => {
+      const updatedAt = new Date(clock()).toISOString();
+      try {
+        return normalizeLanyard(await request("Lanyard", LANYARD_URL), updatedAt);
+      } catch (error) {
+        return {
+          status: "error",
+          username: "KennysWilly",
+          discordStatus: "offline",
+          activities: [],
+          updatedAt,
+          message: safeMessage("Lanyard", error),
+        };
+      }
+    });
+  }
   function twitchToken(env: Env): Promise<AccessToken> {
     return memo("twitch-token", tokenTtl, async () => {
       const body = await request(
@@ -791,7 +865,7 @@ export function createIntegrations(options: Options = {}) {
       }
     );
   }
-  return { getMusic, getClips };
+  return { getMusic, getClips, getActivity };
 }
 
 export function registerIntegrationRoutes(
@@ -812,6 +886,21 @@ export function registerIntegrationRoutes(
         updatedAt: new Date().toISOString(),
         message: "Music is temporarily unavailable.",
       } satisfies MusicResponse);
+    }
+  });
+  app.get("/api/activity", async (_req, res) => {
+    res.set("Cache-Control", "no-store");
+    try {
+      res.json(await integrations.getActivity());
+    } catch {
+      res.json({
+        status: "error",
+        username: "KennysWilly",
+        discordStatus: "offline",
+        activities: [],
+        updatedAt: new Date().toISOString(),
+        message: "Discord activity is temporarily unavailable.",
+      } satisfies ActivityResponse);
     }
   });
   app.get("/api/clips", async (req, res) => {

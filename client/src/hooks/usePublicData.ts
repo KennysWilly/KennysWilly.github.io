@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import type { MusicResponse, ClipsResponse } from "../../../shared/integrations";
+import type { ActivityResponse, MusicResponse, ClipsResponse } from "../../../shared/integrations";
 
 async function readJson<T>(url: string): Promise<T> {
   const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
@@ -9,6 +9,10 @@ async function readJson<T>(url: string): Promise<T> {
 
 export function useMusic() {
   return useQuery({ queryKey: ["music"], queryFn: () => readJson<MusicResponse>("/api/music"), refetchInterval: 30000, staleTime: 20000, retry: 1 });
+}
+
+export function useActivity() {
+  return useQuery({ queryKey: ["activity"], queryFn: () => readJson<ActivityResponse>("/api/activity"), refetchInterval: 15000, staleTime: 10000, retry: 1 });
 }
 
 export function useClips(platform: "youtube" | "twitch") {

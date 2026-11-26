@@ -20,6 +20,8 @@ All six social destinations match Kenneth’s supplied accounts. The wallpaper u
 
 YouTube highlight picks are ranked by rounded public view counts among 15 visible channel Shorts, checked November 26, 2026. The UI labels this snapshot and does not represent it as an exhaustive all-time ranking. Video playback opens on demand in an accessible dialog, with original-platform links if embedding is unavailable.
 
+The live activity card reads Kenneth’s public Discord Rich Presence through the supplied Lanyard user endpoint. It is normalized server-side at `/api/activity`, refreshed every 15 seconds, and currently reports the public `Modrinth` activity and `dnd` status when available. No Discord token is stored or exposed.
+
 Spotify live listening and full library sync, ranked Twitch clips, and refreshed YouTube analytics require server-side provider credentials. Without them, disconnected states are truthful and public playlist/video features still work. See [secure integration setup](docs/INTEGRATIONS.md). Never commit credentials or paste them in chat. Use a secure secret manager or Manus’s protected input card. Visitors do not authorize Spotify; the website displays only the owner’s explicitly shared activity and permitted collection data.
 
 ## Structure

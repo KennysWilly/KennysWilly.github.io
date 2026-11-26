@@ -3,6 +3,8 @@ import { createServer } from "node:http";
 import { describe, expect, it, vi } from "vitest";
 import {
   createIntegrations,
+  normalizeLanyard,
+  normalizeLanyardActivity,
   normalizeAlbums,
   normalizeCount,
   normalizeDuration,
@@ -273,7 +275,33 @@ describe("pure normalization", () => {
     expect(normalizeDuration("P1DT1S")).toBe("24:00:01");
     expect(normalizeDuration(28.5)).toBe("0:28");
     expect(normalizeDuration("unknown")).toBeUndefined();
-    expect(normalizeDuration(-1)).toBeUndefined();
+    expect(normalizeDuration("PT0S")).toBeUndefined();
+  });
+
+  it("normalizes Lanyard presence without trusting arbitrary asset or button URLs", () => {
+    const activities = normalizeLanyardActivity([{
+      application_id: "1123683254248148992",
+      id: "activity-1",
+      name: "Modrinth",
+      type: 0,
+      platform: "desktop",
+      state: "Idling...",
+      assets: { large_image: "1137523880718762015", large_text: "Modrinth Logo" },
+      buttons: ["javascript:alert(1)", "https://example.com/activity"],
+      timestamps: { start: 1795676388803 },
+    }]);
+    expect(activities[0]).toMatchObject({
+      name: "Modrinth",
+      state: "Idling...",
+      largeImage: "https://cdn.discordapp.com/app-assets/1123683254248148992/1137523880718762015.png?size=256",
+      url: "",
+      startedAt: 1795676388803,
+    });
+    expect(normalizeLanyard({ success: true, data: { discord_user: { global_name: "Kennyswilly" }, activities, discord_status: "dnd" } })).toMatchObject({
+      status: "connected",
+      username: "Kennyswilly",
+      discordStatus: "dnd",
+    });
   });
 });
 
