@@ -14,17 +14,17 @@ export default function Hero({ albums, paused, setPaused, connected }: { albums:
   return <section className="hero" aria-labelledby="hero-title">
     <AlbumWall albums={albums} paused={paused} />
     <div className="hero-content">
-      <div className="eyebrow"><span className="status-dot" /> THE KENNYSWILLY BRAND</div>
+      <div className="eyebrow"><span className="status-dot" /> MUSIC / HOOPS / LIVE</div>
       <h1 id="hero-title">KENNYS<br />WILLY.<br /><span>NO EDIT.</span><span className="hero-asterisk" aria-hidden="true">✳</span></h1>
-      <p>A music, hoops, and stream brand built around the rotation. Kanye, Thunder, and whatever is worth pressing play on.<br className="desktop-break" /> Kenneth Williams is the person behind it.</p>
-      <div className="hero-actions"><a className="brutal-button orange" href="https://www.twitch.tv/kennyswillyy" target="_blank" rel="noopener noreferrer"><Twitch size={20} /> CATCH A STREAM <ArrowUpRight size={20} /></a><a className="brutal-button" href="#music">OPEN THE ROTATION <ArrowDown size={19} /></a></div>
-      <div className="hero-footnote"><Zap size={17} fill="currentColor" /> MUSIC UP. THUNDER UP.</div>
+      <p>Music, basketball, and whatever is worth staying up for. Kanye in the mix, Thunder on the screen, stream when it's on.<br className="desktop-break" /> Kenneth Williams is behind the page.</p>
+      <div className="hero-actions"><a className="brutal-button orange" href="https://www.twitch.tv/kennyswillyy" target="_blank" rel="noopener noreferrer"><Twitch size={20} /> WATCH LIVE <ArrowUpRight size={20} /></a><a className="brutal-button" href="#music">SEE WHAT'S PLAYING <ArrowDown size={19} /></a></div>
+      <div className="hero-footnote"><Zap size={17} fill="currentColor" /> MUSIC ON. THUNDER UP.</div>
     </div>
-    <div className="wall-sticker"><span>NO SKIPS.</span><strong>THE<br />ROTATION.</strong><span>KENNYSWILLY BRAND</span></div>
+    <div className="wall-sticker"><span>NO SKIPS.</span><strong>IN<br />HEAVY ROTATION.</strong><span>KENNYSWILLY</span></div>
     <div className="wall-caption"><span>{connected ? "MY SPOTIFY LIBRARY" : "FROM MY SPOTIFY PLAYLISTS"}</span><button onClick={() => setPaused(!paused)} aria-label={paused ? "Resume album wallpaper animation" : "Pause album wallpaper animation"}>{paused ? <Play size={15} /> : <Pause size={15} />}</button></div>
   </section>;
 }
 
 export function Ticker() {
-  return <div className="ticker" aria-label="KennysWilly music, hoops and streams"><div>{Array.from({ length: 4 }, (_, i) => <span key={i}>KENNYSWILLY. MUSIC. HOOPS. STREAMS. <b>✳</b> THUNDER UP <b>✳</b> NO SKIPS <b>✳</b> </span>)}</div></div>;
+  return <div className="ticker" aria-label="KennysWilly music, hoops and streams"><div>{Array.from({ length: 4 }, (_, i) => <span key={i}>KENNYSWILLY / MUSIC / HOOPS / STREAMS <b>✳</b> THUNDER UP <b>✳</b> NO SKIPS <b>✳</b> </span>)}</div></div>;
 }

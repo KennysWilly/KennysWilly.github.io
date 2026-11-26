@@ -1471,7 +1471,7 @@
     {
       "id": "1mRhwA8wntU3ELVX4lwg4N",
       "name": "Chillrap",
-      "description": "Kanye, NxWorries, Freddie Gibbs & the rest of the rotation.",
+      "description": "Kanye, NxWorries, Freddie Gibbs, and plenty more.",
       "image": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84b84ea1f531209093b8af74b1",
       "url": "https://open.spotify.com/playlist/1mRhwA8wntU3ELVX4lwg4N",
       "totalTracks": 97,
@@ -1498,7 +1498,7 @@
     {
       "id": "1ZfrbAUMKDi9Oiqd61NbOS",
       "name": "Other",
-      "description": "A public cut from the KennysWilly Spotify rotation: Other.",
+      "description": "One of the public playlists on the profile.",
       "image": "https://i.scdn.co/image/ab67616d00001e024f4119f2a4b0dab40391ac24",
       "url": "https://open.spotify.com/playlist/1ZfrbAUMKDi9Oiqd61NbOS",
       "totalTracks": 2,
@@ -1507,7 +1507,7 @@
     {
       "id": "17DaT6VVjizLbZtYi8JLLF",
       "name": "Mom",
-      "description": "A public cut from the KennysWilly Spotify rotation: Mom.",
+      "description": "One of the public playlists on the profile.",
       "image": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84336051d82bd066cee9d57218",
       "url": "https://open.spotify.com/playlist/17DaT6VVjizLbZtYi8JLLF",
       "totalTracks": 91,
@@ -1516,7 +1516,7 @@
     {
       "id": "3dcK6C8KvTRxSrzKD5cQaM",
       "name": "Discover Weekly dupe",
-      "description": "A public cut from the KennysWilly Spotify rotation: Discover Weekly dupe.",
+      "description": "One of the public playlists on the profile.",
       "image": "https://mosaic.scdn.co/640/ab67616d00001e021b37cccf9b7a08f87d3ccb7dab67616d00001e023aac7606f121deb24365a224ab67616d00001e0292d9fb345cd90f7250e8bb8fab67616d00001e02c93767e75b5f63ab5301064f",
       "url": "https://open.spotify.com/playlist/3dcK6C8KvTRxSrzKD5cQaM",
       "totalTracks": 30,
@@ -1525,34 +1525,16 @@
     {
       "id": "6bBS4jZDuAr5KpSeAqkQYA",
       "name": "2K-Madden",
-      "description": "A public cut from the KennysWilly Spotify rotation: 2K-Madden.",
+      "description": "One of the public playlists on the profile.",
       "image": "https://mosaic.scdn.co/640/ab67616d00001e02346d77e155d854735410ed18ab67616d00001e0271d840defb002ed3b180f7cdab67616d00001e02c3db0fe3a8ed529a9c388dc9ab67616d00001e02e9ae362d2659143977466b13",
       "url": "https://open.spotify.com/playlist/6bBS4jZDuAr5KpSeAqkQYA",
       "totalTracks": 65,
       "available": true
     },
     {
-      "id": "60hu17lJeEmBeDzaefHSEX",
-      "name": "",
-      "description": "A public cut from the KennysWilly Spotify rotation: .",
-      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84df41ba1c0ccf353341b04424",
-      "url": "https://open.spotify.com/playlist/60hu17lJeEmBeDzaefHSEX",
-      "totalTracks": 70,
-      "available": true
-    },
-    {
-      "id": "3Lz32vIOaH3rOd9K00Gafd",
-      "name": "",
-      "description": "A public cut from the KennysWilly Spotify rotation: .",
-      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84abb5d46e6c992278ba75ba4f",
-      "url": "https://open.spotify.com/playlist/3Lz32vIOaH3rOd9K00Gafd",
-      "totalTracks": 99,
-      "available": true
-    },
-    {
       "id": "5uOVFdK2WRZIK5xg40NbuP",
       "name": "R&Bish",
-      "description": "A public cut from the KennysWilly Spotify rotation: R&Bish.",
+      "description": "One of the public playlists on the profile.",
       "image": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84fe1bc250870649888c7e46c9",
       "url": "https://open.spotify.com/playlist/5uOVFdK2WRZIK5xg40NbuP",
       "totalTracks": 100,

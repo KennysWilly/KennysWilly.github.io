@@ -51,7 +51,7 @@ for playlist_id in discover_playlist_ids():
     }
     cover_sources = entity.get("coverArt", {}).get("sources", [])
     tracks = entity.get("trackList", [])
-    if not tracks or not cover_sources:
+    if not name or not tracks or not cover_sources:
         print(f"Playlist empty or missing artwork: {playlist_id}", flush=True)
         continue
     description = descriptions.get(playlist_id, f"A public cut from the KennysWilly Spotify rotation: {name}.")

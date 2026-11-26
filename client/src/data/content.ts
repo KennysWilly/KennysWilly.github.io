@@ -1,10 +1,10 @@
 export const socials = [
-  { id: "twitch", name: "Twitch", handle: "kennyswillyy", description: "The brand, live.", url: "https://www.twitch.tv/kennyswillyy", color: "#c5a7ef" },
-  { id: "youtube", name: "YouTube", handle: "@kennyswillyy", description: "Clips, takes, and the archive.", url: "https://youtube.com/@kennyswillyy", color: "#ff766b" },
-  { id: "instagram", name: "Instagram", handle: "@kennyswilly", description: "The visual side of the rotation.", url: "https://instagram.com/kennyswilly", color: "#f1b2d4" },
-  { id: "tiktok", name: "TikTok", handle: "@kennyswilly9", description: "Short form. Same name.", url: "https://tiktok.com/@kennyswilly9", color: "#a4d9c6" },
+  { id: "twitch", name: "Twitch", handle: "kennyswillyy", description: "Live when I'm live.", url: "https://www.twitch.tv/kennyswillyy", color: "#c5a7ef" },
+  { id: "youtube", name: "YouTube", handle: "@kennyswillyy", description: "Clips and the archive.", url: "https://youtube.com/@kennyswillyy", color: "#ff766b" },
+  { id: "instagram", name: "Instagram", handle: "@kennyswilly", description: "Photos, outfits, whatever made the cut.", url: "https://instagram.com/kennyswilly", color: "#f1b2d4" },
+  { id: "tiktok", name: "TikTok", handle: "@kennyswilly9", description: "Short clips and quick takes.", url: "https://tiktok.com/@kennyswilly9", color: "#a4d9c6" },
   { id: "x", name: "X / Twitter", handle: "@kennyswilly9", description: "The unfiltered feed.", url: "https://x.com/kennyswilly9", color: "#c6d0df" },
-  { id: "tip", name: "Support the stream", handle: "StreamElements tips", description: "Keep the rotation moving.", url: "https://streamelements.com/kennyswillyy/tip", color: "#ffb75d" },
+  { id: "tip", name: "Support the stream", handle: "StreamElements tips", description: "If you want to back the stream.", url: "https://streamelements.com/kennyswillyy/tip", color: "#ffb75d" },
 ] as const;
 
 export const spotifyProfile = "https://open.spotify.com/user/kw8640173";
