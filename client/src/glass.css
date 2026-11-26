@@ -150,3 +150,13 @@ body, html { background:#0a0a0b !important; color:#d8d4cf !important; }
 .idea-form-card p { max-width:360px; color:#bdb7b7; line-height:1.7; }
 .form-pending { display:inline-flex; align-self:flex-start; margin-top:24px; padding:10px 12px; border:1px dashed #a14a59; color:#d48791; font:700 9px/1 'Space Mono',monospace; }
 @media(max-width:780px) { .stream-forms-grid { grid-template-columns:1fr; } .stream-form-card { min-height:300px; } }
+
+/* KEEP THE GOOGLE FORM UI BEHIND THE ARTWORK UNTIL INVITED IN */
+.confession-reveal { position:relative; height:315px; margin-top:20px; overflow:hidden; border:1px solid #713542; background:linear-gradient(145deg,#471f2a,#19191d 62%,#101012); }
+.confession-reveal iframe { display:block; width:100%; height:100%; border:0; background:#18181b; filter:invert(.9) hue-rotate(155deg) saturate(.55) contrast(1.05); }
+.confession-cover { position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; background:radial-gradient(circle at 50% 38%,#7e2b3b 0,transparent 28%),linear-gradient(145deg,#32151c,#18181b 66%,#101012); color:#d8d4cf; transition:opacity .25s ease,visibility .25s ease; pointer-events:none; }
+.confession-cover::before { content:'KW / 05'; position:absolute; top:16px; left:18px; color:#b66a74; font:700 9px/1 'Space Mono',monospace; }
+.confession-cover strong { font:400 clamp(38px,5vw,72px)/.9 'Anton',Impact,sans-serif; letter-spacing:-.06em; }
+.confession-cover span { color:#d48791; font:700 9px/1 'Space Mono',monospace; letter-spacing:.08em; }
+.confession-reveal:hover .confession-cover, .confession-reveal:focus-within .confession-cover { opacity:0; visibility:hidden; }
+@media(max-width:680px) { .confession-cover { pointer-events:auto; } .confession-reveal:focus-within .confession-cover { pointer-events:none; } }

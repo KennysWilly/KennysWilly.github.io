@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Clock3, Headphones, Music2, Pause, Play, Radio, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Headphones, Music2, Pause, Play, Radio, Sparkles } from "lucide-react";
 import type { ActivityResponse, MusicResponse, Playlist } from "../../../shared/integrations";
 import snapshot from "@/data/spotify-snapshot.json";
 import { spotifyProfile } from "@/data/content";
@@ -63,7 +63,6 @@ export default function MusicSection({ data, loading, error, retry, activity, ac
           <div className="playlist-cover">{active.image ? <img src={active.image} alt={`${active.name} playlist cover`} loading="lazy" /> : <Music2 size={64} />}</div>
           <div><span className="tiny-label">FROM THE PROFILE</span><h3>{active.name}</h3><p>{active.description}</p><a className="text-link" href={active.url} target="_blank" rel="noopener noreferrer">OPEN IN SPOTIFY <ArrowUpRight size={18} /></a></div>
         </div>
-        {active.available !== false ? <iframe key={active.id} title={`${active.name} on Spotify`} className="spotify-embed" src={`https://open.spotify.com/embed/playlist/${active.id}?utm_source=generator&theme=0`} height="152" width="100%" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" /> : <div className="playlist-unavailable">This link returned “not found” publicly. It may be private or unavailable. The original Spotify link is still above.</div>}
         <div className="playlist-footer"><a href={spotifyProfile} target="_blank" rel="noopener noreferrer">MY SPOTIFY PROFILE <ArrowUpRight size={15} /></a><div className="pager"><button aria-label="Previous playlist" onClick={() => move(-1)}><ArrowLeft size={18} /></button><button aria-label="Choose another public playlist" onClick={surpriseMe}><Sparkles size={15} /></button><button aria-label="Next playlist" onClick={() => move(1)}><ArrowRight size={18} /></button></div></div>
       </div>
       <aside className="listening-card activity-card" aria-label="Live Discord activity">
@@ -73,7 +72,6 @@ export default function MusicSection({ data, loading, error, retry, activity, ac
         {spotifyActivity ? <a href={spotifyActivity.url} target="_blank" rel="noopener noreferrer" className="text-link">LISTEN ON SPOTIFY <ArrowUpRight size={16} /></a> : liveActivity?.url ? <a href={liveActivity.url} target="_blank" rel="noopener noreferrer" className="text-link">OPEN ACTIVITY <ArrowUpRight size={16} /></a> : now ? <><div className="track-progress"><span style={{ width: `${Math.min(100, (now.progressMs / Math.max(1, now.durationMs)) * 100)}%` }} /></div><a href={now.url} target="_blank" rel="noopener noreferrer" className="text-link">LISTEN ON SPOTIFY <ArrowUpRight size={16} /></a></> : activityError ? <button className="text-link" onClick={retryActivity}>TRY AGAIN <ArrowRight size={16} /></button> : <div className="connection-note"><span />{activityLoading ? "CHECKING LANYARD" : "NOTHING LIVE RIGHT NOW"}</div>}
       </aside>
     </div>
-    {data?.recentlyPlayed?.length ? <div className="recently-played" aria-labelledby="recently-played-title"><div className="recently-played-heading"><span className="tiny-label"><Clock3 size={14} /> RECENTLY PLAYED</span><span>LAST 8 AVAILABLE</span></div><div className="recent-track-list">{data.recentlyPlayed.map(track => <a className="recent-track" key={`${track.url}-${track.playedAt ?? "unknown"}`} href={track.url} target="_blank" rel="noopener noreferrer">{track.image ? <img src={track.image} alt="" loading="lazy" /> : <div className="recent-track-placeholder"><Music2 size={16} /></div>}<span><strong>{track.name}</strong><small>{track.artists.join(", ")} / {track.album}</small></span><ArrowUpRight size={15} /></a>)}</div></div> : <div className="recently-played unavailable-recent"><div className="recently-played-heading"><span className="tiny-label"><Clock3 size={14} /> RECENTLY PLAYED</span></div><p>{loading ? "Checking recent listening…" : "Recent listening is unavailable until Spotify authorization is connected."}</p></div>}
     <p className="source-note">{data?.albums.length ? "Wallpaper artwork syncs from my Spotify collection." : "Wallpaper: a snapshot of actual songs in my public playlists. Full library sync needs Spotify authorization."}</p>
   </section>;
 }
