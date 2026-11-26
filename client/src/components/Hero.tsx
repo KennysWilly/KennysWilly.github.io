@@ -26,5 +26,5 @@ export default function Hero({ albums, paused, setPaused, connected }: { albums:
 }
 
 export function Ticker() {
-  return <div className="ticker" aria-label="KennysWilly music, hoops and streams"><div>{Array.from({ length: 4 }, (_, i) => <span key={i}>KENNYSWILLY / MUSIC / HOOPS / STREAMS <b>✳</b> THUNDER UP <b>✳</b> NO SKIPS <b>✳</b> </span>)}</div></div>;
+  return <div className="ticker" aria-label="KennysWilly music, hoops and streams"><div>{Array.from({ length: 4 }, (_, i) => <span key={i}>KENNYSWILLY / MUSIC / HOOPS / STREAMS <b>✳</b> THUNDER UP <b>✳</b> </span>)}</div></div>;
 }

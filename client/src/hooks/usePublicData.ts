@@ -2,6 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import type { ActivityResponse, MusicResponse, ClipsResponse, TwitchStatusResponse } from "../../../shared/integrations";
 
 const isStaticBuild = import.meta.env.VITE_STATIC_BUILD === "true";
+const LANYARD_URLS = [
+  "https://api.lanyard.rest/v1/users/1181246957390413827",
+  "https://lanyard.callen.page/v1/users/1181246957390413827",
+];
 
 async function readJson<T>(url: string): Promise<T> {
   const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
@@ -9,12 +13,51 @@ async function readJson<T>(url: string): Promise<T> {
   return response.json() as Promise<T>;
 }
 
+function staticActivity(value: unknown): ActivityResponse {
+  const body = value && typeof value === "object" ? value as Record<string, any> : {};
+  const data = body.data && typeof body.data === "object" ? body.data as Record<string, any> : {};
+  const user = data.discord_user && typeof data.discord_user === "object" ? data.discord_user : {};
+  const spotify = data.spotify && typeof data.spotify === "object" ? data.spotify : null;
+  const timestamps = spotify?.timestamps && typeof spotify.timestamps === "object" ? spotify.timestamps : {};
+  const spotifyPresence = spotify?.track_id && spotify?.song && spotify?.artist ? {
+    name: String(spotify.song),
+    artists: String(spotify.artist).split(/\s*[,;]\s*/).map(value => value.trim()).filter(Boolean),
+    album: String(spotify.album ?? ""),
+    image: typeof spotify.album_art_url === "string" ? spotify.album_art_url : "",
+    url: `https://open.spotify.com/track/${spotify.track_id}`,
+    startedAt: typeof timestamps.start === "number" ? timestamps.start : null,
+    endsAt: typeof timestamps.end === "number" ? timestamps.end : null,
+  } : null;
+  return {
+    status: body.success === true ? "connected" : "error",
+    username: String(user.global_name || user.username || "KennysWilly"),
+    discordStatus: String(data.discord_status || "offline"),
+    activities: [],
+    spotify: spotifyPresence,
+    listeningToSpotify: data.listening_to_spotify === true,
+    updatedAt: new Date().toISOString(),
+    ...(body.success === true ? {} : { message: "Discord activity is temporarily unavailable." }),
+  };
+}
+
+async function readStaticActivity(): Promise<ActivityResponse> {
+  let lastError: unknown;
+  for (const url of LANYARD_URLS) {
+    try {
+      return staticActivity(await readJson<unknown>(url));
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError ?? new Error("The Lanyard activity feed is unavailable.");
+}
+
 export function useMusic() {
   return useQuery({ queryKey: ["music"], queryFn: () => readJson<MusicResponse>("/api/music"), refetchInterval: 30000, staleTime: 20000, retry: 1, enabled: !isStaticBuild });
 }
 
 export function useActivity() {
-  return useQuery({ queryKey: ["activity"], queryFn: () => readJson<ActivityResponse>("/api/activity"), refetchInterval: 5000, staleTime: 4000, retry: 1, enabled: !isStaticBuild });
+  return useQuery({ queryKey: ["activity"], queryFn: () => isStaticBuild ? readStaticActivity() : readJson<ActivityResponse>("/api/activity"), refetchInterval: 5000, staleTime: 4000, retry: 1 });
 }
 
 export function useClips(platform: "youtube" | "twitch") {
