@@ -120,6 +120,14 @@ h2 { font-family:'Archivo Black',sans-serif; font-size:clamp(48px,5vw,73px); let
 .take-card { border-color:var(--glass-border); box-shadow:0 16px 30px #0006, inset 0 1px #fff3; background:rgba(255,255,255,.075); }
 .take-card:nth-child(2) { background:rgba(111,168,255,.14); }
 .twitch-panel { border-color:var(--glass-border); box-shadow:0 18px 40px #0007, inset 0 1px #fff4; background:linear-gradient(135deg,rgba(197,167,239,.3),rgba(255,255,255,.07)); }
+.twitch-console { background:linear-gradient(145deg,rgba(13,13,15,.28),rgba(255,255,255,.06)); border-color:#fff5; box-shadow:inset 1px 0 #fff2; }
+.twitch-console::before { color:#fff8; }
+.twitch-live-badge { box-shadow:inset 0 1px #fff4,0 7px 18px #0004; }
+.twitch-orbit { filter:drop-shadow(0 0 10px #9b8cff55); }
+.orbit-ring { border-color:#ffffff66; }
+.twitch-channel-line { border-color:#fff3; color:#e9e5dc; }
+.take-image { border:0; background:transparent; }
+.take-copy h3 button:hover { color:var(--orange); }
 .twitch-live-badge { border-color:#fff5; background:rgba(13,13,15,.45); color:var(--cream); }
 .twitch-live-badge.is-live { background:var(--orange); }
 .social-art { border-color:#fff5; box-shadow:inset 0 1px #fff7,0 8px 18px #0005; }
