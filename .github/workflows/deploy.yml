@@ -35,6 +35,11 @@ jobs:
           VITE_STATIC_BUILD: true
       - name: Add GitHub Pages marker
         run: touch dist/public/.nojekyll
+      - name: Keep legacy project-path assets available
+        run: |
+          mkdir -p dist/public/kennyswilly
+          cp -R dist/public/assets dist/public/kennyswilly/assets
+          cp dist/public/favicon.svg dist/public/kennyswilly/favicon.svg
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
