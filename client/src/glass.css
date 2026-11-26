@@ -28,3 +28,28 @@
 .tutto-mark i, .tutto-mark b { display:none; }
 @media(max-width:800px) { .shorts-archive { grid-template-columns:1fr; } .album-mosaic { width:165%; left:-105px; } }
 @media(max-width:580px) { .shorts-archive-copy, .shorts-archive-link { min-height:260px; padding:24px; } .twitch-live-player { min-height:210px; } .album-mosaic { width:145%; left:-45px; grid-template-columns:repeat(4,1fr); } .album-tile:hover { transform:translateY(-7px) scale(1.12) !important; } }
+/* FINAL PALETTE LOCK: keep the oxblood / charcoal direction above the legacy base rules. */
+:root { --cream:#d8d4cf !important; --ink:#0a0a0b !important; --orange:#8f2633 !important; --purple:#4a1d29 !important; --blue:#66666b !important; }
+body, html { background:#0a0a0b !important; color:#d8d4cf !important; }
+.site { background:radial-gradient(circle at 70% 10%,#3a141c 0,transparent 35%),linear-gradient(135deg,#0a0a0b 0%,#171619 52%,#250f14 100%) !important; color:#d8d4cf !important; }
+.ticker { background:#141214 !important; color:#d8d4cf !important; border-color:#8f2633 !important; }
+.hero h1 > span:first-of-type, .hero h1 .hero-kenny { color:#d8d4cf !important; }
+.hero h1 .hero-willy, .orange-text { color:#a52d3c !important; }
+.playlist-card { background:linear-gradient(145deg,#32151c,#151416) !important; color:#d8d4cf !important; }
+.playlist-card h3, .playlist-card p, .playlist-card .card-overline, .playlist-card .playlist-footer a { color:#d8d4cf; }
+.card-overline { color:#d8d4cf; }
+.surprise-button { display:inline-flex; align-items:center; gap:5px; border:1px solid #a52d3c; padding:7px 9px; background:#241015; color:#d8d4cf; font:700 8px/1 'Space Mono',monospace; letter-spacing:.08em; cursor:pointer; }
+.surprise-button:hover { background:#8f2633; color:#fff4ef; }
+.twitch-panel, .twitch-panel.is-live { background:linear-gradient(145deg,#24171c,#111113 68%,#2c2024) !important; color:#d8d4cf !important; }
+.twitch-panel .twitch-copy h2, .twitch-panel .twitch-copy p, .twitch-panel .twitch-copy .eyebrow, .twitch-panel .twitch-console, .twitch-panel .twitch-console-top, .twitch-panel .twitch-channel-line, .twitch-panel .twitch-stat-grid span, .twitch-panel .twitch-note { color:#d8d4cf !important; }
+.twitch-panel .twitch-copy p, .twitch-panel .twitch-note { color:#b9b4b2 !important; }
+.twitch-console { background:linear-gradient(145deg,#171518,#2a171d) !important; border-color:rgba(216,212,207,.32) !important; }
+.twitch-console::before, .console-code { color:#aaa4a5 !important; }
+.twitch-live-badge { background:#191619 !important; color:#d8d4cf !important; border-color:#8f2633 !important; }
+.twitch-live-badge.is-live { background:#8f2633 !important; color:#fff4ef !important; }
+.twitch-stat-grid strong { color:#f0e9e3 !important; }
+.twitch-panel .brutal-button.purple { background:#8f2633 !important; color:#fff4ef !important; border-color:#b33b49 !important; }
+.twitch-live-player { border-color:#a52d3c !important; }
+.twitch-panel.is-live .twitch-console { box-shadow:inset 0 0 0 1px rgba(165,45,60,.3),0 0 24px rgba(143,38,51,.18); }
+.twitch-watch-live { background:#b33b49 !important; color:#fff7f2 !important; border-color:#e07a83 !important; box-shadow:0 0 0 3px rgba(179,59,73,.22),8px 8px 0 #080809; transform:translateY(-2px); }
+.twitch-watch-live:hover { background:#d55261 !important; color:#fff !important; }

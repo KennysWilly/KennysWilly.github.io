@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Clock3, Headphones, Music2, Pause, Play, Radio } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Clock3, Headphones, Music2, Pause, Play, Radio, Sparkles } from "lucide-react";
 import type { ActivityResponse, MusicResponse, Playlist } from "../../../shared/integrations";
 import snapshot from "@/data/spotify-snapshot.json";
 import { spotifyProfile } from "@/data/content";
@@ -36,6 +36,15 @@ export default function MusicSection({ data, loading, error, retry, activity, ac
   }, [rotating, reduced, playlists.length]);
   const active = playlists[position % playlists.length];
   const move = (direction: number) => { setPosition(value => (value + direction + playlists.length) % playlists.length); setRotating(false); };
+  const surpriseMe = () => {
+    if (!playlists.length) return;
+    const current = position % playlists.length;
+    const choices = playlists.map((_, index) => index).filter(index => index !== current);
+    const next = choices[Math.floor(Math.random() * choices.length)] ?? current;
+    setPosition(next);
+    setRotating(false);
+    window.open(playlists[next].url, "_blank", "noopener,noreferrer");
+  };
   const now = error ? null : data?.nowPlaying;
   const liveActivity = activity?.activities[0];
   const spotifyActivity = activity?.spotify;
@@ -49,13 +58,13 @@ export default function MusicSection({ data, loading, error, retry, activity, ac
     <div className="section-top"><div><div className="eyebrow">01 / MUSIC</div><h2 id="music-title">WHAT I'M PLAYING<span className="orange-text">.</span></h2></div><p>{topArtists}.<br />The names getting the most spins.</p></div>
     <div className="music-layout">
       <div className="playlist-card">
-        <div className="card-overline"><span><SpotifyMark /> SPOTIFY PLAYLISTS</span><span>{String((position % playlists.length) + 1).padStart(2, "0")} / {String(playlists.length).padStart(2, "0")}</span></div>
+        <div className="card-overline"><span><SpotifyMark /> SURPRISE ME / SPOTIFY</span><button className="surprise-button" onClick={surpriseMe}>SURPRISE ME <ArrowUpRight size={14} /></button></div>
         <div className="playlist-info">
           <div className="playlist-cover">{active.image ? <img src={active.image} alt={`${active.name} playlist cover`} loading="lazy" /> : <Music2 size={64} />}</div>
           <div><span className="tiny-label">FROM THE PROFILE</span><h3>{active.name}</h3><p>{active.description}</p><a className="text-link" href={active.url} target="_blank" rel="noopener noreferrer">OPEN IN SPOTIFY <ArrowUpRight size={18} /></a></div>
         </div>
         {active.available !== false ? <iframe key={active.id} title={`${active.name} on Spotify`} className="spotify-embed" src={`https://open.spotify.com/embed/playlist/${active.id}?utm_source=generator&theme=0`} height="152" width="100%" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" /> : <div className="playlist-unavailable">This link returned “not found” publicly. It may be private or unavailable. The original Spotify link is still above.</div>}
-        <div className="playlist-footer"><a href={spotifyProfile} target="_blank" rel="noopener noreferrer">MY SPOTIFY PROFILE <ArrowUpRight size={15} /></a><div className="pager"><button aria-label="Previous playlist" onClick={() => move(-1)}><ArrowLeft size={18} /></button><button aria-label={rotating ? "Pause playlist rotation" : "Resume playlist rotation"} onClick={() => setRotating(!rotating)}>{rotating ? <Pause size={15} /> : <Play size={15} />}</button><button aria-label="Next playlist" onClick={() => move(1)}><ArrowRight size={18} /></button></div></div>
+        <div className="playlist-footer"><a href={spotifyProfile} target="_blank" rel="noopener noreferrer">MY SPOTIFY PROFILE <ArrowUpRight size={15} /></a><div className="pager"><button aria-label="Previous playlist" onClick={() => move(-1)}><ArrowLeft size={18} /></button><button aria-label="Choose another public playlist" onClick={surpriseMe}><Sparkles size={15} /></button><button aria-label="Next playlist" onClick={() => move(1)}><ArrowRight size={18} /></button></div></div>
       </div>
       <aside className="listening-card activity-card" aria-label="Live Discord activity">
         <div className="card-overline"><span><Radio size={18} /> LIVE ACTIVITY</span><span className={`listening-status ${activity?.discordStatus === "online" ? "playing" : ""}`}><span />{activityLoading ? "CHECKING" : (activity?.discordStatus ?? "OFFLINE").toUpperCase()}</span></div>
