@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { ArrowUpRight, Heart, Instagram, Radio, Sparkles, Twitch, Users, Youtube } from "lucide-react";
 import { socials } from "@/data/content";
 import { useTwitchStatus } from "@/hooks/usePublicData";
@@ -13,22 +12,21 @@ function SocialIcon({ id, size = 30 }: { id: string; size?: number }) {
 }
 
 function TikTokProfileEmbed() {
-  useEffect(() => {
-    const scriptUrl = "https://www.tiktok.com/embed.js";
-    if (!document.querySelector(`script[src="${scriptUrl}"]`)) {
-      const script = document.createElement("script");
-      script.src = scriptUrl;
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, []);
-  return <div className="tiktok-embed-shell"><div className="tiktok-fallback-bar"><span>PUBLIC PROFILE / LATEST POSTS</span><a href="https://www.tiktok.com/@kennyswilly9" target="_blank" rel="noopener noreferrer">OPEN TIKTOK <ArrowUpRight size={14} /></a></div><blockquote className="tiktok-embed" cite="https://www.tiktok.com/@kennyswilly9" data-unique-id="kennyswilly9" data-embed-type="creator" data-embed-from="creator_embed"><section><a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@kennyswilly9?refer=creator_embed">@kennyswilly9</a></section></blockquote></div>;
+  return <div className="tiktok-embed-shell">
+    <div className="tiktok-fallback-bar"><span>PUBLIC PROFILE / LATEST POSTS</span><a href="https://www.tiktok.com/@kennyswilly9" target="_blank" rel="noopener noreferrer">OPEN TIKTOK <ArrowUpRight size={14} /></a></div>
+    <a className="tiktok-profile-preview" href="https://www.tiktok.com/@kennyswilly9" target="_blank" rel="noopener noreferrer" aria-label="Open the KennysWilly TikTok profile">
+      <div className="tiktok-preview-mark">KW<span>✳</span></div>
+      <div className="tiktok-preview-copy"><span className="tiny-label">@KENNYSWILLY9 / TIKTOK</span><strong>THE LATEST CUTS<br />LIVE ON THE PROFILE.</strong><span className="text-link">OPEN PROFILE <ArrowUpRight size={17} /></span></div>
+      <div className="tiktok-preview-signal" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /></div>
+    </a>
+    <p className="tiktok-embed-note">TikTok does not expose a verified post ID for an in-page player here. The profile link opens the real public videos without a broken third-party script.</p>
+  </div>;
 }
 
 export function BasketballSection() {
   return <section className="section basketball-section" id="basketball" aria-labelledby="basketball-title">
     <div className="section-top"><div><div className="eyebrow">03 / THE SHORT FORM</div><h2 id="basketball-title">THE QUICK FEED.<br />NO FILTER<span className="orange-text">.</span></h2></div><div className="basketball-intro"><p>The newest cuts live here first.<br />Watch the profile, then follow the thread.</p><a className="text-link" href="https://www.tiktok.com/@kennyswilly9" target="_blank" rel="noopener noreferrer">OPEN THE TIKTOK <ArrowUpRight size={17} /></a></div></div>
-    <div className="tiktok-feature"><div className="tiktok-feature-copy"><span className="tiktok-stamp">TIKTOK / 09</span><h3>THE FEED<br />MOVES FAST<span className="orange-text">.</span></h3><p>Basketball takes, quick reactions, and whatever earns a replay. This is the official public profile feed; if TikTok blocks the in-page player, the profile link above still opens the real posts.</p><div className="tiktok-meta"><span><Sparkles size={15} /> LATEST POSTS</span><span>SCROLL / WATCH / REPEAT</span></div></div><TikTokProfileEmbed /></div>
+    <div className="tiktok-feature"><div className="tiktok-feature-copy"><span className="tiktok-stamp">TIKTOK / 09</span><h3>THE FEED<br />MOVES FAST<span className="orange-text">.</span></h3><p>Basketball takes, quick reactions, and whatever earns a replay. The panel points straight to the public profile so the real videos open cleanly, without a broken third-party player.</p><div className="tiktok-meta"><span><Sparkles size={15} /> LATEST POSTS</span><span>SCROLL / WATCH / REPEAT</span></div></div><TikTokProfileEmbed /></div>
   </section>;
 }
 
