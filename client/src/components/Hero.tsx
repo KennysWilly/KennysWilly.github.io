@@ -15,8 +15,8 @@ export default function Hero({ albums, paused, setPaused, connected }: { albums:
     <AlbumWall albums={albums} paused={paused} />
     <div className="hero-content">
       <div className="eyebrow"><span className="status-dot" /> MUSIC / HOOPS / LIVE</div>
-      <h1 id="hero-title">KENNYS<br />WILLY.<br /><span>NO EDIT.</span><span className="hero-asterisk" aria-hidden="true">✳</span></h1>
-      <p>Music, basketball, and whatever is worth staying up for. Kanye in the mix, Thunder on the screen, stream when it's on.<br className="desktop-break" /> Kenneth Williams is behind the page.</p>
+      <h1 id="hero-title">KENNYS<br />WILLY.<br /><span>ON MY TIME.</span><span className="hero-asterisk" aria-hidden="true">✳</span></h1>
+      <p>Music in the speakers. Basketball on the screen. Twitch when the lights come on.<br className="desktop-break" /> This is the front door to whatever I’m into next.</p>
       <div className="hero-actions"><a className="brutal-button orange" href="https://www.twitch.tv/kennyswillyy" target="_blank" rel="noopener noreferrer"><Twitch size={20} /> WATCH LIVE <ArrowUpRight size={20} /></a><a className="brutal-button" href="#music">SEE WHAT'S PLAYING <ArrowDown size={19} /></a></div>
       <div className="hero-footnote"><Zap size={17} fill="currentColor" /> MUSIC ON. THUNDER UP.</div>
     </div>

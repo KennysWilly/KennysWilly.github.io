@@ -131,4 +131,18 @@ h2 { font-family:'Archivo Black',sans-serif; font-size:clamp(48px,5vw,73px); let
 .twitch-live-badge { border-color:#fff5; background:rgba(13,13,15,.45); color:var(--cream); }
 .twitch-live-badge.is-live { background:var(--orange); }
 .social-art { border-color:#fff5; box-shadow:inset 0 1px #fff7,0 8px 18px #0005; }
+.tiktok-feature-copy { border-color:var(--glass-border); box-shadow:0 18px 40px #0007,inset 0 1px #fff4; background:linear-gradient(135deg,rgba(164,217,198,.72),rgba(155,140,255,.2)); }
+.tiktok-stamp { border-color:#fff7; background:rgba(13,13,15,.2); }
+.tiktok-embed-shell { border-color:var(--glass-border); box-shadow:0 18px 40px #0007,inset 0 1px #fff4; background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(155,140,255,.17)); }
+.socials-heading-note > span { text-shadow:0 0 18px #ff5b2277; }
+.social-card { border-color:var(--glass-border); box-shadow:0 16px 30px #0007,inset 0 1px #fff4; }
+.social-card-twitch { background:linear-gradient(135deg,rgba(197,167,239,.68),rgba(111,168,255,.2)); }
+.social-card-youtube { background:linear-gradient(135deg,rgba(255,118,107,.67),rgba(255,91,34,.18)); }
+.social-card-instagram { background:linear-gradient(135deg,rgba(241,178,212,.62),rgba(155,140,255,.2)); }
+.social-card-tiktok { background:linear-gradient(135deg,rgba(164,217,198,.62),rgba(111,168,255,.17)); }
+.social-card-x { background:linear-gradient(135deg,rgba(198,208,223,.55),rgba(255,255,255,.1)); }
+.social-card-tip { background:linear-gradient(135deg,rgba(255,183,93,.65),rgba(255,91,34,.18)); }
+.social-card:hover { box-shadow:0 0 32px #ff5b2244,inset 0 1px #fff5; }
+.social-card .social-art { background:rgba(13,13,15,.2); }
+.social-card h3 { text-shadow:0 0 18px #ffffff33; }
 .tutto-passa { text-shadow:0 0 25px #ff5b2248; }

@@ -167,6 +167,15 @@ h2 { font-size:64px; line-height:1.07; margin-top:16px; }
 .take-copy h3 { font-size:24px; line-height:1.25; margin:10px 0 19px; }
 .take-copy h3 button { padding:0; text-align:left; font-size:inherit; font-weight:inherit; line-height:inherit; }
 .take-meta { display:flex; align-items:center; gap:6px; border-top:1px solid #1b1b1833; padding-top:13px; font-family:'Space Mono',monospace; font-size:9px; }
+.tiktok-feature { display:grid; grid-template-columns:.78fr 1.22fr; gap:24px; align-items:stretch; }
+.tiktok-feature-copy { display:flex; flex-direction:column; justify-content:space-between; border:2px solid var(--ink); padding:34px; background:#a4d9c6; box-shadow:6px 6px 0 var(--ink); }
+.tiktok-stamp { display:inline-flex; width:max-content; border:2px solid var(--ink); padding:7px 9px; font-family:'Space Mono',monospace; font-size:9px; font-weight:700; }
+.tiktok-feature-copy h3 { font-family:'Anton',Impact,sans-serif; font-size:clamp(50px,6vw,82px); font-weight:400; line-height:.95; letter-spacing:-.04em; margin:34px 0 20px; }
+.tiktok-feature-copy p { font-size:13px; line-height:1.75; max-width:410px; }
+.tiktok-meta { display:flex; justify-content:space-between; gap:15px; border-top:2px solid var(--ink); padding-top:15px; margin-top:30px; font-family:'Space Mono',monospace; font-size:8px; font-weight:700; }
+.tiktok-meta span:first-child { display:flex; align-items:center; gap:6px; }
+.tiktok-embed-shell { min-height:520px; display:flex; align-items:center; justify-content:center; overflow:hidden; border:2px solid var(--ink); background:#f4eee4; box-shadow:6px 6px 0 var(--ink); padding:22px; }
+.tiktok-embed-shell .tiktok-embed { margin:0!important; min-width:288px!important; max-width:780px!important; width:100%; }
 .twitch-panel { display:grid; grid-template-columns:1fr 1fr; gap:8%; align-items:stretch; border:2px solid var(--ink); background:#c5a7ef; box-shadow:7px 7px 0 var(--ink); padding:45px; }
 .twitch-panel.is-live { background:#b9a0ef; }
 .twitch-copy .eyebrow { display:flex; align-items:center; gap:8px; }
@@ -225,15 +234,31 @@ h2 { font-size:64px; line-height:1.07; margin-top:16px; }
 .music-ticket small { display:block; margin-top:7px; font-size:12px; }
 .music-ticket:hover { background:var(--orange); }
 .socials-section { border-top:2px solid var(--ink); }
-.social-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-.social-card { display:flex; align-items:flex-start; gap:15px; border:2px solid var(--ink); box-shadow:4px 4px 0 var(--ink); background:var(--cream); padding:23px 20px; position:relative; transition:background .15s,transform .15s,box-shadow .15s; }
+.socials-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:35px; margin-bottom:36px; }
+.socials-heading-note { padding-bottom:7px; }
+.socials-heading-note > span { display:block; font-family:'Space Mono',monospace; font-size:9px; font-weight:700; color:var(--orange); margin-bottom:12px; }
+.socials-heading-note p { font-size:13px; line-height:1.75; color:#a8a2ac; }
+.social-wall { display:grid; grid-template-columns:repeat(12,1fr); grid-auto-rows:minmax(158px,auto); gap:18px; }
+.social-card { display:flex; align-items:flex-end; gap:18px; border:2px solid var(--ink); box-shadow:6px 6px 0 var(--ink); background:var(--cream); padding:25px; position:relative; overflow:hidden; transition:transform .2s,box-shadow .2s,filter .2s; }
+.social-card-twitch { grid-column:span 7; grid-row:span 2; background:#c5a7ef; }
+.social-card-youtube { grid-column:span 5; background:#ff766b; }
+.social-card-instagram { grid-column:span 4; background:#f1b2d4; }
+.social-card-tiktok { grid-column:span 4; background:#a4d9c6; }
+.social-card-x { grid-column:span 4; background:#c6d0df; }
+.social-card-tip { grid-column:span 4; background:#ffb75d; }
 .social-icon { display:flex; flex-shrink:0; width:43px; height:43px; border:1.5px solid var(--ink); align-items:center; justify-content:center; background:var(--social-color); }
 .x-icon { font-size:24px; }
-.social-card h3 { font-size:18px; font-weight:700; padding-right:17px; margin-bottom:5px; }
-.social-card span:not(.x-icon) { font-family:'Space Mono',monospace; font-size:9px; }
+.social-card-index,.social-card-mark,.social-kicker,.social-handle { position:absolute; font-family:'Space Mono',monospace; font-size:8px; font-weight:700; letter-spacing:.06em; }
+.social-card-index { top:18px; left:20px; }
+.social-card-mark { right:20px; top:18px; opacity:.55; }
+.social-art { display:flex; align-items:center; justify-content:center; width:78px; height:78px; flex-shrink:0; border:2px solid var(--ink); background:var(--social-color); transform:rotate(-7deg); }
+.social-card-copy { position:relative; min-width:0; padding-top:23px; }
+.social-kicker { top:0; left:0; }
+.social-card h3 { font-family:'Anton',Impact,sans-serif; font-size:35px; line-height:1; letter-spacing:-.04em; font-weight:400; padding-right:17px; margin-bottom:9px; }
+.social-handle { position:static; display:block; }
 .social-card p { font-size:11px; line-height:1.6; margin-top:13px; }
 .social-arrow { position:absolute; top:24px; right:15px; width:19px; }
-.social-card:hover { background:var(--social-color); transform:translate(3px,3px); box-shadow:1px 1px 0 var(--ink); }
+.social-card:hover { filter:saturate(1.25) contrast(1.03); transform:translate(4px,4px) rotate(-1deg); box-shadow:2px 2px 0 var(--ink); }
 .site-footer { border-top:3px solid var(--ink); padding:36px 4.5% 22px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:25px; background:var(--ink); color:var(--cream); }
 .site-footer .wordmark i { background:var(--cream); }
 .site-footer > p { font-size:12px; }
@@ -253,7 +278,7 @@ h2 { font-size:64px; line-height:1.07; margin-top:16px; }
   h2 { font-size:57px; } .music-layout { grid-template-columns:1.5fr 1fr; gap:20px; } .playlist-card,.listening-card { padding:19px; }
   .playlist-info { gap:17px; } .playlist-cover { width:120px; height:120px; } .playlist-info h3 { font-size:33px; }
   .about-section { gap:7%; } .hoops-card h3 { font-size:70px; } .basketball-art { width:185px; }
-  .social-grid { grid-template-columns:repeat(2,1fr); } .clips-empty { flex-wrap:wrap; }
+  .social-wall { grid-template-columns:repeat(2,1fr); } .social-card-twitch,.social-card-youtube,.social-card-instagram,.social-card-tiktok,.social-card-x,.social-card-tip { grid-column:span 1; grid-row:span 1; } .clips-empty { flex-wrap:wrap; }
 }
 @media(max-width:800px) {
   .site-header { padding:20px 5%; } .site-header nav { display:none; } .wordmark { font-size:26px; }
@@ -266,7 +291,7 @@ h2 { font-size:64px; line-height:1.07; margin-top:16px; }
   .music-layout { grid-template-columns:1fr; } .listening-card { display:grid; grid-template-columns:155px 1fr; column-gap:22px; padding:22px; }
   .listening-card .card-overline { grid-column:1/-1; } .listening-art { margin-bottom:0; } .listening-copy { align-self:center; } .connection-note,.track-progress,.listening-card > .text-link { grid-column:2; }
   .clip-grid { gap:16px; } .clip-body { padding:17px 14px; } .clip-body h3 { font-size:16px; min-height:65px; } .clip-body .tiny-label { font-size:7px; } .play-circle { width:43px; height:43px; }
-  .clips-footer { flex-direction:column; gap:16px; } .take-grid { grid-template-columns:1fr; } .twitch-panel { grid-template-columns:1fr; gap:35px; } .twitch-console { border-left:0; border-top:2px solid var(--ink); padding:28px 0 0; } .about-section { gap:40px; grid-template-columns:1fr; } .about-copy > p { max-width:100%; } .interest-stack { max-width:560px; width:100%; margin:auto; }
+  .clips-footer { flex-direction:column; gap:16px; } .take-grid { grid-template-columns:1fr; } .tiktok-feature { grid-template-columns:1fr; } .tiktok-embed-shell { min-height:430px; } .twitch-panel { grid-template-columns:1fr; gap:35px; } .twitch-console { border-left:0; border-top:2px solid var(--ink); padding:28px 0 0; } .about-section { gap:40px; grid-template-columns:1fr; } .about-copy > p { max-width:100%; } .interest-stack { max-width:560px; width:100%; margin:auto; }
   .hoops-card h3 { font-size:88px; } .basketball-art { width:230px; right:5px; } .clips-empty { padding:25px; gap:20px; } .clips-empty .brutal-button { margin-left:0; }
 }
 @media(max-width:580px) {
@@ -282,10 +307,10 @@ h2 { font-size:64px; line-height:1.07; margin-top:16px; }
   .listening-card { grid-template-columns:110px 1fr; padding:19px; gap:14px; } .listening-art { height:125px; margin:13px 0 0; } .record { width:110px; height:110px; } .record > div { width:47px; height:47px; } .listening-art > img { width:110px; height:110px; } .listening-copy h3 { font-size:19px; } .listening-copy .tiny-label { font-size:8px; } .listening-copy p { font-size:11px; } .connection-note { font-size:7px; }
   .clip-grid { grid-template-columns:1fr; gap:22px; } .clip-image { aspect-ratio:16/9; } .clip-body { padding:21px; } .clip-body h3 { font-size:20px; min-height:0; margin-bottom:20px; } .clip-body .tiny-label { font-size:8px; } .play-circle { width:57px; height:57px; }
   .platform-tabs { margin-top:19px; } .clips-empty { display:block; } .clips-empty > svg { margin-bottom:17px; } .clips-empty h3 { font-size:22px; } .clips-empty .brutal-button { margin-top:24px; }
-  .about-copy > p { font-size:14px; } .interest-tags { gap:7px; } .interest-tags > span { font-size:7px; padding:8px; } .twitch-panel { padding:27px; } .twitch-console::before { font-size:7px; } .twitch-console-top { align-items:flex-start; flex-direction:column; } .twitch-copy h2 { font-size:43px; } .twitch-stat-grid strong { font-size:48px; }
+  .about-copy > p { font-size:14px; } .interest-tags { gap:7px; } .interest-tags > span { font-size:7px; padding:8px; } .tiktok-feature-copy { padding:25px; } .tiktok-feature-copy h3 { font-size:55px; } .tiktok-meta { flex-direction:column; gap:8px; } .tiktok-embed-shell { min-height:390px; padding:10px; } .twitch-panel { padding:27px; } .twitch-console::before { font-size:7px; } .twitch-console-top { align-items:flex-start; flex-direction:column; } .twitch-copy h2 { font-size:43px; } .twitch-stat-grid strong { font-size:48px; }
   .hoops-card h3 { font-size:73px; } .basketball-art { width:190px; right:-20px; top:58px; } .hoops-card .card-overline { font-size:7px; } .jersey-strip span { padding:13px; font-size:7px; gap:8px; }
   .music-ticket { padding:19px; } .music-ticket b { font-size:8px; } .music-ticket small { font-size:10px; }
-  .social-grid { grid-template-columns:1fr; gap:17px; } .social-card { padding:23px; } .social-card p { font-size:12px; } .social-card span:not(.x-icon) { font-size:10px; }
+  .socials-heading { align-items:flex-start; flex-direction:column; gap:20px; } .social-wall { grid-template-columns:1fr; gap:14px; } .social-card-twitch,.social-card-youtube,.social-card-instagram,.social-card-tiktok,.social-card-x,.social-card-tip { grid-column:span 1; min-height:180px; } .social-card { padding:22px; } .social-card p { font-size:12px; }
   .site-footer { padding:30px 5% 22px; gap:23px; } .site-footer > p { width:100%; order:2; } .site-footer > a:last-of-type { order:1; } .site-footer > div { order:3; flex-direction:column; gap:12px; line-height:1.8; }
   .dialog-header { padding:13px; } .dialog-header h3 { font-size:14px; } .video-fallback { margin:15px; font-size:8px; }
 }

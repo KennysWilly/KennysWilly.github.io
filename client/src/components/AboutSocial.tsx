@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Eye, Heart, Instagram, Play, Radio, Twitch, Users, X, Youtube } from "lucide-react";
-import { publicHighlights, socials } from "@/data/content";
+import { useEffect } from "react";
+import { ArrowUpRight, Heart, Instagram, Radio, Sparkles, Twitch, Users, Youtube } from "lucide-react";
+import { socials } from "@/data/content";
 import { useTwitchStatus } from "@/hooks/usePublicData";
-
-type Take = (typeof publicHighlights)[number];
 
 function SocialIcon({ id, size = 30 }: { id: string; size?: number }) {
   if (id === "twitch") return <Twitch size={size} />;
@@ -14,23 +12,23 @@ function SocialIcon({ id, size = 30 }: { id: string; size?: number }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3h3c.4 2.7 2 4.3 4 4.5v3a8 8 0 0 1-4-1.5v7a5 5 0 1 1-5-5h1v3a2 2 0 1 0 1 2Z" fill="currentColor" /></svg>;
 }
 
-const basketballTakes = publicHighlights.filter(clip => clip.category?.includes("HOOPS") || clip.category?.includes("THUNDER"));
-
-function BasketballPlayer({ active, close }: { active: Take | null; close: () => void }) {
-  const dialog = useRef<HTMLDialogElement>(null);
+function TikTokProfileEmbed() {
   useEffect(() => {
-    if (active) dialog.current?.showModal();
-    else dialog.current?.close();
-  }, [active]);
-  return <dialog ref={dialog} className="video-dialog" onCancel={close} onClick={event => { if (event.target === dialog.current) close(); }} aria-labelledby="take-dialog-title"><div className="dialog-header"><h3 id="take-dialog-title">{active?.title}</h3><button onClick={close} aria-label="Close video"><X size={24} /></button></div>{active && <><iframe title={active.title} src={`${active.embedUrl}?autoplay=1&rel=0`} allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowFullScreen /><a className="text-link video-fallback" href={active.url} target="_blank" rel="noopener noreferrer">PLAYER NOT AVAILABLE? WATCH ON YOUTUBE <ArrowUpRight size={17} /></a></>}</dialog>;
+    const scriptUrl = "https://www.tiktok.com/embed.js";
+    if (!document.querySelector(`script[src="${scriptUrl}"]`)) {
+      const script = document.createElement("script");
+      script.src = scriptUrl;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+  return <div className="tiktok-embed-shell"><blockquote className="tiktok-embed" cite="https://www.tiktok.com/@kennyswilly9" data-unique-id="kennyswilly9" data-embed-type="creator" data-embed-from="creator_embed"><section><a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@kennyswilly9?refer=creator_embed">@kennyswilly9</a></section></blockquote></div>;
 }
 
 export function BasketballSection() {
-  const [active, setActive] = useState<Take | null>(null);
   return <section className="section basketball-section" id="basketball" aria-labelledby="basketball-title">
-    <div className="section-top"><div><div className="eyebrow">03 / BASKETBALL TAKES</div><h2 id="basketball-title">THE TAKES<br />SPEAK<span className="orange-text">.</span></h2></div><div className="basketball-intro"><p>Actual clips. Actual opinions.<br />No biography written by a robot.</p><a className="text-link" href="https://youtube.com/@kennyswillyy" target="_blank" rel="noopener noreferrer">WATCH THE YOUTUBE ARCHIVE <ArrowUpRight size={17} /></a></div></div>
-    <div className="take-grid">{basketballTakes.map((clip, index) => <article className="take-card" key={clip.id}><button className="take-image" onClick={() => setActive(clip)} aria-label={`Play ${clip.title}`}><img src={clip.thumbnail} alt="" loading="lazy" /><span className="take-number">0{index + 1}</span><span className="take-play"><Play size={16} fill="currentColor" /> PLAY</span></button><div className="take-copy"><span className="tiny-label">{clip.category}</span><h3><button onClick={() => setActive(clip)}>{clip.title}</button></h3><span className="take-meta"><Eye size={14} /> ~{new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(clip.views ?? 0)} VIEWS <ArrowUpRight size={15} /></span></div></article>)}</div>
-    <BasketballPlayer active={active} close={() => setActive(null)} />
+    <div className="section-top"><div><div className="eyebrow">03 / THE SHORT FORM</div><h2 id="basketball-title">QUICK CUTS.<br />REAL TAKES<span className="orange-text">.</span></h2></div><div className="basketball-intro"><p>The newest cuts live here first.<br />Scroll the profile. Catch the ones that hit.</p><a className="text-link" href="https://www.tiktok.com/@kennyswilly9" target="_blank" rel="noopener noreferrer">OPEN THE TIKTOK <ArrowUpRight size={17} /></a></div></div>
+    <div className="tiktok-feature"><div className="tiktok-feature-copy"><span className="tiktok-stamp">TIKTOK / 09</span><h3>THE FEED<br />MOVES FAST<span className="orange-text">.</span></h3><p>Basketball takes, quick reactions, and whatever else deserves a replay. The official TikTok profile embed pulls the latest posts into the page without pretending these are YouTube clips.</p><div className="tiktok-meta"><span><Sparkles size={15} /> LATEST POSTS</span><span>SCROLL / WATCH / REPEAT</span></div></div><TikTokProfileEmbed /></div>
   </section>;
 }
 
@@ -43,14 +41,16 @@ export function TwitchSection() {
   const viewers = live && status.viewerCount !== null ? new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(status.viewerCount) : "—";
   return <section className="section twitch-section" id="twitch" aria-labelledby="twitch-title">
     <div className={`twitch-panel ${live ? "is-live" : ""}`}>
-      <div className="twitch-copy"><div className="eyebrow"><Twitch size={15} /> 04 / TWITCH <span className="console-slash">///</span> SIGNAL DESK</div><h2 id="twitch-title">LIVE WHEN<br />I'M LIVE<span className="orange-text">.</span></h2><p>{live ? status.title || "KennysWilly is live on Twitch." : "The channel is quiet right now. The tracker checks again every 30 seconds."}</p><a className="brutal-button purple" href="https://www.twitch.tv/kennyswillyy" target="_blank" rel="noopener noreferrer">OPEN THE CHANNEL <ArrowUpRight size={18} /></a></div>
+      <div className="twitch-copy"><div className="eyebrow"><Twitch size={15} /> 04 / THE MAIN STAGE <span className="console-slash">///</span> FIRST STOP</div><h2 id="twitch-title">WHERE THE<br />MAGIC HAPPENS<span className="orange-text">.</span></h2><p>{live ? status.title || "KennysWilly is live on Twitch." : "This is the first stop. Pull up when the signal goes live."}</p><a className="brutal-button purple" href="https://www.twitch.tv/kennyswillyy" target="_blank" rel="noopener noreferrer">GO TO THE MAIN STAGE <ArrowUpRight size={18} /></a></div>
       <div className="twitch-console"><div className="twitch-console-top"><span className={`twitch-live-badge ${live ? "is-live" : ""}`}><Radio size={17} /> {query.isLoading ? "CHECKING STATUS" : live ? "LIVE NOW" : connected ? "OFFLINE" : "SERVER STATUS UNAVAILABLE"}</span><span className="console-code">KW—04 / {live ? "ON AIR" : "STANDBY"}</span></div><div className="twitch-orbit" aria-hidden="true"><span className="orbit-ring ring-one" /><span className="orbit-ring ring-two" /><span className="orbit-core"><Twitch size={37} /></span><span className="orbit-live-dot" /></div><div className="twitch-channel-line"><span>@kennyswillyy</span><span>{live ? "TRANSMITTING" : "NO SIGNAL"}</span></div><div className="twitch-stat-grid"><div><strong>{viewers}</strong><span>VIEWERS</span><div className="signal-bars" aria-hidden="true"><i /><i /><i /><i /><i /></div></div><div><strong>{followers}</strong><span>FOLLOWERS</span><Users size={52} /></div></div><p className="twitch-note">{status?.message ?? "Live state and follower count come from Twitch, not a guessed snapshot."}</p><a className="text-link" href="https://www.twitch.tv/kennyswillyy/clips" target="_blank" rel="noopener noreferrer">BROWSE TWITCH CLIPS <ArrowUpRight size={17} /></a></div>
     </div>
   </section>;
 }
 
+const socialKickers: Record<string, string> = { twitch: "THE MAIN STAGE", youtube: "THE ARCHIVE", instagram: "THE LOOKS", tiktok: "THE QUICK CUTS", x: "THE RUNNING COMMENTARY", tip: "THE LOVE OFFERING" };
+
 export function Socials() {
-  return <section className="section socials-section" id="socials" aria-labelledby="social-title"><div className="section-top"><div><div className="eyebrow">05 / FIND ME EVERYWHERE</div><h2 id="social-title">NO HIDDEN<br />DOORS<span className="orange-text">.</span></h2></div><p>Every link, in one place.<br />Pick a lane and pull up.</p></div><div className="social-grid">{socials.map((social, index) => <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" className="social-card" style={{ "--social-color": social.color } as React.CSSProperties}><div className="social-art"><span>0{index + 1}</span><SocialIcon id={social.id} size={43} /></div><div className="social-card-copy"><h3>{social.name}</h3><span>{social.handle}</span><p>{social.description}</p></div><ArrowUpRight className="social-arrow" size={25} /></a>)}</div></section>;
+  return <section className="section socials-section" id="socials" aria-labelledby="social-title"><div className="socials-heading"><div><div className="eyebrow">05 / THE SIGNAL WALL</div><h2 id="social-title">PICK A DOOR.<br />ENTER LOUD<span className="orange-text">.</span></h2></div><div className="socials-heading-note"><span>ALL ROADS LEAD BACK HERE.</span><p>Six ways in. No dead links.<br />Choose the frequency.</p></div></div><div className="social-wall">{socials.map((social, index) => <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" className={`social-card social-card-${social.id}`} style={{ "--social-color": social.color } as React.CSSProperties}><div className="social-card-index">0{index + 1}</div><div className="social-art"><SocialIcon id={social.id} size={52} /></div><div className="social-card-copy"><span className="social-kicker">{socialKickers[social.id]}</span><h3>{social.name}</h3><span className="social-handle">{social.handle}</span><p>{social.description}</p></div><ArrowUpRight className="social-arrow" size={28} /><span className="social-card-mark">KW / {String(index + 1).padStart(2, "0")}</span></a>)}</div></section>;
 }
 
 export function Footer() {
