@@ -10,7 +10,8 @@ from pathlib import Path
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]
-PLAYLIST_IDS = ["1mRhwA8wntU3ELVX4lwg4N", "64nVsGH5e0HaYV4steCmrr", "6qZovSxZvgQj0xSe1gSgMG"]
+SPOTIFY_PROFILE = "https://open.spotify.com/user/kw8640173"
+SEED_PLAYLIST_IDS = ["1mRhwA8wntU3ELVX4lwg4N", "64nVsGH5e0HaYV4steCmrr", "6qZovSxZvgQj0xSe1gSgMG"]
 (ROOT / "assets/reference").mkdir(parents=True, exist_ok=True)
 
 
@@ -23,22 +24,38 @@ def public_entity(kind, entity_id):
     return json.loads(match.group(1))["props"]["pageProps"].get("state", {}).get("data", {}).get("entity")
 
 
+def discover_playlist_ids():
+    response = requests.get(SPOTIFY_PROFILE, headers={"User-Agent": "Mozilla/5.0"}, timeout=25)
+    response.raise_for_status()
+    discovered = re.findall(r"(?:playlist/|playlist%2F)([A-Za-z0-9]{22})", response.text)
+    return list(dict.fromkeys(SEED_PLAYLIST_IDS + discovered))
+
+
 selected, playlists, selected_ids = [], [], set()
-for playlist_id in PLAYLIST_IDS:
-    entity = public_entity("playlist", playlist_id)
+for playlist_id in discover_playlist_ids():
+    try:
+        entity = public_entity("playlist", playlist_id)
+    except Exception as error:
+        print(f"Playlist unavailable: {playlist_id} ({type(error).__name__})", flush=True)
+        continue
     if not entity:
         print(f"Playlist unavailable: {playlist_id}", flush=True)
         continue
     name = entity["title"].strip()
     # Keep actual words; decorative emoji in a provider title do not need to be reproduced.
     name = re.sub(r"[^\w\s’'.,&!?-]", "", name).strip()
-    description = {
+    descriptions = {
         "1mRhwA8wntU3ELVX4lwg4N": "Kanye, NxWorries, Freddie Gibbs & the rest of the rotation.",
         "64nVsGH5e0HaYV4steCmrr": "Daniel Caesar, D’Angelo, MF DOOM & a little late-night feeling.",
         "6qZovSxZvgQj0xSe1gSgMG": "Marvin Gaye, Stevie Wonder, Teddy Pendergrass. Soul that stays with you.",
-    }[playlist_id]
-    playlists.append({"id": playlist_id, "name": name, "description": description, "image": entity["coverArt"]["sources"][0]["url"], "url": f"https://open.spotify.com/playlist/{playlist_id}", "totalTracks": None, "available": True})
-    tracks = entity["trackList"]
+    }
+    cover_sources = entity.get("coverArt", {}).get("sources", [])
+    tracks = entity.get("trackList", [])
+    if not tracks or not cover_sources:
+        print(f"Playlist empty or missing artwork: {playlist_id}", flush=True)
+        continue
+    description = descriptions.get(playlist_id, f"A public cut from the KennysWilly Spotify rotation: {name}.")
+    playlists.append({"id": playlist_id, "name": name, "description": description, "image": cover_sources[0]["url"], "url": f"https://open.spotify.com/playlist/{playlist_id}", "totalTracks": len(tracks), "available": True})
     artists, picks = set(), []
     for track in tracks:
         artist = track["subtitle"].split(",")[0]
@@ -91,8 +108,7 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
         except Exception as error:
             print(f"Skipped unavailable public track: {type(error).__name__}", flush=True)
 
-playlists.append({"id": "5QrHkxq29YrtjzgwQgSleC", "name": "Playlist 04", "description": "This playlist isn’t publicly available yet. Open it in Spotify or check back later.", "image": "", "url": "https://open.spotify.com/playlist/5QrHkxq29YrtjzgwQgSleC", "totalTracks": None, "available": False})
-out = {"checkedAt": date.today().isoformat(), "source": "Owner-supplied public playlists; representative original-artwork snapshot, not the full saved library.", "albums": covers, "playlists": playlists}
+out = {"checkedAt": date.today().isoformat(), "source": f"Public playlists discovered from {SPOTIFY_PROFILE}; representative original-artwork snapshot, not the full saved library.", "albums": covers, "playlists": playlists}
 (ROOT / "client/src/data").mkdir(parents=True, exist_ok=True)
 (ROOT / "client/src/data/spotify-snapshot.json").write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n")
-print(f"Saved {len(covers)} unique covers across {len(playlists)-1} public playlists.", flush=True)
+print(f"Saved {len(covers)} unique covers across {len(playlists)} public playlists.", flush=True)

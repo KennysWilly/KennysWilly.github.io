@@ -12,7 +12,7 @@ export function useMusic() {
 }
 
 export function useActivity() {
-  return useQuery({ queryKey: ["activity"], queryFn: () => readJson<ActivityResponse>("/api/activity"), refetchInterval: 15000, staleTime: 10000, retry: 1 });
+  return useQuery({ queryKey: ["activity"], queryFn: () => readJson<ActivityResponse>("/api/activity"), refetchInterval: 5000, staleTime: 4000, retry: 1 });
 }
 
 export function useClips(platform: "youtube" | "twitch") {

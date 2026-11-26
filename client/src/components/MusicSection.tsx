@@ -7,12 +7,25 @@ import { useReducedMotion } from "./AlbumWall";
 
 type DisplayPlaylist = Playlist & { available?: boolean };
 
+function usablePlaylists(items: DisplayPlaylist[]): DisplayPlaylist[] {
+  return items.filter(item => item.available !== false && item.totalTracks !== 0 && Boolean(item.id && item.name && item.url && item.image));
+}
+
+function shuffled<T>(items: T[]): T[] {
+  return [...items].sort(() => Math.random() - 0.5);
+}
+
 function SpotifyMark() {
   return <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor" /><path d="M6.5 9c4.2-1.2 8.2-.8 11.4 1M7.3 12.2c3.5-.9 6.8-.5 9.6 1M8.2 15.2c2.9-.6 5.1-.3 7.8.9" stroke="#fff" strokeWidth="1.7" fill="none" strokeLinecap="round" /></svg>;
 }
 
 export default function MusicSection({ data, loading, error, retry, activity, activityLoading, activityError, retryActivity }: { data?: MusicResponse; loading: boolean; error: boolean; retry: () => void; activity?: ActivityResponse; activityLoading: boolean; activityError: boolean; retryActivity: () => void }) {
-  const playlists: DisplayPlaylist[] = data?.playlists.length ? data.playlists : snapshot.playlists;
+  const fallbackPlaylists = usablePlaylists(snapshot.playlists as DisplayPlaylist[]);
+  const [playlists, setPlaylists] = useState<DisplayPlaylist[]>(() => shuffled(fallbackPlaylists));
+  useEffect(() => {
+    const live = usablePlaylists((data?.playlists ?? []) as DisplayPlaylist[]);
+    setPlaylists(shuffled(live.length ? live : fallbackPlaylists));
+  }, [data?.playlists]);
   const [position, setPosition] = useState(0);
   const [rotating, setRotating] = useState(true);
   const reduced = useReducedMotion();
@@ -25,10 +38,11 @@ export default function MusicSection({ data, loading, error, retry, activity, ac
   const move = (direction: number) => { setPosition(value => (value + direction + playlists.length) % playlists.length); setRotating(false); };
   const now = error ? null : data?.nowPlaying;
   const liveActivity = activity?.activities[0];
+  const spotifyActivity = activity?.spotify;
   const playback = error ? "error" : data?.playbackStatus ?? "disconnected";
   const stateTitle = loading ? "Checking the speakers…" : playback === "error" ? "Connection taking a break." : playback === "disconnected" ? "Live listening is off." : playback === "inactive" ? "A little quiet right now." : playback === "paused" ? "On pause." : "On the speakers.";
-  const activityTitle = activityLoading ? "Checking Discord…" : liveActivity?.name ?? (now ? now.name : "No live activity");
-  const activityDescription = liveActivity ? [liveActivity.details, liveActivity.state].filter(Boolean).join(" · ") || "Active on Discord." : now ? now.album : activityError ? "Discord activity could not be reached. Try again in a bit." : "When KennysWilly is doing something on Discord, it shows up here.";
+  const activityTitle = activityLoading ? "Checking Discord…" : spotifyActivity?.name ?? liveActivity?.name ?? (now ? now.name : "No live activity");
+  const activityDescription = spotifyActivity ? spotifyActivity.album : liveActivity ? [liveActivity.details, liveActivity.state].filter(Boolean).join(" · ") || "Active on Discord." : now ? now.album : activityError ? "Discord activity could not be reached. Try again in a bit." : "When KennysWilly is doing something on Discord, it shows up here.";
 
   return <section className="section music-section" id="music" aria-labelledby="music-title">
     <div className="section-top"><div><div className="eyebrow">01 / THE SOUNDTRACK</div><h2 id="music-title">THE ROTATION<span className="orange-text">.</span></h2></div><p>Kanye, DOOM, D’Angelo, Marvin.<br />Different decades. Same standard.</p></div>
@@ -44,9 +58,9 @@ export default function MusicSection({ data, loading, error, retry, activity, ac
       </div>
       <aside className="listening-card activity-card" aria-label="Live Discord activity">
         <div className="card-overline"><span><Radio size={18} /> LIVE ACTIVITY</span><span className={`listening-status ${activity?.discordStatus === "online" ? "playing" : ""}`}><span />{activityLoading ? "CHECKING" : (activity?.discordStatus ?? "OFFLINE").toUpperCase()}</span></div>
-        <div className="listening-art">{liveActivity?.largeImage ? <img src={liveActivity.largeImage} alt={liveActivity.largeText || `${liveActivity.name} activity`} /> : now?.image ? <img src={now.image} alt={`${now.album} cover`} /> : <div className="record"><div><Headphones size={25} /></div></div>}</div>
-        <div className="listening-copy"><span className="tiny-label">{liveActivity ? `${activity?.username ?? "KENNYSWILLY"} / DISCORD` : now ? now.artists.join(" / ") : "DISCORD PRESENCE"}</span><h3>{activityTitle}</h3><p>{activityDescription}</p></div>
-        {liveActivity?.url ? <a href={liveActivity.url} target="_blank" rel="noopener noreferrer" className="text-link">OPEN ACTIVITY <ArrowUpRight size={16} /></a> : now ? <><div className="track-progress"><span style={{ width: `${Math.min(100, (now.progressMs / Math.max(1, now.durationMs)) * 100)}%` }} /></div><a href={now.url} target="_blank" rel="noopener noreferrer" className="text-link">LISTEN ON SPOTIFY <ArrowUpRight size={16} /></a></> : activityError ? <button className="text-link" onClick={retryActivity}>TRY DISCORD AGAIN <ArrowRight size={16} /></button> : <div className="connection-note"><span />{activityLoading ? "CHECKING LANYARD" : "NO ACTIVE DISCORD ACTIVITY"}</div>}
+        <div className={`listening-art ${spotifyActivity ? "vinyl-stage" : ""}`}>{spotifyActivity?.image ? <a className="vinyl-record" href={spotifyActivity.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${spotifyActivity.name} on Spotify`}><img src={spotifyActivity.image} alt={`${spotifyActivity.album} album art`} /><span className="vinyl-hole" /></a> : liveActivity?.largeImage ? <img src={liveActivity.largeImage} alt={liveActivity.largeText || `${liveActivity.name} activity`} /> : now?.image ? <img src={now.image} alt={`${now.album} cover`} /> : <div className="record"><div><Headphones size={25} /></div></div>}</div>
+        <div className="listening-copy"><span className="tiny-label">{spotifyActivity ? spotifyActivity.artists.join(" / ") : liveActivity ? `${activity?.username ?? "KENNYSWILLY"} / DISCORD` : now ? now.artists.join(" / ") : "DISCORD PRESENCE"}</span><h3>{activityTitle}</h3><p>{activityDescription}</p></div>
+        {spotifyActivity ? <a href={spotifyActivity.url} target="_blank" rel="noopener noreferrer" className="text-link">LISTEN ON SPOTIFY <ArrowUpRight size={16} /></a> : liveActivity?.url ? <a href={liveActivity.url} target="_blank" rel="noopener noreferrer" className="text-link">OPEN ACTIVITY <ArrowUpRight size={16} /></a> : now ? <><div className="track-progress"><span style={{ width: `${Math.min(100, (now.progressMs / Math.max(1, now.durationMs)) * 100)}%` }} /></div><a href={now.url} target="_blank" rel="noopener noreferrer" className="text-link">LISTEN ON SPOTIFY <ArrowUpRight size={16} /></a></> : activityError ? <button className="text-link" onClick={retryActivity}>TRY DISCORD AGAIN <ArrowRight size={16} /></button> : <div className="connection-note"><span />{activityLoading ? "CHECKING LANYARD" : "NO ACTIVE DISCORD ACTIVITY"}</div>}
       </aside>
     </div>
     <p className="source-note">{data?.albums.length ? "Wallpaper artwork syncs from my Spotify collection." : "Wallpaper: a snapshot of actual songs in my public playlists. Full library sync needs Spotify authorization."}</p>

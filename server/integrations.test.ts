@@ -5,6 +5,7 @@ import {
   createIntegrations,
   normalizeLanyard,
   normalizeLanyardActivity,
+  normalizeLanyardSpotify,
   normalizeAlbums,
   normalizeCount,
   normalizeDuration,
@@ -302,6 +303,25 @@ describe("pure normalization", () => {
       username: "Kennyswilly",
       discordStatus: "dnd",
     });
+  });
+  it("normalizes Lanyard Spotify presence with exact track metadata and album art", () => {
+    expect(normalizeLanyardSpotify({
+      track_id: "4uLU6hMCjMI75M1A2tKUQC",
+      song: "Real Song",
+      artist: "Artist One, Artist Two",
+      album: "Real Album",
+      album_art_url: "https://i.scdn.co/image/cover",
+      timestamps: { start: 1700000000000, end: 1700000180000 },
+    })).toEqual({
+      name: "Real Song",
+      artists: ["Artist One", "Artist Two"],
+      album: "Real Album",
+      image: "https://i.scdn.co/image/cover",
+      url: "https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC",
+      startedAt: 1700000000000,
+      endsAt: 1700000180000,
+    });
+    expect(normalizeLanyardSpotify({ track_id: "bad", song: "", artist: "" })).toBeNull();
   });
 });
 

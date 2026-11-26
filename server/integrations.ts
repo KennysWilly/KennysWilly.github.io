@@ -10,6 +10,7 @@ import type {
   MusicResponse,
   NowPlaying,
   Playlist,
+  PresenceSpotify,
 } from "../shared/integrations";
 
 export const TWITCH_USERNAME = "kennyswillyy";
@@ -177,6 +178,36 @@ function timestamp(value: unknown): number | null {
   return typeof value === "number" && Number.isSafeInteger(value) && value > 0 ? value : null;
 }
 
+function publicImage(value: unknown): string {
+  try {
+    const url = new URL(text(value));
+    if (url.protocol !== "https:" || url.username || url.password) return "";
+    if (!/(^|\.)(scdn\.co|spotifycdn\.com|discordapp\.net)$/.test(url.hostname)) return "";
+    return url.href;
+  } catch {
+    return "";
+  }
+}
+
+export function normalizeLanyardSpotify(value: unknown): PresenceSpotify | null {
+  const row = object(value);
+  const trackId = id(row.track_id);
+  const name = text(row.song);
+  const album = text(row.album);
+  const artistList = text(row.artist).split(/\s*[,;]\s*/).map(value => value.trim()).filter(Boolean);
+  if (!trackId || !name || !artistList.length) return null;
+  const timestamps = object(row.timestamps);
+  return {
+    name,
+    artists: artistList,
+    album,
+    image: publicImage(row.album_art_url),
+    url: `https://open.spotify.com/track/${trackId}`,
+    startedAt: timestamp(timestamps.start),
+    endsAt: timestamp(timestamps.end),
+  };
+}
+
 export function normalizeLanyardActivity(value: unknown): LiveActivity[] {
   return array(value).flatMap(raw => {
     const row = object(raw);
@@ -214,6 +245,8 @@ export function normalizeLanyard(value: unknown, updatedAt = new Date().toISOStr
     username: text(user.global_name) || text(user.username) || "KennysWilly",
     discordStatus: text(data.discord_status) || "offline",
     activities: normalizeLanyardActivity(data.activities),
+    spotify: normalizeLanyardSpotify(data.spotify),
+    listeningToSpotify: data.listening_to_spotify === true,
     updatedAt,
     ...(body.success === true ? {} : { message: "Discord activity is temporarily unavailable." }),
   };
@@ -670,7 +703,7 @@ export function createIntegrations(options: Options = {}) {
     });
   }
   async function getActivity(): Promise<ActivityResponse> {
-    return memo("lanyard-activity", 15 * SECOND, async () => {
+    return memo("lanyard-activity", 5 * SECOND, async () => {
       const updatedAt = new Date(clock()).toISOString();
       try {
         return normalizeLanyard(await request("Lanyard", LANYARD_URL), updatedAt);
@@ -680,6 +713,8 @@ export function createIntegrations(options: Options = {}) {
           username: "KennysWilly",
           discordStatus: "offline",
           activities: [],
+          spotify: null,
+          listeningToSpotify: false,
           updatedAt,
           message: safeMessage("Lanyard", error),
         };
@@ -898,6 +933,8 @@ export function registerIntegrationRoutes(
         username: "KennysWilly",
         discordStatus: "offline",
         activities: [],
+        spotify: null,
+        listeningToSpotify: false,
         updatedAt: new Date().toISOString(),
         message: "Discord activity is temporarily unavailable.",
       } satisfies ActivityResponse);

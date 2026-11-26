@@ -57,11 +57,23 @@ export interface LiveActivity {
   endsAt: number | null;
 }
 
+export interface PresenceSpotify {
+  name: string;
+  artists: string[];
+  album: string;
+  image: string;
+  url: string;
+  startedAt: number | null;
+  endsAt: number | null;
+}
+
 export interface ActivityResponse {
   status: IntegrationStatus;
   username: string;
   discordStatus: string;
   activities: LiveActivity[];
+  spotify: PresenceSpotify | null;
+  listeningToSpotify: boolean;
   updatedAt: string;
   message?: string;
 }

@@ -6,7 +6,7 @@ body { background:#0d0d0f; color:var(--cream); font-family:'DM Sans',sans-serif;
 .site { overflow:hidden; color:var(--cream); background:#0d0d0f; }
 .glass-filter-defs { position:absolute; width:0; height:0; overflow:hidden; pointer-events:none; }
 .site-header, .site-footer, main, .ticker { position:relative; z-index:1; }
-.site-header { background:rgba(13,13,15,.52); backdrop-filter:url("#glass-distortion") blur(22px) saturate(160%) contrast(112%); -webkit-backdrop-filter:url("#glass-distortion") blur(22px) saturate(160%) contrast(112%); border-bottom:1px solid var(--glass-border); padding:23px 4.5%; }
+.site-header { background:rgba(13,13,15,.52); backdrop-filter:blur(22px) saturate(160%) contrast(112%); -webkit-backdrop-filter:blur(22px) saturate(160%) contrast(112%); border-bottom:1px solid var(--glass-border); padding:23px 4.5%; }
 .wordmark { font-family:'Archivo Black',Impact,sans-serif; font-size:23px; letter-spacing:-.07em; color:var(--cream); }
 .wordmark span { color:var(--orange); }
 .wordmark i { width:7px; height:7px; background:var(--orange); border-radius:50%; box-shadow:0 0 16px var(--orange); }
@@ -15,7 +15,7 @@ body { background:#0d0d0f; color:var(--cream); font-family:'DM Sans',sans-serif;
 .header-cta { border:1px solid var(--glass-border); border-radius:999px; background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.045)); box-shadow:inset 0 1px rgba(255,255,255,.24),0 8px 24px #0005; color:var(--cream); }
 .header-cta:hover { background:var(--orange); border-color:var(--orange); box-shadow:0 0 28px #ff5b2266; }
 .hero { min-height:680px; background:transparent; border-bottom:1px solid var(--glass-border); }
-.hero-content { width:56%; min-height:680px; padding:58px 4.5%; background:rgba(255,255,255,.055); backdrop-filter:url("#glass-distortion") blur(20px) saturate(170%) contrast(112%); -webkit-backdrop-filter:url("#glass-distortion") blur(20px) saturate(170%) contrast(112%); border-right:1px solid var(--glass-border); }
+.hero-content { width:56%; min-height:680px; padding:58px 4.5%; background:rgba(255,255,255,.055); backdrop-filter:blur(20px) saturate(170%) contrast(112%); -webkit-backdrop-filter:blur(20px) saturate(170%) contrast(112%); border-right:1px solid var(--glass-border); }
 .hero-content::after { content:''; position:absolute; inset:0 0 0 auto; width:1px; background:linear-gradient(180deg,transparent,#fff9,transparent); opacity:.65; }
 .hero .eyebrow { position:relative; color:#b9b4bd; font-size:9px; letter-spacing:.12em; }
 .status-dot { background:var(--orange); border-color:var(--orange); box-shadow:0 0 13px var(--orange); }
@@ -33,10 +33,10 @@ body { background:#0d0d0f; color:var(--cream); font-family:'DM Sans',sans-serif;
 .album-tile { border:1px solid #fff4; border-radius:5px; box-shadow:0 10px 25px #0009; }
 .album-tile img { border-radius:4px; }
 .album-wall::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#0d0d0fcc,transparent 35%,#0d0d0f22),linear-gradient(0deg,#0d0d0fbb,transparent 55%); pointer-events:none; }
-.wall-sticker { border-radius:50%; outline:0; border:1px solid #fff8; background:rgba(13,13,15,.42); box-shadow:0 15px 35px #0009, inset 0 1px #fff9; backdrop-filter:url("#glass-distortion") blur(16px) saturate(170%) contrast(115%); -webkit-backdrop-filter:url("#glass-distortion") blur(16px) saturate(170%) contrast(115%); color:var(--cream); }
+.wall-sticker { border-radius:50%; outline:0; border:1px solid #fff8; background:rgba(13,13,15,.42); box-shadow:0 15px 35px #0009, inset 0 1px #fff9; backdrop-filter:blur(16px) saturate(170%) contrast(115%); -webkit-backdrop-filter:blur(16px) saturate(170%) contrast(115%); color:var(--cream); }
 .wall-sticker strong { font-family:'Archivo Black',sans-serif; font-size:36px; letter-spacing:-.08em; }
 .wall-sticker > span { color:#aaa4ac; }
-.wall-caption { background:rgba(13,13,15,.44); border:1px solid #fff6; box-shadow:0 8px 22px #0008, inset 0 1px #fff8; backdrop-filter:url("#glass-distortion") blur(16px) saturate(170%) contrast(115%); -webkit-backdrop-filter:url("#glass-distortion") blur(16px) saturate(170%) contrast(115%); color:var(--cream); }
+.wall-caption { background:rgba(13,13,15,.44); border:1px solid #fff6; box-shadow:0 8px 22px #0008, inset 0 1px #fff8; backdrop-filter:blur(16px) saturate(170%) contrast(115%); -webkit-backdrop-filter:blur(16px) saturate(170%) contrast(115%); color:var(--cream); }
 .wall-caption button { background:var(--orange); border-left:1px solid #fff4; }
 .ticker { background:#19171d; border-top:1px solid var(--glass-border); border-bottom:1px solid var(--glass-border); font-family:'Space Mono',monospace; font-size:13px; color:#a8a2ac; padding:14px 0; }
 .ticker b { color:var(--orange); }
@@ -54,6 +54,12 @@ h2 { font-family:'Archivo Black',sans-serif; font-size:clamp(48px,5vw,73px); let
 .playlist-info p,.listening-copy p { color:#bbb6bd; }
 .spotify-embed { opacity:.93; }
 .listening-card { background:linear-gradient(135deg,rgba(111,168,255,.18),rgba(255,255,255,.04)); transform:none; }
+.vinyl-stage { min-height:185px; }
+.vinyl-record { position:relative; display:block; width:166px; height:166px; border-radius:50%; overflow:hidden; animation:vinylSpin 9s linear infinite; box-shadow:0 0 0 5px #08090b,0 0 0 6px #ffffff55,0 14px 30px #0009; background:repeating-radial-gradient(circle,#1c1d22 0 2px,#08090b 3px 4px); }
+.vinyl-record::before { content:''; position:absolute; inset:0; z-index:1; border-radius:50%; background:linear-gradient(125deg,rgba(255,255,255,.46),transparent 17% 52%,rgba(111,168,255,.2) 68%,rgba(255,91,34,.18) 83%,transparent 92%); mix-blend-mode:screen; pointer-events:none; }
+.vinyl-record img { width:100%; height:100%; object-fit:cover; border-radius:50%; filter:saturate(1.08) contrast(1.04); }
+.vinyl-hole { position:absolute; z-index:2; left:50%; top:50%; width:19px; height:19px; transform:translate(-50%,-50%); border-radius:50%; background:#0b0c0f; border:4px solid #d9d9d9aa; box-shadow:0 0 0 3px #0008; }
+@keyframes vinylSpin { to { transform:rotate(360deg); } }
 .record { border-color:#ffffff33; box-shadow:0 0 35px #9b8cff44; }
 .record > div { background:var(--orange); }
 .pager button { border:1px solid #fff4; border-radius:50%; background:rgba(255,255,255,.1); }
@@ -96,8 +102,7 @@ h2 { font-family:'Archivo Black',sans-serif; font-size:clamp(48px,5vw,73px); let
 @media(max-width:580px) { .hero { padding-bottom:310px; min-height:830px; } .hero-content { width:100%; min-height:550px; padding:38px 5% 32px; border-right:0; border-bottom:1px solid var(--glass-border); } .hero h1 { font-size:61px; margin-top:30px; } .hero-asterisk { left:84%; top:14px; font-size:45px; } .album-wall { height:310px; } .wall-sticker { width:190px; height:190px; right:calc(50% - 95px); bottom:70px; } .wall-sticker strong { font-size:28px; } .ticker { font-size:10px; } }
 @media(prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
 
-/* True lens treatment: SVG displacement bends the sampled backdrop; the layered edge and
-   moving specular band keep highlights reading as glass rather than flat acrylic. */
+/* Reflective iOS-style glass: translucent depth, bright inset edges, and moving specular bands. */
 .site-header,.hero-content,.header-cta,.brutal-button:not(.orange),.playlist-card,.listening-card,.clip-card,.clips-empty,.video-dialog,.hoops-card,.music-ticket,.social-card {
   position:relative; isolation:isolate; overflow:hidden;
 }
@@ -108,7 +113,7 @@ h2 { font-family:'Archivo Black',sans-serif; font-size:clamp(48px,5vw,73px); let
   content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none; z-index:0; background:linear-gradient(115deg,transparent 0 34%,rgba(255,255,255,.18) 45%,transparent 53%),linear-gradient(72deg,transparent 0 68%,rgba(106,169,255,.09) 78%,transparent 88%); opacity:.58; mix-blend-mode:screen;
 }
 .site-header > *, .hero-content > *, .header-cta > *, .brutal-button:not(.orange) > *, .playlist-card > *, .listening-card > *, .clip-card > *, .clips-empty > *, .video-dialog > *, .hoops-card > *, .music-ticket > *, .social-card > * { position:relative; z-index:1; }
-.header-cta,.brutal-button:not(.orange),.playlist-card,.listening-card,.clip-card,.clips-empty,.video-dialog,.hoops-card,.music-ticket,.social-card { backdrop-filter:url("#glass-distortion") blur(18px) saturate(175%) contrast(112%); -webkit-backdrop-filter:url("#glass-distortion") blur(18px) saturate(175%) contrast(112%); }
+.header-cta,.brutal-button:not(.orange),.playlist-card,.listening-card,.clip-card,.clips-empty,.video-dialog,.hoops-card,.music-ticket,.social-card { backdrop-filter:blur(18px) saturate(175%) contrast(112%); -webkit-backdrop-filter:blur(18px) saturate(175%) contrast(112%); }
 .album-mosaic,.wall-sticker,.hoops-card,.music-ticket { transform:none; }
 .album-tile:nth-child(4n+2),.album-tile:nth-child(4n+4) { transform:none; }
 .wall-sticker { outline:0; }
