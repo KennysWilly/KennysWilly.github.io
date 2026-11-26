@@ -106,3 +106,21 @@ body, html { background:#0a0a0b !important; color:#d8d4cf !important; }
 .text-link { color:#eee8e2 !important; background:linear-gradient(135deg,#3a1c25,#18181c) !important; border:1px solid #6f3541; padding:8px 10px; }
 .text-link:hover { background:linear-gradient(135deg,#8f2638,#4a1b26) !important; text-decoration:none !important; }
 .surprise-button { background:linear-gradient(135deg,#8f2638,#4a1b26) !important; color:#fff5f0 !important; }
+
+/* CONTENT HIERARCHY / NO WHITE PANELS */
+.wall-sticker { background:linear-gradient(145deg,#302126,#17171a) !important; color:#d8d4cf !important; outline-color:#4b202b !important; border-color:#b04a58 !important; box-shadow:9px 9px 0 #080809 !important; }
+.wall-sticker strong, .wall-sticker > span { color:#d8d4cf !important; }
+.music-section { padding-top:64px; }
+.music-layout { grid-template-columns:1.35fr .85fr; }
+.music-layout .listening-card { order:-1; border-color:#a04452 !important; box-shadow:8px 8px 0 #080809 !important; }
+.music-layout .playlist-card { order:1; }
+.playlist-card { background:linear-gradient(145deg,#301820 0%,#21191e 45%,#121214 100%) !important; border-color:#8e3b49 !important; }
+.playlist-card .playlist-cover { background:linear-gradient(145deg,#4a202a,#1a1a1e) !important; border-color:#96505b !important; box-shadow:3px 3px 0 #080809 !important; }
+.playlist-card .playlist-info > div:last-child { color:#d8d4cf !important; }
+.playlist-card .playlist-info h3, .playlist-card .playlist-info p, .playlist-card .tiny-label { color:#d8d4cf !important; }
+.spotify-embed { background:#121214 !important; border:1px solid #63313c !important; }
+.playlist-footer { color:#d8d4cf !important; }
+.playlist-footer .pager button { background:linear-gradient(145deg,#3a2028,#18181b) !important; color:#d8d4cf !important; border:1px solid #713542 !important; }
+.playlist-footer .pager button:hover { background:linear-gradient(145deg,#8f2638,#481a25) !important; color:#fff5f0 !important; }
+@media(max-width:900px) { .music-layout { grid-template-columns:1fr 1fr; } }
+@media(max-width:680px) { .music-layout { grid-template-columns:1fr; } .music-layout .listening-card, .music-layout .playlist-card { order:initial; } }
