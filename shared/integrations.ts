@@ -30,11 +30,18 @@ export interface NowPlaying {
   isPlaying: boolean;
 }
 
+export interface RecentTrack extends NowPlaying {
+  /** Provider timestamp for when the track was played, when supplied. */
+  playedAt: string | null;
+}
+
 export interface MusicResponse {
   status: IntegrationStatus;
   albums: Album[];
   playlists: Playlist[];
   nowPlaying: NowPlaying | null;
+  recentlyPlayed: RecentTrack[];
+  topArtists: string[];
   playbackStatus: "playing" | "paused" | "inactive" | "disconnected" | "error";
   message?: string;
   /** UTC timestamp of this server snapshot, not the track's release date. */

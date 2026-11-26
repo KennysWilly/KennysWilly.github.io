@@ -542,13 +542,13 @@ describe("Spotify loading, privacy and caching", () => {
     });
     const [a, b] = await Promise.all([service.getMusic(), service.getMusic()]);
     expect(a).toEqual(b);
-    expect(request).toHaveBeenCalledTimes(5);
+    expect(request).toHaveBeenCalledTimes(7);
     now = 21_000;
     await service.getMusic();
-    expect(request).toHaveBeenCalledTimes(6); // playback only
+    expect(request).toHaveBeenCalledTimes(10); // playback plus retryable optional endpoints
     now = 62_000;
     await service.getMusic();
-    expect(request).toHaveBeenCalledTimes(10); // library + playback, access token still cached
+    expect(request).toHaveBeenCalledTimes(16); // library + playback + retryable optional endpoints, access token still cached
   });
   it("returns inactive for no playback and error for upstream playback failure without discarding a good library", async () => {
     for (const [response, expected] of [

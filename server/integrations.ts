@@ -9,6 +9,7 @@ import type {
   LiveActivity,
   MusicResponse,
   NowPlaying,
+  RecentTrack,
   Playlist,
   PresenceSpotify,
   TwitchStatusResponse,
@@ -166,6 +167,43 @@ export function normalizeNowPlaying(value: unknown): NowPlaying | null {
     durationMs,
     isPlaying: state.is_playing === true,
   };
+}
+
+export function normalizeRecentlyPlayed(value: unknown, limit = 8): RecentTrack[] {
+  const tracks: RecentTrack[] = [];
+  const seen = new Set<string>();
+  for (const row of array(object(value).items)) {
+    const track = unwrapTrack(row);
+    const album = object(track.album);
+    const trackId = id(track.id);
+    if (track.is_local === true || track.type !== "track" || !trackId || !text(track.name) || seen.has(trackId)) continue;
+    seen.add(trackId);
+    const durationMs = normalizeCount(track.duration_ms) ?? 0;
+    const playedAt = text(object(row).played_at);
+    tracks.push({
+      name: text(track.name),
+      artists: artists(track.artists),
+      album: text(album.name),
+      image: spotifyImage(album.images),
+      url: `https://open.spotify.com/track/${trackId}`,
+      progressMs: 0,
+      durationMs,
+      isPlaying: false,
+      playedAt: playedAt || null,
+    });
+    if (tracks.length >= limit) break;
+  }
+  return tracks;
+}
+
+export function normalizeTopArtists(value: unknown, limit = 5): string[] {
+  const names = new Set<string>();
+  for (const row of array(object(value).items)) {
+    const name = text(object(row).name);
+    if (name) names.add(name);
+    if (names.size >= limit) break;
+  }
+  return [...names];
 }
 
 function discordAsset(applicationId: unknown, asset: unknown): string {
@@ -657,17 +695,21 @@ export function createIntegrations(options: Options = {}) {
           albums: [],
           playlists: [],
           nowPlaying: null,
+          recentlyPlayed: [],
+          topArtists: [],
           playbackStatus: "disconnected",
           updatedAt,
           message: "Spotify is not connected. Server-side setup is required.",
         };
-      const [libraryResult, playbackResult] = await Promise.allSettled([
+      const [libraryResult, playbackResult, recentResult, artistsResult] = await Promise.allSettled([
         memo(
           "spotify-library",
           (value: Library) => (value.message ? 15 * SECOND : MINUTE),
           () => library(env)
         ),
         spotify(env, "/me/player", true),
+        memo("spotify-recently-played", MINUTE, () => spotify(env, "/me/player/recently-played?limit=8", true)),
+        memo("spotify-top-artists", MINUTE, () => spotify(env, "/me/top/artists?limit=5&time_range=short_term", true)),
       ]);
       const data =
         libraryResult.status === "fulfilled"
@@ -677,6 +719,12 @@ export function createIntegrations(options: Options = {}) {
         playbackResult.status === "fulfilled"
           ? normalizeNowPlaying(playbackResult.value)
           : null;
+      const recentlyPlayed = recentResult.status === "fulfilled"
+        ? normalizeRecentlyPlayed(recentResult.value)
+        : [];
+      const topArtists = artistsResult.status === "fulfilled"
+        ? normalizeTopArtists(artistsResult.value)
+        : [];
       const messages: string[] = [];
       if (libraryResult.status === "rejected")
         messages.push(safeMessage("Spotify", libraryResult.reason));
@@ -690,6 +738,8 @@ export function createIntegrations(options: Options = {}) {
         albums: data.albums,
         playlists: data.playlists,
         nowPlaying,
+        recentlyPlayed,
+        topArtists,
         playbackStatus:
           playbackResult.status === "rejected"
             ? "error"
@@ -962,6 +1012,8 @@ export function registerIntegrationRoutes(
         albums: [],
         playlists: [],
         nowPlaying: null,
+        recentlyPlayed: [],
+        topArtists: [],
         playbackStatus: "error",
         updatedAt: new Date().toISOString(),
         message: "Music is temporarily unavailable.",
