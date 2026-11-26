@@ -72,3 +72,37 @@ body, html { background:#0a0a0b !important; color:#d8d4cf !important; }
 .tutto-mark i { display:block !important; position:absolute; z-index:2; width:7px; height:25px; left:27px; top:16px; background:#d8d4cf; transform:rotate(38deg); }
 .tutto-mark b { display:block !important; position:absolute; z-index:3; width:8px; height:8px; right:5px; top:7px; background:#791f2d; transform:rotate(45deg); }
 .tutto-lockup { align-items:center; gap:18px; }
+
+/* DARK GRADIENT SURFACES / READABLE WIDGETS */
+.playlist-card, .listening-card, .music-ticket, .clip-card, .clips-empty, .recently-played, .unavailable-recent {
+  color:#d8d4cf !important;
+  border-color:#5b3038 !important;
+  background:linear-gradient(135deg,#2b171d 0%,#1a1a1e 55%,#111113 100%) !important;
+  box-shadow:6px 6px 0 #080809 !important;
+}
+.listening-card { background:linear-gradient(135deg,#321a21 0%,#202025 48%,#121214 100%) !important; }
+.listening-card .card-overline, .listening-card .listening-copy h3, .listening-card .listening-copy p, .listening-card .tiny-label, .listening-card .connection-note, .listening-card .text-link { color:#d8d4cf !important; }
+.listening-card .listening-copy p, .listening-card .connection-note { color:#b9b4b2 !important; }
+.recently-played-heading, .recent-track strong, .recent-track small, .recent-track svg { color:#d8d4cf !important; }
+.highlights-section { border-top-color:#632c36 !important; }
+.clip-card { border-color:#9b3a49 !important; background:linear-gradient(145deg,#32151c 0%,#1d1c20 60%,#101012 100%) !important; }
+.clip-card .clip-body, .clip-card .clip-body h3 button { color:#d8d4cf !important; }
+.clip-card .clip-body .tiny-label, .clip-card .clip-body > div > span { color:#b9b4b2 !important; }
+.clip-card:hover { border-color:#c05060 !important; box-shadow:2px 2px 0 #080809 !important; }
+.platform-tabs button { color:#d8d4cf !important; border-color:#6a343e !important; background:linear-gradient(135deg,#28272b,#17171a) !important; }
+.platform-tabs .selected { background:linear-gradient(135deg,#8a2636,#4d1c27) !important; color:#fff5f0 !important; }
+.social-card { color:#d8d4cf !important; border-color:#542b34 !important; box-shadow:6px 6px 0 #080809 !important; }
+.social-card-twitch { background:linear-gradient(135deg,#351b27,#211820 58%,#111114) !important; }
+.social-card-youtube { background:linear-gradient(135deg,#4a2028,#2a1a1d 58%,#151517) !important; }
+.social-card-instagram { background:linear-gradient(135deg,#492637,#282027 58%,#161519) !important; }
+.social-card-tiktok { background:linear-gradient(135deg,#173735,#202a2b 58%,#131517) !important; }
+.social-card-x { background:linear-gradient(135deg,#2a3038,#22262b 58%,#121315) !important; }
+.social-card-tip { background:linear-gradient(135deg,#4a3022,#30231f 58%,#171516) !important; }
+.social-card h3, .social-card p, .social-card .social-handle, .social-card .social-kicker, .social-card .social-card-index, .social-card .social-card-mark { color:#d8d4cf !important; }
+.social-card p, .social-card .social-handle { color:#bdb7b7 !important; }
+.social-card:hover { filter:brightness(1.15) saturate(1.15) !important; border-color:#a74454 !important; }
+.brutal-button { color:#d8d4cf !important; border-color:#8b4a54 !important; background:linear-gradient(135deg,#343237,#17171a) !important; }
+.brutal-button.orange, .brutal-button.purple { color:#fff5f0 !important; background:linear-gradient(135deg,#8f2638,#4a1b26) !important; border-color:#b34a59 !important; }
+.text-link { color:#eee8e2 !important; background:linear-gradient(135deg,#3a1c25,#18181c) !important; border:1px solid #6f3541; padding:8px 10px; }
+.text-link:hover { background:linear-gradient(135deg,#8f2638,#4a1b26) !important; text-decoration:none !important; }
+.surprise-button { background:linear-gradient(135deg,#8f2638,#4a1b26) !important; color:#fff5f0 !important; }
