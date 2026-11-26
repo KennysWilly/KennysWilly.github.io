@@ -11,22 +11,10 @@ function SocialIcon({ id, size = 30 }: { id: string; size?: number }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3h3c.4 2.7 2 4.3 4 4.5v3a8 8 0 0 1-4-1.5v7a5 5 0 1 1-5-5h1v3a2 2 0 1 0 1 2Z" fill="currentColor" /></svg>;
 }
 
-function TikTokProfileCard() {
-  return <div className="tiktok-profile-shell">
-    <div className="tiktok-fallback-bar"><span>PUBLIC PROFILE / LATEST POSTS</span><a href="https://www.tiktok.com/@kennyswilly9" target="_blank" rel="noopener noreferrer">OPEN TIKTOK <ArrowUpRight size={14} /></a></div>
-    <a className="tiktok-profile-preview" href="https://www.tiktok.com/@kennyswilly9" target="_blank" rel="noopener noreferrer" aria-label="Open the KennysWilly TikTok profile">
-      <div className="tiktok-preview-mark">KW<span>✳</span></div>
-      <div className="tiktok-preview-copy"><span className="tiny-label">@KENNYSWILLY9 / TIKTOK</span><strong>THE LATEST CUTS<br />LIVE ON THE PROFILE.</strong><span className="text-link">OPEN PROFILE <ArrowUpRight size={17} /></span></div>
-      <div className="tiktok-preview-signal" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /></div>
-    </a>
-    <p className="tiktok-profile-note">THE PROFILE IS THE FEED. TAP IN FOR THE REAL POSTS.</p>
-  </div>;
-}
-
 export function BasketballSection() {
   return <section className="section basketball-section" id="basketball" aria-labelledby="basketball-title">
-    <div className="section-top"><div><div className="eyebrow">03 / THE SHORT FORM</div><h2 id="basketball-title">THE QUICK FEED.<br />NO FILTER<span className="orange-text">.</span></h2></div><div className="basketball-intro"><p>The newest cuts live here first.<br />Watch the profile, then follow the thread.</p><a className="text-link" href="https://www.tiktok.com/@kennyswilly9" target="_blank" rel="noopener noreferrer">OPEN THE TIKTOK <ArrowUpRight size={17} /></a></div></div>
-    <div className="tiktok-feature"><div className="tiktok-feature-copy"><span className="tiktok-stamp">TIKTOK / 09</span><h3>THE FEED<br />MOVES FAST<span className="orange-text">.</span></h3><p>Basketball takes, quick reactions, and whatever earns a replay. No fake player, no dead embed — just a sharp door into the public profile.</p><div className="tiktok-meta"><span><Sparkles size={15} /> LATEST POSTS</span><span>OPEN / WATCH / REPEAT</span></div></div><TikTokProfileCard /></div>
+    <div className="section-top"><div><div className="eyebrow">03 / THE SHORT FORM</div><h2 id="basketball-title">YOUTUBE<br />SHORTS<span className="orange-text">.</span></h2></div><div className="basketball-intro"><p>Hoops takes, gaming, and the clips worth opening.<br />Play them here or take the long way to YouTube.</p><a className="text-link" href="https://youtube.com/@kennyswillyy" target="_blank" rel="noopener noreferrer">OPEN YOUTUBE <ArrowUpRight size={17} /></a></div></div>
+    <div className="shorts-archive"><div className="shorts-archive-copy"><span className="tiktok-stamp">YOUTUBE / SHORTS</span><h3>THE QUICK<br />ARCHIVE<span className="orange-text">.</span></h3><p>Real public uploads, real thumbnails, and a player that already works with the site.</p><div className="tiktok-meta"><span><Youtube size={15} /> VERIFIED SHORTS</span><span>OPEN / WATCH / REPEAT</span></div></div><div className="shorts-archive-link"><Youtube size={52} /><strong>THE CLIPS ARE<br />RIGHT THIS WAY.</strong><a className="text-link" href="https://youtube.com/@kennyswillyy" target="_blank" rel="noopener noreferrer">BROWSE SHORTS <ArrowUpRight size={17} /></a></div></div>
   </section>;
 }
 
@@ -37,10 +25,11 @@ export function TwitchSection() {
   const live = connected && status.live;
   const followers = status?.followerCount === null || status?.followerCount === undefined ? "—" : new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(status.followerCount);
   const viewers = live && status.viewerCount !== null ? new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(status.viewerCount) : "—";
+  const twitchParent = typeof window === "undefined" ? "localhost" : window.location.hostname;
   return <section className="section twitch-section" id="twitch" aria-labelledby="twitch-title">
     <div className={`twitch-panel ${live ? "is-live" : ""}`}>
       <div className="twitch-copy"><div className="eyebrow"><Twitch size={15} /> 04 / THE MAIN STAGE <span className="console-slash">///</span> FIRST STOP</div><h2 id="twitch-title">WHERE THE<br />MAGIC HAPPENS<span className="orange-text">.</span></h2><p>{live ? status.title || "KennysWilly is live on Twitch." : "This is the first stop. Pull up when the signal goes live."}</p><a className="brutal-button purple" href="https://www.twitch.tv/kennyswillyy" target="_blank" rel="noopener noreferrer">GO TO THE MAIN STAGE <ArrowUpRight size={18} /></a></div>
-      <div className="twitch-console"><div className="twitch-console-top"><span className={`twitch-live-badge ${live ? "is-live" : ""}`}><Radio size={17} /> {query.isLoading ? "CHECKING STATUS" : live ? "LIVE NOW" : connected ? "OFFLINE" : "SERVER STATUS UNAVAILABLE"}</span><span className="console-code">KW—04 / {live ? "ON AIR" : "STANDBY"}</span></div><div className="twitch-orbit" aria-hidden="true"><span className="orbit-ring ring-one" /><span className="orbit-ring ring-two" /><span className="orbit-core"><Twitch size={37} /></span><span className="orbit-live-dot" /></div><div className="twitch-channel-line"><span>@kennyswillyy</span><span>{live ? "TRANSMITTING" : "NO SIGNAL"}</span></div><div className="twitch-stat-grid"><div><strong>{viewers}</strong><span>VIEWERS</span><div className="signal-bars" aria-hidden="true"><i /><i /><i /><i /><i /></div></div><div><strong>{followers}</strong><span>FOLLOWERS</span><Users size={52} /></div></div><p className="twitch-note">{status?.message ?? "Live state and follower count come from Twitch, not a guessed snapshot."}</p><a className="text-link" href="https://www.twitch.tv/kennyswillyy/clips" target="_blank" rel="noopener noreferrer">BROWSE TWITCH CLIPS <ArrowUpRight size={17} /></a></div>
+      <div className="twitch-console"><div className="twitch-console-top"><span className={`twitch-live-badge ${live ? "is-live" : ""}`}><Radio size={17} /> {query.isLoading ? "CHECKING STATUS" : live ? "LIVE NOW" : connected ? "OFFLINE" : "SERVER STATUS UNAVAILABLE"}</span><span className="console-code">KW—04 / {live ? "ON AIR" : "STANDBY"}</span></div>{live ? <iframe className="twitch-live-player" title="KennysWilly live on Twitch" src={`https://player.twitch.tv/?channel=kennyswillyy&parent=${encodeURIComponent(twitchParent)}`} allowFullScreen /> : <div className="twitch-orbit" aria-hidden="true"><span className="orbit-ring ring-one" /><span className="orbit-ring ring-two" /><span className="orbit-core"><Twitch size={37} /></span><span className="orbit-live-dot" /></div>}<div className="twitch-channel-line"><span>@kennyswillyy</span><span>{live ? "TRANSMITTING" : "NO SIGNAL"}</span></div><div className="twitch-stat-grid"><div><strong>{viewers}</strong><span>VIEWERS</span><div className="signal-bars" aria-hidden="true"><i /><i /><i /><i /><i /></div></div><div><strong>{followers}</strong><span>FOLLOWERS</span><Users size={52} /></div></div><p className="twitch-note">{live ? "Live on the site now. Open Twitch if you want the full chat and channel controls." : status?.message ?? "Live state and follower count come from Twitch, not a guessed snapshot."}</p><a className="text-link" href={live ? "https://www.twitch.tv/kennyswillyy" : "https://www.twitch.tv/kennyswillyy/clips"} target="_blank" rel="noopener noreferrer">{live ? "OPEN THE LIVE CHANNEL" : "BROWSE TWITCH CLIPS"} <ArrowUpRight size={17} /></a></div>
     </div>
   </section>;
 }
@@ -52,5 +41,5 @@ export function Socials() {
 }
 
 export function Footer() {
-  return <footer className="site-footer"><div className="tutto-lockup"><span className="tutto-mark" aria-hidden="true">TP</span><blockquote className="tutto-passa">TUTTO PASSA</blockquote></div><a href="#top" className="wordmark">KENNYS<span>WILLY</span><i /></a><p>Music, hoops, streams, and whatever is next.</p><a href="#top">BACK TO TOP ↑</a><div>© {new Date().getFullYear()} KENNETH WILLIAMS <span>KENNYSWILLY / MUSIC, HOOPS & STREAMS.</span></div></footer>;
+  return <footer className="site-footer"><div className="tutto-lockup"><span className="tutto-mark" aria-hidden="true"><i /><b /></span><blockquote className="tutto-passa">TUTTO PASSA</blockquote></div><a href="#top" className="wordmark">KENNYS<span>WILLY</span><i /></a><p>Music, hoops, streams, and whatever is next.</p><a href="#top">BACK TO TOP ↑</a><div>© {new Date().getFullYear()} KENNETH WILLIAMS <span>KENNYSWILLY / MUSIC, HOOPS & STREAMS.</span></div></footer>;
 }
