@@ -53,3 +53,22 @@ body, html { background:#0a0a0b !important; color:#d8d4cf !important; }
 .twitch-panel.is-live .twitch-console { box-shadow:inset 0 0 0 1px rgba(165,45,60,.3),0 0 24px rgba(143,38,51,.18); }
 .twitch-watch-live { background:#b33b49 !important; color:#fff7f2 !important; border-color:#e07a83 !important; box-shadow:0 0 0 3px rgba(179,59,73,.22),8px 8px 0 #080809; transform:translateY(-2px); }
 .twitch-watch-live:hover { background:#d55261 !important; color:#fff !important; }
+
+/* TOP CONTRAST / DEEPER OXBLOOD */
+.site-header, .hero-content { background:#202023 !important; color:#d8d4cf !important; }
+.hero { background:#0d0d0f !important; }
+.hero h1 .hero-kenny, .hero-content > p, .hero-content .eyebrow, .hero-footnote { color:#d8d4cf !important; }
+.hero h1 .hero-willy, .wordmark span, .orange-text { color:#791f2d !important; }
+.hero-asterisk { color:#d8d4cf !important; }
+.site-header nav a, .header-cta { color:#d8d4cf !important; }
+.header-cta { border-color:#d8d4cf !important; box-shadow:3px 3px 0 #080809 !important; }
+.header-cta:hover, .hero-actions .brutal-button.orange { background:#791f2d !important; color:#fff5f0 !important; }
+.hero-actions .brutal-button:not(.orange) { background:#2b2b2f !important; color:#d8d4cf !important; border-color:#d8d4cf !important; }
+
+/* A custom KW-like split glyph: angled oxblood shard, inset ring, and offset diamond. */
+.tutto-mark { width:58px !important; height:58px !important; display:block; position:relative; transform:rotate(-11deg) !important; background:#202023 !important; border:2px solid #d8d4cf !important; overflow:visible; }
+.tutto-mark::before { content:''; position:absolute; inset:8px 12px 8px 10px; width:29px; height:39px; background:#791f2d; clip-path:polygon(18% 0,100% 0,68% 38%,100% 38%,35% 100%,48% 51%,0 51%); transform:rotate(7deg); }
+.tutto-mark::after { content:''; position:absolute; width:18px; height:18px; right:-8px; bottom:-7px; border:3px solid #d8d4cf; background:#202023; border-radius:50%; }
+.tutto-mark i { display:block !important; position:absolute; z-index:2; width:7px; height:25px; left:27px; top:16px; background:#d8d4cf; transform:rotate(38deg); }
+.tutto-mark b { display:block !important; position:absolute; z-index:3; width:8px; height:8px; right:5px; top:7px; background:#791f2d; transform:rotate(45deg); }
+.tutto-lockup { align-items:center; gap:18px; }
