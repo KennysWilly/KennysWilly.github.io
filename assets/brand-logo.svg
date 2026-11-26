@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" role="img" aria-labelledby="title desc">
+  <title id="title">KENNYS WILLY brand logo</title>
+  <desc id="desc">Electric orange and black K/W monogram beside a heavy KENNYS WILLY wordmark.</desc>
+  <rect x="6" y="6" width="208" height="208" rx="30" fill="#e6ff38" stroke="#050505" stroke-width="12"/>
+  <path fill="#050505" d="M38 38h35v49l44-49h40l-51 61 56 81h-43l-42-60-4 5v55H38z"/>
+  <path fill="#050505" d="M102 38h32l14 42 15-42h25l-37 68 20 68h-29l-12-49-14 49H87l25-73z"/>
+  <g fill="#050505" font-family="Arial Black,Arial,sans-serif" font-weight="900" letter-spacing="1">
+    <text x="245" y="103" font-size="74">KENNYS</text>
+    <text x="245" y="178" font-size="74">WILLY</text>
+  </g>
+  <rect x="249" y="192" width="405" height="8" fill="#e6ff38"/>
+</svg>

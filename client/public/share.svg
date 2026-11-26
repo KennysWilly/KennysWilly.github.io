@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">KENNYS WILLY — Music. Hoops. Good Chaos.</title>
+  <desc id="desc">A cream neo-brutalist social share card with oversized black lettering, an electric orange sticker, and an outlined basketball.</desc>
+  <rect width="1200" height="630" fill="#fe73c8"/>
+  <path d="M0 0h1200v22H0zM0 608h1200v22H0z" fill="#050505"/>
+  <path d="M31 31h177v177H31z" fill="#050505"/>
+  <path d="M43 43h153v153H43z" fill="#e6ff38"/>
+  <path fill="#050505" d="M60 58h24v39l35-39h28l-40 47 44 57h-29l-33-42-5 6v36H60z"/>
+  <path fill="#050505" d="M103 58h22l10 33 12-33h18l-29 52 16 51h-22l-10-38-11 38H87l20-55z"/>
+  <g font-family="Arial Black,Arial,sans-serif" font-weight="900" fill="#050505">
+    <text x="70" y="330" font-size="178" letter-spacing="-8">KENNYS</text>
+    <text x="64" y="505" font-size="178" letter-spacing="-7">WILLY</text>
+  </g>
+  <path d="M76 541h523" stroke="#050505" stroke-width="12"/>
+  <path d="M76 557h320" stroke="#e6ff38" stroke-width="12"/>
+  <g transform="translate(690 84) rotate(-11)">
+    <path d="M18 21h322v92H18z" fill="#050505"/>
+    <path d="M0 0h322v92H0z" fill="#e6ff38" stroke="#050505" stroke-width="8"/>
+    <text x="20" y="39" font-family="Arial Black,Arial,sans-serif" font-size="29" font-weight="900" fill="#050505" letter-spacing="1">MUSIC. HOOPS.</text>
+    <text x="20" y="73" font-family="Arial Black,Arial,sans-serif" font-size="29" font-weight="900" fill="#050505" letter-spacing="1">GOOD CHAOS.</text>
+  </g>
+  <g transform="translate(946 407)">
+    <circle cx="0" cy="0" r="116" fill="none" stroke="#e6ff38" stroke-width="12"/>
+    <path d="M-116 0h232M0-116c-51 31-76 70-76 116s25 85 76 116M0-116c51 31 76 70 76 116S51 85 0 116M-82-82c48 18 80 48 82 82 2 34 34 64 82 82M82-82c-48 18-80 48-82 82-2 34-34 64-82 82" fill="none" stroke="#e6ff38" stroke-width="9"/>
+    <path d="M-116 0h232" stroke="#050505" stroke-width="3" opacity=".9"/>
+  </g>
+  <circle cx="1104" cy="81" r="10" fill="#050505"/>
+  <circle cx="1138" cy="81" r="10" fill="#e6ff38" stroke="#050505" stroke-width="4"/>
+  <text x="704" y="570" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#050505" letter-spacing="4">KENNYSWILLY.COM</text>
+</svg>

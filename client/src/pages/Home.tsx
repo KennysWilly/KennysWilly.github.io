@@ -1,25 +1,21 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+import { useState } from "react";
+import Hero, { Navigation, Ticker } from "@/components/Hero";
+import MusicSection from "@/components/MusicSection";
+import Highlights from "@/components/Highlights";
+import { About, Footer, Socials } from "@/components/AboutSocial";
+import { useReducedMotion } from "@/components/AlbumWall";
+import { useMusic } from "@/hooks/usePublicData";
+import snapshot from "@/data/spotify-snapshot.json";
 
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Workflow, Frontend Best Practices, Design Guide and Common Pitfalls
- */
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
-    </div>
-  );
+  const music = useMusic();
+  const [paused, setPaused] = useState(false);
+  const reduced = useReducedMotion();
+  const albums = music.data?.albums.length ? music.data.albums : snapshot.albums;
+  return <div id="top" className={paused || reduced ? "site motion-paused" : "site"}>
+    <a href="#music" className="skip-link">Skip to music and playlists</a>
+    <Navigation />
+    <main><Hero albums={albums} paused={paused || reduced} setPaused={setPaused} connected={Boolean(music.data?.albums.length)} /><Ticker /><MusicSection data={music.data} loading={music.isLoading} error={music.isError} retry={() => void music.refetch()} /><Highlights /><About /><Socials /></main>
+    <Footer />
+  </div>;
 }

@@ -111,3 +111,15 @@ temp/
 
 # Manus version file (auto-generated, not part of source)
 client/public/__manus__/version.json
+
+# Raw research responses are not application source.
+assets/reference/*.html
+assets/reference/spotify-*.json
+assets/reference/youtube-public-data.json
+assets/reference/track-example.json
+.env.*
+!.env.example
+
+# Python development utility caches
+__pycache__/
+*.pyc

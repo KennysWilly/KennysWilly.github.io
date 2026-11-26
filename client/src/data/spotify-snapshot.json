@@ -1,0 +1,548 @@
+{
+  "checkedAt": "2026-11-26",
+  "source": "Owner-supplied public playlists; representative original-artwork snapshot, not the full saved library.",
+  "albums": [
+    {
+      "id": "5AMekX6PigBBeBRHvB4MfZ",
+      "name": "Drive Slow",
+      "artist": "Kanye West, Paul Wall, GLC",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273d79ba8ad2be777bad0e9924b",
+      "url": "https://open.spotify.com/track/5AMekX6PigBBeBRHvB4MfZ",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "0F6u5Md3micztedhRPzoqr",
+      "name": "Oasis",
+      "artist": "Boldy James, Your Boy Posca",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273334a83aecacfd535eced5c56",
+      "url": "https://open.spotify.com/track/0F6u5Md3micztedhRPzoqr",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "5JnV4TfjsnqqwxGAfDnrQZ",
+      "name": "Link Up",
+      "artist": "NxWorries, Anderson .Paak, Knxwledge",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273f48c4cb9b9bca6cb6251c266",
+      "url": "https://open.spotify.com/track/5JnV4TfjsnqqwxGAfDnrQZ",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "62HtcRFFjVch2X1B42K662",
+      "name": "PLAYER WAYS",
+      "artist": "Vince Staples",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2739fd6f55c35811d79d01f94ef",
+      "url": "https://open.spotify.com/track/62HtcRFFjVch2X1B42K662",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "3eZjDYBS6oVs1z5POqjX9f",
+      "name": "Runaway",
+      "artist": "J. Cole",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273c1bb124f993488cf21b269fc",
+      "url": "https://open.spotify.com/track/3eZjDYBS6oVs1z5POqjX9f",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "1Uq3IOIy1CUlHUgP6vWpum",
+      "name": "Smoke Break (feat. Future)",
+      "artist": "Chance the Rapper, Future",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2731e4ed4162e520e33be0bf3b0",
+      "url": "https://open.spotify.com/track/1Uq3IOIy1CUlHUgP6vWpum",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "4n02GblHZte3q5AzcLHlIK",
+      "name": "Anywhere (feat. Snoop Dogg & The Last Artful, Dodgr)",
+      "artist": "Anderson .Paak, Snoop Dogg, The Last Artful, Dodgr",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273524aa1b58c9b19480d8ee703",
+      "url": "https://open.spotify.com/track/4n02GblHZte3q5AzcLHlIK",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "24FJDx0bkt4VLYYDB1cBDe",
+      "name": "Shameful Game, Pt. 2",
+      "artist": "Pale Jay, Conway the Machine",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2736e68946088c7e01c4b0fe2e7",
+      "url": "https://open.spotify.com/track/24FJDx0bkt4VLYYDB1cBDe",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "0erHRpul2OsRSuImLHQ3X4",
+      "name": "The Rivington (feat. Conway, Westside Gunn & Joyce Wrice)",
+      "artist": "Free Nationals, Conway the Machine, Westside Gunn, Joyce Wrice",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d93501aba7bc1140aac628c6",
+      "url": "https://open.spotify.com/track/0erHRpul2OsRSuImLHQ3X4",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "5sesHCQziHg85y8dlnNWJC",
+      "name": "Shame (feat. BJ The Chicago Kid)",
+      "artist": "Freddie Gibbs, Madlib, BJ The Chicago Kid",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273d844f6b7311a69b9a08e7a0f",
+      "url": "https://open.spotify.com/track/5sesHCQziHg85y8dlnNWJC",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "3AM2ihc5RFzbC47eCpTg2I",
+      "name": "Waves",
+      "artist": "Joey Bada$$",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273fcd3724fba954e6104e4530d",
+      "url": "https://open.spotify.com/track/3AM2ihc5RFzbC47eCpTg2I",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "3Qg00Skeq2pj0I7kBix0yt",
+      "name": "MHB's",
+      "artist": "Quasimoto",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273045b6b9b857f2bd8acd1870a",
+      "url": "https://open.spotify.com/track/3Qg00Skeq2pj0I7kBix0yt",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "4bZZNn5H57KZ9elLJ2nSjy",
+      "name": "Hemlock",
+      "artist": "MAVI",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273ee78446a9cbf2cc334341782",
+      "url": "https://open.spotify.com/track/4bZZNn5H57KZ9elLJ2nSjy",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "4HIOXqZ1hrKNs0Kh7oCoUk",
+      "name": "Bong Rips",
+      "artist": "Lord Sko, MAVI",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273f2f4b3a4584edac83824c324",
+      "url": "https://open.spotify.com/track/4HIOXqZ1hrKNs0Kh7oCoUk",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "0aS2vCGT3SHSKygnwB08Qb",
+      "name": "Ludacris",
+      "artist": "Maxo",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27334a4d89e1e73ad7308ba3bfb",
+      "url": "https://open.spotify.com/track/0aS2vCGT3SHSKygnwB08Qb",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "2d5t1KNQ8SnjyGXjijGnZM",
+      "name": "F.U.N.",
+      "artist": "Sideshow",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273d2f816b758bc145041ddb77b",
+      "url": "https://open.spotify.com/track/2d5t1KNQ8SnjyGXjijGnZM",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "2f36pRZBYcLOqEDEhqSnmI",
+      "name": "Designer Drugs",
+      "artist": "Nicholas Craven, Boldy James",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273519ddd92fb3b4e0707f299b5",
+      "url": "https://open.spotify.com/track/2f36pRZBYcLOqEDEhqSnmI",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "0xta6Gah3inmeHbj0e3F9a",
+      "name": "Headshots (4r da Locals)",
+      "artist": "Isaiah Rashad",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273457132b244e5459aea1b7160",
+      "url": "https://open.spotify.com/track/0xta6Gah3inmeHbj0e3F9a",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "4k8AO5jk774WA6mg9YCxSG",
+      "name": "Distractions",
+      "artist": "NxWorries, Anderson .Paak, Knxwledge",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273794bfd9705f40bfb3be95ef4",
+      "url": "https://open.spotify.com/track/4k8AO5jk774WA6mg9YCxSG",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "4UoOaaxDdx9ndmdg3mbc83",
+      "name": "Another Time",
+      "artist": "NxWorries, Anderson .Paak, Knxwledge",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2732c57ef993305529a2bc41593",
+      "url": "https://open.spotify.com/track/4UoOaaxDdx9ndmdg3mbc83",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "1IBPFXqn6qLeeiGMSyfBcA",
+      "name": "Best One",
+      "artist": "NxWorries, Anderson .Paak, Knxwledge",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2732c57ef993305529a2bc41593",
+      "url": "https://open.spotify.com/track/1IBPFXqn6qLeeiGMSyfBcA",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "5Dx5nWIf6QKWjLsLUCXoml",
+      "name": "Practice",
+      "artist": "Freddie Gibbs, Madlib",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2738d479573710dcbce5414d548",
+      "url": "https://open.spotify.com/track/5Dx5nWIf6QKWjLsLUCXoml",
+      "sourcePlaylist": "1mRhwA8wntU3ELVX4lwg4N"
+    },
+    {
+      "id": "5aqUqSq0SqGBAqEn27PEzc",
+      "name": "Pure Souls",
+      "artist": "Kanye West",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273cad190f1a73c024e5a40dddd",
+      "url": "https://open.spotify.com/track/5aqUqSq0SqGBAqEn27PEzc",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "40vHPre1xRPeCAuK2CNfs4",
+      "name": "OPEN UP",
+      "artist": "Daniel Caesar",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273969c21ea34fe372a3e468947",
+      "url": "https://open.spotify.com/track/40vHPre1xRPeCAuK2CNfs4",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "4wKDjsdjSEL4ykcyoHV0pq",
+      "name": "Welcome",
+      "artist": "J. Cole",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273b8a217bec71155c020c5c3e0",
+      "url": "https://open.spotify.com/track/4wKDjsdjSEL4ykcyoHV0pq",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "1DNkxLaGqAIU43kHQkunoE",
+      "name": "When We Get By",
+      "artist": "D'Angelo",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273f6465d4b8cdd34ed4d7853e2",
+      "url": "https://open.spotify.com/track/1DNkxLaGqAIU43kHQkunoE",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "6r54dRLE9kPqjs4VBQCPEn",
+      "name": "Best Friend",
+      "artist": "Pharrell Williams",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273bd18d067eb476f2318ae7dd8",
+      "url": "https://open.spotify.com/track/6r54dRLE9kPqjs4VBQCPEn",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "0cciBj4236w1xByzZvn92D",
+      "name": "Beauty & Essex (feat. Daniel Caesar & Unknown Mortal Orchestra)",
+      "artist": "Free Nationals, Daniel Caesar, Unknown Mortal Orchestra",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273d93501aba7bc1140aac628c6",
+      "url": "https://open.spotify.com/track/0cciBj4236w1xByzZvn92D",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "3ven4ZKSspshBwiLMMibEa",
+      "name": "Early Summer",
+      "artist": "Ryo Fukui",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273b752bbaa0dd7578b736f7cc1",
+      "url": "https://open.spotify.com/track/3ven4ZKSspshBwiLMMibEa",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "69toZvLG490IrN6YtmN4wH",
+      "name": "?",
+      "artist": "MF DOOM, Kurious",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2736ce90ec627a0198a8efd127f",
+      "url": "https://open.spotify.com/track/69toZvLG490IrN6YtmN4wH",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "0IRtsYqlZrATSdxuRS90Ip",
+      "name": "Artist of the Century",
+      "artist": "MIKE, Venna",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273dbd96c57601c40366bb99ebc",
+      "url": "https://open.spotify.com/track/0IRtsYqlZrATSdxuRS90Ip",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "4lRrk574qIHpoEEKC1zuam",
+      "name": "At Your Best (You Are Love)",
+      "artist": "Aaliyah",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27371aaf1ce904c974ed4efc0c8",
+      "url": "https://open.spotify.com/track/4lRrk574qIHpoEEKC1zuam",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "7lhkOb0VNnTlshwifCEoSr",
+      "name": "Molasses (feat. RZA)",
+      "artist": "Earl Sweatshirt, RZA",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27346f9bf1154c7205b0e8b1667",
+      "url": "https://open.spotify.com/track/7lhkOb0VNnTlshwifCEoSr",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "4w5m4X0OZ2IslxNOgtntTN",
+      "name": "Crime Pays",
+      "artist": "Freddie Gibbs, Madlib",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2738d479573710dcbce5414d548",
+      "url": "https://open.spotify.com/track/4w5m4X0OZ2IslxNOgtntTN",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "0WfsDFQY3t0nDyWF89QKfe",
+      "name": "latch",
+      "artist": "MAVI",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273846b7615bc9e30c129bb0f02",
+      "url": "https://open.spotify.com/track/0WfsDFQY3t0nDyWF89QKfe",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "62d6YXEYxmMWAuLpw1EysL",
+      "name": "Garden Kisses",
+      "artist": "GIVĒON",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27336e776cd48dad1d9d89fc943",
+      "url": "https://open.spotify.com/track/62d6YXEYxmMWAuLpw1EysL",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "3ewIu3AibUiSiDNS0Ta8Lm",
+      "name": "The Panties",
+      "artist": "Mos Def",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2735df4b79ea8baf27cf3da6492",
+      "url": "https://open.spotify.com/track/3ewIu3AibUiSiDNS0Ta8Lm",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "45muf22QzSyKwsF4l3IcwJ",
+      "name": "Searching",
+      "artist": "Roy Ayers Ubiquity",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2731025416389b2a17fe8d11049",
+      "url": "https://open.spotify.com/track/45muf22QzSyKwsF4l3IcwJ",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "6FBPOJLxUZEair6x4kLDhf",
+      "name": "Any Colour You Like",
+      "artist": "Pink Floyd",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273db216ca805faf5fe35df4ee6",
+      "url": "https://open.spotify.com/track/6FBPOJLxUZEair6x4kLDhf",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "2KrHM3YwVwewEAxss7iuj7",
+      "name": "Nowhere2go",
+      "artist": "Earl Sweatshirt",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2732b688ab63b1a5f281cfdf451",
+      "url": "https://open.spotify.com/track/2KrHM3YwVwewEAxss7iuj7",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "14hca4SHRBbKZkzPI0xXDL",
+      "name": "Lemon Grass",
+      "artist": "MF DOOM",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2738a82421a9a8ea0b7ef7d584f",
+      "url": "https://open.spotify.com/track/14hca4SHRBbKZkzPI0xXDL",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "0pcg2zZQOw0G0ZYbjS6smW",
+      "name": "Eucalyptus",
+      "artist": "MF DOOM",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273ac0454d525e8cd99327240b6",
+      "url": "https://open.spotify.com/track/0pcg2zZQOw0G0ZYbjS6smW",
+      "sourcePlaylist": "64nVsGH5e0HaYV4steCmrr"
+    },
+    {
+      "id": "622DQPLumfjBW0sDd7XGFO",
+      "name": "Come Get To This",
+      "artist": "Marvin Gaye",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273f8f0a26e4100c490bc384003",
+      "url": "https://open.spotify.com/track/622DQPLumfjBW0sDd7XGFO",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "0k3fBeBIcok5gbYQyQbxP5",
+      "name": "All I Do",
+      "artist": "Stevie Wonder",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273ee3d8573b47a75a0d8233b39",
+      "url": "https://open.spotify.com/track/0k3fBeBIcok5gbYQyQbxP5",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "3IVaPHncIZWWNjfg29HVLq",
+      "name": "Love T.K.O.",
+      "artist": "Teddy Pendergrass",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27392814491369f15e56003306b",
+      "url": "https://open.spotify.com/track/3IVaPHncIZWWNjfg29HVLq",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "2RH61BqMEeRjfND7MQBWHU",
+      "name": "Devotion",
+      "artist": "Earth, Wind & Fire",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273b746efe2ded2685b7e337f6d",
+      "url": "https://open.spotify.com/track/2RH61BqMEeRjfND7MQBWHU",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "2yd0XI7g0BhAgY9GkpPClU",
+      "name": "Outstanding",
+      "artist": "The Gap Band",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2731eeaabd6f72ff29707f0476f",
+      "url": "https://open.spotify.com/track/2yd0XI7g0BhAgY9GkpPClU",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "3nFJbZCHP4d9vduKjJLdBL",
+      "name": "Never Too Much",
+      "artist": "Luther Vandross",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273102bebc4807fc0952a754d0f",
+      "url": "https://open.spotify.com/track/3nFJbZCHP4d9vduKjJLdBL",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "7rt0kEDWRg3pgTZJKuszoE",
+      "name": "Brown Sugar",
+      "artist": "D'Angelo",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273f6465d4b8cdd34ed4d7853e2",
+      "url": "https://open.spotify.com/track/7rt0kEDWRg3pgTZJKuszoE",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "3iCbTmcXnKlRZCdaYOukxq",
+      "name": "Love Ballad",
+      "artist": "L.T.D.",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273db7ebbaa1082ffcf9280fdb0",
+      "url": "https://open.spotify.com/track/3iCbTmcXnKlRZCdaYOukxq",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "6s4xndGKUhW0xXPYvFlwcL",
+      "name": "Other Side Of The Game",
+      "artist": "Erykah Badu",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273b5e18a80757ba2f787213d21",
+      "url": "https://open.spotify.com/track/6s4xndGKUhW0xXPYvFlwcL",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "6LGwYMXXgURfaequXipzHx",
+      "name": "You Don't Know My Name",
+      "artist": "Alicia Keys",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27356ff19308ebeb48e2ba6094b",
+      "url": "https://open.spotify.com/track/6LGwYMXXgURfaequXipzHx",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "5My5YI9oqE9MZcHIrm38BJ",
+      "name": "The Sweetest Thing (feat. Lauryn Hill) - From the New Line Cinema film \"Love Jones\"",
+      "artist": "Refugee Camp All-Stars, Ms. Lauryn Hill",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2730b98740c62f992516a0cb7bf",
+      "url": "https://open.spotify.com/track/5My5YI9oqE9MZcHIrm38BJ",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "7d2RV57UI7JoYnF1emRH6m",
+      "name": "I Wish You Were Here",
+      "artist": "Al Green",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273460ed0062b39a4bcdc11296a",
+      "url": "https://open.spotify.com/track/7d2RV57UI7JoYnF1emRH6m",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "3ekAN7Ijl9vIemCaDbh29K",
+      "name": "Brown Skin",
+      "artist": "India.Arie",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27358bade5d6273d970a1e95797",
+      "url": "https://open.spotify.com/track/3ekAN7Ijl9vIemCaDbh29K",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "4IT6vDuKprKl6jyVndlY8V",
+      "name": "The Girl Is Mine (with Paul McCartney)",
+      "artist": "Michael Jackson, Paul McCartney",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27332a7d87248d1b75463483df5",
+      "url": "https://open.spotify.com/track/4IT6vDuKprKl6jyVndlY8V",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "0bqZnsPz4klg5TuWGcKb34",
+      "name": "Sweet Thing",
+      "artist": "Rufus, Chaka Khan",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273aa3363d587232b8f388da0e5",
+      "url": "https://open.spotify.com/track/0bqZnsPz4klg5TuWGcKb34",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "6l4TNbfPtNAOOlGIfceSaO",
+      "name": "Ascension (Don't Ever Wonder) - Remastered 2021",
+      "artist": "Maxwell",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273392bdde515ac094982c73b98",
+      "url": "https://open.spotify.com/track/6l4TNbfPtNAOOlGIfceSaO",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "3CDEoUqFIzVap4v8YFnjr4",
+      "name": "I'll Come Running Back To You - Single Version With Dubs",
+      "artist": "Sam Cooke, The Soul Stirrers",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2736fad808c9f2d60739e17a2e4",
+      "url": "https://open.spotify.com/track/3CDEoUqFIzVap4v8YFnjr4",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "4Yu2vdSKkFrBM5agrx5XRN",
+      "name": "Distant Lover",
+      "artist": "Marvin Gaye",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273f8f0a26e4100c490bc384003",
+      "url": "https://open.spotify.com/track/4Yu2vdSKkFrBM5agrx5XRN",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "0gWmxML0Fc6z9e5adPqi1s",
+      "name": "Soon I'll Be Loving You Again",
+      "artist": "Marvin Gaye",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2736329e23d367245adceb71fd0",
+      "url": "https://open.spotify.com/track/0gWmxML0Fc6z9e5adPqi1s",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "4ihykcy9d9SSC5qxHIhPcf",
+      "name": "What's Happening Brother",
+      "artist": "Marvin Gaye",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273b36949bee43217351961ffbc",
+      "url": "https://open.spotify.com/track/4ihykcy9d9SSC5qxHIhPcf",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    },
+    {
+      "id": "4C5GsegFD0j5ujSr1y93Oj",
+      "name": "Knocks Me Off My Feet",
+      "artist": "Stevie Wonder",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2732fee61bfec596bb6f5447c50",
+      "url": "https://open.spotify.com/track/4C5GsegFD0j5ujSr1y93Oj",
+      "sourcePlaylist": "6qZovSxZvgQj0xSe1gSgMG"
+    }
+  ],
+  "playlists": [
+    {
+      "id": "1mRhwA8wntU3ELVX4lwg4N",
+      "name": "Chillrap",
+      "description": "Kanye, NxWorries, Freddie Gibbs & the rest of the rotation.",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84b84ea1f531209093b8af74b1",
+      "url": "https://open.spotify.com/playlist/1mRhwA8wntU3ELVX4lwg4N",
+      "totalTracks": null,
+      "available": true
+    },
+    {
+      "id": "64nVsGH5e0HaYV4steCmrr",
+      "name": "Idlsidgo",
+      "description": "Daniel Caesar, D’Angelo, MF DOOM & a little late-night feeling.",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da841325d72509b7c8de64a618c5",
+      "url": "https://open.spotify.com/playlist/64nVsGH5e0HaYV4steCmrr",
+      "totalTracks": null,
+      "available": true
+    },
+    {
+      "id": "6qZovSxZvgQj0xSe1gSgMG",
+      "name": "That music we don’t get no more",
+      "description": "Marvin Gaye, Stevie Wonder, Teddy Pendergrass. Soul that stays with you.",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84d408fe844a1114f1999433ef",
+      "url": "https://open.spotify.com/playlist/6qZovSxZvgQj0xSe1gSgMG",
+      "totalTracks": null,
+      "available": true
+    },
+    {
+      "id": "5QrHkxq29YrtjzgwQgSleC",
+      "name": "Playlist 04",
+      "description": "This playlist isn’t publicly available yet. Open it in Spotify or check back later.",
+      "image": "",
+      "url": "https://open.spotify.com/playlist/5QrHkxq29YrtjzgwQgSleC",
+      "totalTracks": null,
+      "available": false
+    }
+  ]
+}
