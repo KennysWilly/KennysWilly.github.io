@@ -1,10 +1,10 @@
 export const socials = [
-  { id: "twitch", name: "Twitch", handle: "kennyswillyy", description: "Catch the chaos live.", url: "https://www.twitch.tv/kennyswillyy", color: "#c5a7ef" },
-  { id: "youtube", name: "YouTube", handle: "@kennyswillyy", description: "The highlights. The hot takes.", url: "https://youtube.com/@kennyswillyy", color: "#ff766b" },
-  { id: "instagram", name: "Instagram", handle: "@kennyswilly", description: "Life outside the stream.", url: "https://instagram.com/kennyswilly", color: "#f1b2d4" },
-  { id: "tiktok", name: "TikTok", handle: "@kennyswilly9", description: "A little less context. A lot more Kenny.", url: "https://tiktok.com/@kennyswilly9", color: "#a4d9c6" },
-  { id: "x", name: "X / Twitter", handle: "@kennyswilly9", description: "Thoughts with no filter.", url: "https://x.com/kennyswilly9", color: "#c6d0df" },
-  { id: "tip", name: "Support the stream", handle: "StreamElements tips", description: "Love the vibes? Keep them going.", url: "https://streamelements.com/kennyswillyy/tip", color: "#ffb75d" },
+  { id: "twitch", name: "Twitch", handle: "kennyswillyy", description: "The brand, live.", url: "https://www.twitch.tv/kennyswillyy", color: "#c5a7ef" },
+  { id: "youtube", name: "YouTube", handle: "@kennyswillyy", description: "Clips, takes, and the archive.", url: "https://youtube.com/@kennyswillyy", color: "#ff766b" },
+  { id: "instagram", name: "Instagram", handle: "@kennyswilly", description: "The visual side of the rotation.", url: "https://instagram.com/kennyswilly", color: "#f1b2d4" },
+  { id: "tiktok", name: "TikTok", handle: "@kennyswilly9", description: "Short form. Same name.", url: "https://tiktok.com/@kennyswilly9", color: "#a4d9c6" },
+  { id: "x", name: "X / Twitter", handle: "@kennyswilly9", description: "The unfiltered feed.", url: "https://x.com/kennyswilly9", color: "#c6d0df" },
+  { id: "tip", name: "Support the stream", handle: "StreamElements tips", description: "Keep the rotation moving.", url: "https://streamelements.com/kennyswillyy/tip", color: "#ffb75d" },
 ] as const;
 
 export const spotifyProfile = "https://open.spotify.com/user/kw8640173";
