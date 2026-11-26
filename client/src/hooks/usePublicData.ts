@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import type { ActivityResponse, MusicResponse, ClipsResponse } from "../../../shared/integrations";
+import type { ActivityResponse, MusicResponse, ClipsResponse, TwitchStatusResponse } from "../../../shared/integrations";
 
 const isStaticBuild = import.meta.env.VITE_STATIC_BUILD === "true";
 
@@ -19,4 +19,8 @@ export function useActivity() {
 
 export function useClips(platform: "youtube" | "twitch") {
   return useQuery({ queryKey: ["clips", platform], queryFn: () => readJson<ClipsResponse>(`/api/clips?platform=${platform}`), staleTime: 300000, retry: 1, enabled: !isStaticBuild });
+}
+
+export function useTwitchStatus() {
+  return useQuery({ queryKey: ["twitch-status"], queryFn: () => readJson<TwitchStatusResponse>("/api/twitch"), refetchInterval: 30000, staleTime: 15000, retry: 1, enabled: !isStaticBuild });
 }

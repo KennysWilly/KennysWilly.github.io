@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import Hero, { Navigation, Ticker } from "@/components/Hero";
 import MusicSection from "@/components/MusicSection";
-import Highlights from "@/components/Highlights";
-import { About, Footer, Socials } from "@/components/AboutSocial";
+import { BasketballSection, Footer, Socials, TwitchSection } from "@/components/AboutSocial";
 import { useReducedMotion } from "@/components/AlbumWall";
 import { useActivity, useMusic } from "@/hooks/usePublicData";
 import snapshot from "@/data/spotify-snapshot.json";
@@ -19,7 +18,7 @@ export default function Home() {
   return <div id="top" className={paused || reduced ? "site motion-paused" : "site"}>
     <a href="#music" className="skip-link">Skip to music and playlists</a>
     <Navigation />
-    <main><Hero albums={albums} paused={paused || reduced} setPaused={setPaused} connected={Boolean(music.data?.albums.length)} /><Ticker /><MusicSection data={music.data} loading={music.isLoading} error={music.isError} retry={() => void music.refetch()} activity={activity.data} activityLoading={activity.isLoading} activityError={activity.isError} retryActivity={() => void activity.refetch()} /><Highlights /><About /><Socials /></main>
+    <main><Hero albums={albums} paused={paused || reduced} setPaused={setPaused} connected={Boolean(music.data?.albums.length)} /><Ticker /><MusicSection data={music.data} loading={music.isLoading} error={music.isError} retry={() => void music.refetch()} activity={activity.data} activityLoading={activity.isLoading} activityError={activity.isError} retryActivity={() => void activity.refetch()} /><BasketballSection /><TwitchSection /><Socials /></main>
     <Footer />
   </div>;
 }

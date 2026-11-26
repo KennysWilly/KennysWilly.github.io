@@ -11,6 +11,7 @@ import type {
   NowPlaying,
   Playlist,
   PresenceSpotify,
+  TwitchStatusResponse,
 } from "../shared/integrations";
 
 export const TWITCH_USERNAME = "kennyswillyy";
@@ -805,6 +806,50 @@ export function createIntegrations(options: Options = {}) {
     }
     return normalizeTwitchClips(rows, broadcasterId).slice(0, MAX_CLIPS);
   }
+  async function getTwitchStatus(): Promise<TwitchStatusResponse> {
+    const env = configuration();
+    const updatedAt = new Date(clock()).toISOString();
+    if (!env.TWITCH_CLIENT_ID || !env.TWITCH_CLIENT_SECRET)
+      return {
+        status: "disconnected",
+        username: TWITCH_USERNAME,
+        live: false,
+        viewerCount: null,
+        followerCount: null,
+        title: "",
+        startedAt: null,
+        updatedAt,
+        message: "Twitch status requires a server-side Twitch app connection.",
+      };
+    return memo("twitch-status", 15 * SECOND, async () => {
+      const users = await twitch(env, `/users?login=${TWITCH_USERNAME}`);
+      const user = collection(users, "data", "Twitch")
+        .map(object)
+        .find(row => text(row.login).toLowerCase() === TWITCH_USERNAME);
+      const broadcasterId = id(user?.id);
+      if (!broadcasterId) throw new ProviderError("Twitch");
+      const [streamsResult, followersResult] = await Promise.allSettled([
+        twitch(env, `/streams?user_id=${broadcasterId}`),
+        twitch(env, `/channels/followers?broadcaster_id=${broadcasterId}&first=1`),
+      ]);
+      if (streamsResult.status === "rejected") throw streamsResult.reason;
+      const stream = collection(streamsResult.value, "data", "Twitch").map(object)[0];
+      const followerCount = followersResult.status === "fulfilled"
+        ? normalizeCount(followersResult.value.total)
+        : null;
+      return {
+        status: "connected",
+        username: TWITCH_USERNAME,
+        live: Boolean(stream),
+        viewerCount: stream ? normalizeCount(stream.viewer_count) : null,
+        followerCount,
+        title: text(stream?.title),
+        startedAt: text(stream?.started_at) || null,
+        updatedAt: new Date(clock()).toISOString(),
+        ...(followersResult.status === "rejected" ? { message: "Follower count is temporarily unavailable." } : {}),
+      } satisfies TwitchStatusResponse;
+    });
+  }
   async function youtube(
     env: Env,
     endpoint: string,
@@ -900,7 +945,7 @@ export function createIntegrations(options: Options = {}) {
       }
     );
   }
-  return { getMusic, getClips, getActivity };
+  return { getMusic, getClips, getActivity, getTwitchStatus };
 }
 
 export function registerIntegrationRoutes(
@@ -963,6 +1008,24 @@ export function registerIntegrationRoutes(
         rankingLabel: "Unavailable",
         message: "Clips are temporarily unavailable.",
       } satisfies ClipsResponse);
+    }
+  });
+  app.get("/api/twitch", async (_req, res) => {
+    res.set("Cache-Control", "no-store");
+    try {
+      res.json(await integrations.getTwitchStatus());
+    } catch {
+      res.json({
+        status: "error",
+        username: TWITCH_USERNAME,
+        live: false,
+        viewerCount: null,
+        followerCount: null,
+        title: "",
+        startedAt: null,
+        updatedAt: new Date().toISOString(),
+        message: "Twitch status is temporarily unavailable.",
+      } satisfies TwitchStatusResponse);
     }
   });
 }

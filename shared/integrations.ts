@@ -97,3 +97,15 @@ export interface ClipsResponse {
   message?: string;
   rankingLabel: string;
 }
+
+export interface TwitchStatusResponse {
+  status: IntegrationStatus;
+  username: string;
+  live: boolean;
+  viewerCount: number | null;
+  followerCount: number | null;
+  title: string;
+  startedAt: string | null;
+  updatedAt: string;
+  message?: string;
+}
