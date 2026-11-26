@@ -169,9 +169,11 @@ function vitePluginPublicPlatformConfig(): Plugin {
 }
 
 const plugins = [vitePluginPublicPlatformConfig(), react(), tailwindcss(), jsxLocPlugin(), vitePluginManusDebugCollector()];
+const siteBase = process.env.VITE_BASE_PATH ?? "/";
 
 export default defineConfig({
   plugins,
+  base: siteBase,
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),

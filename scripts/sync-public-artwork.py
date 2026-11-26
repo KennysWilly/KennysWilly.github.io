@@ -11,7 +11,16 @@ import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 SPOTIFY_PROFILE = "https://open.spotify.com/user/kw8640173"
-SEED_PLAYLIST_IDS = ["1mRhwA8wntU3ELVX4lwg4N", "64nVsGH5e0HaYV4steCmrr", "6qZovSxZvgQj0xSe1gSgMG"]
+SEED_PLAYLIST_IDS = [
+    "1mRhwA8wntU3ELVX4lwg4N",
+    "64nVsGH5e0HaYV4steCmrr",
+    "6qZovSxZvgQj0xSe1gSgMG",
+    "75MbiXFUmZCL4npjdbuH2Z",
+    "04FkPL3fH3f7WmrUG86dl8",
+    "0xeqUxAUXJSJowN4iQ6dGj",
+    "086ONAFu5nnUzRyhzFTwJi",
+]
+EXCLUDED_PLAYLIST_NAMES = {"other", "discover weekly dupe", "mom", "2k-madden"}
 (ROOT / "assets/reference").mkdir(parents=True, exist_ok=True)
 
 
@@ -51,7 +60,7 @@ for playlist_id in discover_playlist_ids():
     }
     cover_sources = entity.get("coverArt", {}).get("sources", [])
     tracks = entity.get("trackList", [])
-    if not name or not tracks or not cover_sources:
+    if not name or name.casefold() in EXCLUDED_PLAYLIST_NAMES or not tracks or not cover_sources:
         print(f"Playlist empty or missing artwork: {playlist_id}", flush=True)
         continue
     description = descriptions.get(playlist_id, f"A public cut from the KennysWilly Spotify rotation: {name}.")

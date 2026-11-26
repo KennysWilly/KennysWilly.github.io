@@ -14,6 +14,10 @@ pnpm dev
 
 The application listens on port 3000 by default. Set `PORT` when required. `pnpm check`, `pnpm test`, and `pnpm build` validate types, integration tests, and the production bundle. `pnpm start` serves the built site. The included Dockerfile builds and runs both frontend and backend; `/api/health` is its health endpoint.
 
+## GitHub Pages
+
+The repository includes `.github/workflows/deploy.yml` for GitHub Pages. It builds the static Vite site with `VITE_BASE_PATH=/kennyswilly/`, uploads `dist/public`, and deploys it with the official Pages artifact actions. In the repository’s **Settings → Pages**, choose **GitHub Actions** as the source. The Pages version works without Express: it uses the checked-in public Spotify snapshot, public playlist embeds, and public YouTube highlights. Server-only features such as live Lanyard activity, authenticated Spotify playback, and credential-backed Twitch/YouTube refresh require the normal Node deployment.
+
 ## Content and data
 
 All six social destinations match Kenneth’s supplied accounts. The wallpaper uses a refreshed representative snapshot of original album covers discovered across the public playlists on [his Spotify profile](https://open.spotify.com/user/kw8640173), not invented favorites or a pretend full library. Empty/unavailable playlists are omitted, album tiles change at independent intervals, and the album source is shuffled with pause and reduced-motion support. The Spotify carousel uses only public playlists with non-zero tracks and usable artwork.
