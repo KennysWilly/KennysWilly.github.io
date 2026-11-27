@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArrowUpRight, Heart, Instagram, Radio, Sparkles, Twitch, Users, Youtube } from "lucide-react";
 import { socials } from "@/data/content";
 import { useTwitchStatus } from "@/hooks/usePublicData";
@@ -35,7 +36,14 @@ export function TwitchSection() {
 }
 
 export function StreamForms() {
-  return <section className="section stream-forms-section" id="forms" aria-labelledby="forms-title"><div className="section-top"><div><div className="eyebrow">05 / THE SUBMISSIONS</div><h2 id="forms-title">SEND IT<br />IN<span className="orange-text">.</span></h2></div><p>Confessions for the reaction stream.<br />Ideas for what happens next.</p></div><div className="stream-forms-grid"><div className="stream-form-card confession-form-card"><div className="card-overline"><span>KENNYSWILLY KONFESSIONS</span><span>LIVE INBOX</span></div><div className="confession-reveal"><div className="confession-cover"><strong>KONFESSIONS</strong><span>HOVER TO OPEN THE INBOX</span></div><iframe title="KennysWilly community confessions" src="https://docs.google.com/forms/d/e/1FAIpQLSdgjA8zsWQ-EpnPowwaZoxG6gvQH6KXCc8lHO8A8qM33S-cfg/viewform?embedded=true" loading="lazy">Loading the confessions form…</iframe></div></div><div className="stream-form-card idea-form-card"><div className="card-overline"><span>STREAM IDEAS / GAME IDEAS</span><span>NEXT SLOT</span></div><h3>WHAT SHOULD<br />HAPPEN NEXT?</h3><p>The second inbox is ready for a Google Form link. Once you make it, drop the URL in and this card becomes the idea box.</p><span className="form-pending">FORM LINK PENDING</span></div></div></section>;
+  const forms = [
+    { id: "confessions", label: "KONFESSIONS", eyebrow: "KENNYSWILLY KONFESSIONS", url: "https://app.youform.com/forms/bcyxlxpr" },
+    { id: "hot-takes", label: "HOT TAKES", eyebrow: "HOT TAKES", url: "https://app.youform.com/forms/r6kg1fd0" },
+    { id: "ideas", label: "STREAM IDEAS", eyebrow: "IDEAS FOR STREAM", url: "https://app.youform.com/forms/ovdj0zhb" },
+    { id: "mods", label: "MOD APPLICATION", eyebrow: "MOD APPLICATION", url: "https://app.youform.com/forms/atybmmih" },
+  ];
+  const [selected, setSelected] = useState(forms[0]);
+  return <section className="section stream-forms-section" id="forms" aria-labelledby="forms-title"><div className="section-top"><div><div className="eyebrow">05 / THE SUBMISSIONS</div><h2 id="forms-title">SEND IT<br />IN<span className="orange-text">.</span></h2></div><p>Pick an inbox.<br />Step into the dock.</p></div><div className="form-dock"><div className="form-dock-tabs" role="tablist" aria-label="KennysWilly forms">{forms.map(form => <button key={form.id} role="tab" aria-selected={selected.id === form.id} className={selected.id === form.id ? "selected" : ""} onClick={() => setSelected(form)}><span>0{forms.indexOf(form) + 1}</span>{form.label}</button>)}</div><div className="stream-form-card confession-form-card"><div className="card-overline"><span>{selected.eyebrow}</span><span>YOUFORM / LIVE INBOX</span></div><div className="confession-reveal"><div className="confession-cover"><strong>{selected.label}</strong><span>HOVER TO OPEN THE FORM</span></div><iframe key={selected.id} title={selected.eyebrow} src={selected.url} loading="lazy">Loading the {selected.label} form…</iframe></div><div className="form-dock-footer"><span>FORM {forms.indexOf(selected) + 1} / {forms.length}</span><a href={selected.url} target="_blank" rel="noopener noreferrer">OPEN IN NEW TAB <ArrowUpRight size={14} /></a></div></div></div></section>;
 }
 
 const socialKickers: Record<string, string> = { twitch: "THE MAIN STAGE", youtube: "THE ARCHIVE", instagram: "THE LOOKS", tiktok: "THE QUICK CUTS", x: "THE RUNNING COMMENTARY", tip: "THE LOVE OFFERING" };

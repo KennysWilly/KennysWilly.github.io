@@ -182,3 +182,18 @@ body, html { background:#0a0a0b !important; color:#d8d4cf !important; }
 .market-disclaimer { color:#968f91 !important; }
 @media(max-width:800px) { .market-tabs { grid-template-columns:repeat(3,1fr); } .market-chart-wrap { height:390px; } }
 @media(max-width:580px) { .markets-panel { padding:17px; } .markets-header { flex-direction:column; } .market-tabs { grid-template-columns:repeat(2,1fr); } .market-chart-wrap { height:330px; } .markets-footer { gap:9px; } .markets-footer a { margin-left:0; } }
+
+/* TABBED YOUFORM DOCK */
+.form-dock { border:2px solid #713542; box-shadow:7px 7px 0 #080809; padding:18px; background:linear-gradient(145deg,#32151c,#1c1b20 56%,#101113); }
+.form-dock-tabs { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:18px; }
+.form-dock-tabs button { display:flex; flex-direction:column; align-items:flex-start; gap:9px; min-height:78px; padding:13px; border:1px solid #713542; color:#bdb7b7; background:linear-gradient(145deg,#28272b,#151518); font:700 10px/1.2 'Space Mono',monospace; text-align:left; cursor:pointer; }
+.form-dock-tabs button span { color:#a86670; font-size:8px; }
+.form-dock-tabs button:hover, .form-dock-tabs button.selected { border-color:#c05060; color:#fff5f0; background:linear-gradient(145deg,#8f2638,#481a25); }
+.form-dock-tabs button.selected span { color:#f0b1b7; }
+.form-dock .stream-form-card { min-height:0; box-shadow:none; padding:20px; }
+.form-dock .confession-reveal { height:440px; }
+.form-dock .confession-reveal iframe { filter:none !important; }
+.form-dock-footer { display:flex; align-items:center; justify-content:space-between; gap:15px; padding-top:13px; color:#aaa4a5; font:700 8px/1.2 'Space Mono',monospace; }
+.form-dock-footer a { display:inline-flex; align-items:center; gap:5px; color:#d48791; }
+@media(max-width:700px) { .form-dock-tabs { grid-template-columns:repeat(2,1fr); } .form-dock .confession-reveal { height:500px; } }
+@media(max-width:460px) { .form-dock { padding:12px; } .form-dock-tabs button { min-height:68px; padding:10px; font-size:8px; } .form-dock .stream-form-card { padding:13px; } }
