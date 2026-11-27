@@ -5,7 +5,7 @@ import AlbumWall from "./AlbumWall";
 export function Navigation() {
   return <header className="site-header">
     <a href="#top" className="wordmark" aria-label="KennysWilly home">KENNYS<span>WILLY</span><i /></a>
-    <nav aria-label="Main navigation"><a href="#music">THE MUSIC</a><a href="#clips">THE SHORTS</a><a href="#twitch">TWITCH</a><a href="#socials">SOCIALS</a></nav>
+    <nav aria-label="Main navigation"><a href="#music">THE MUSIC</a><a href="#clips">THE SHORTS</a><a href="#markets">MARKETS</a><a href="#twitch">TWITCH</a><a href="#socials">SOCIALS</a></nav>
     <a className="header-cta" href="https://www.twitch.tv/kennyswillyy" target="_blank" rel="noopener noreferrer"><Twitch size={16} /> FIND ME ON TWITCH <ArrowUpRight size={16} /></a>
   </header>;
 }

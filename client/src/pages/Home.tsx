@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import Hero, { Navigation, Ticker } from "@/components/Hero";
 import MusicSection from "@/components/MusicSection";
 import Highlights from "@/components/Highlights";
+import MarketsSection from "@/components/MarketsSection";
 import { Footer, Socials, StreamForms, TwitchSection } from "@/components/AboutSocial";
 import { useReducedMotion } from "@/components/AlbumWall";
 import { useActivity, useMusic } from "@/hooks/usePublicData";
@@ -28,7 +29,7 @@ export default function Home() {
   return <div id="top" className={paused || reduced ? "site motion-paused" : "site"} style={{ "--scroll-progress": scrollProgress, "--listening-hue": listeningHue, "--listening-hue-2": (listeningHue + 74) % 360 } as React.CSSProperties}>
     <a href="#music" className="skip-link">Skip to music and playlists</a>
     <Navigation />
-    <main><Hero albums={albums} paused={paused || reduced} setPaused={setPaused} connected={Boolean(music.data?.albums.length)} /><Ticker /><TwitchSection /><Highlights /><MusicSection data={music.data} loading={music.isLoading} error={music.isError} retry={() => void music.refetch()} activity={activity.data} activityLoading={activity.isLoading} activityError={activity.isError} retryActivity={() => void activity.refetch()} /><StreamForms /><Socials /></main>
+    <main><Hero albums={albums} paused={paused || reduced} setPaused={setPaused} connected={Boolean(music.data?.albums.length)} /><Ticker /><TwitchSection /><Highlights /><MarketsSection /><MusicSection data={music.data} loading={music.isLoading} error={music.isError} retry={() => void music.refetch()} activity={activity.data} activityLoading={activity.isLoading} activityError={activity.isError} retryActivity={() => void activity.refetch()} /><StreamForms /><Socials /></main>
     <Footer />
   </div>;
 }
