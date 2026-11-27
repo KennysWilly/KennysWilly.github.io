@@ -37,7 +37,7 @@ export function TwitchSection() {
 
 export function StreamForms() {
   const forms = [
-    { id: "confessions", label: "KONFESSIONS", eyebrow: "KENNYSWILLY KONFESSIONS", url: "https://app.youform.com/forms/bcyxlxpr" },
+    { id: "kenfessions", label: "KENFESSIONS", eyebrow: "KENNYSWILLY KENFESSIONS", url: "https://app.youform.com/forms/bcyxlxpr" },
     { id: "hot-takes", label: "HOT TAKES", eyebrow: "HOT TAKES", url: "https://app.youform.com/forms/r6kg1fd0" },
     { id: "ideas", label: "STREAM IDEAS", eyebrow: "IDEAS FOR STREAM", url: "https://app.youform.com/forms/ovdj0zhb" },
     { id: "mods", label: "MOD APPLICATION", eyebrow: "MOD APPLICATION", url: "https://app.youform.com/forms/atybmmih" },
