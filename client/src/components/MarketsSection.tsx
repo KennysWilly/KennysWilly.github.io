@@ -9,6 +9,7 @@ const symbols = [
   { id: "TSLA", label: "Tesla", tv: "NASDAQ:TSLA" },
   { id: "BTCUSD", label: "Bitcoin", tv: "COINBASE:BTCUSD" },
 ];
+
 const newsItems = [
   { section: "INTERNATIONAL", source: "REUTERS", title: "Trump announces new tariffs, undeterred by midterms defeat", url: "https://www.reuters.com/world/china/us-proposes-new-tariffs-14-trading-partners-fight-excess-factory-capacity-2026-11-25/" },
   { section: "INTERNATIONAL", source: "AP", title: "Trump heads to China, betting on unscripted diplomacy with Xi and Putin", url: "https://apnews.com/article/trump-xi-marcos-apec-china-philippines-3fc8110f4b4414bfb2c03596f61da862" },
@@ -19,39 +20,31 @@ const newsItems = [
 ];
 
 function chartUrl(symbol: string) {
-  const params = new URLSearchParams({
-    symbol,
-    interval: "5",
-    hidesidetoolbar: "1",
-    symboledit: "0",
-    saveimage: "0",
-    toolbarbg: "0f1013",
-    theme: "dark",
-    style: "1",
-    timezone: "America/Chicago",
-    withdateranges: "1",
-    hideideas: "1",
-    locale: "en",
-  });
+  const params = new URLSearchParams({ symbol, interval: "5", hidesidetoolbar: "1", symboledit: "0", saveimage: "0", toolbarbg: "0f1013", theme: "dark", style: "1", timezone: "America/Chicago", withdateranges: "1", hideideas: "1", locale: "en" });
   return `https://www.tradingview.com/widgetembed/?${params.toString()}`;
 }
 
 export default function MarketsSection() {
   const [selected, setSelected] = useState(symbols[0].id);
+  const [selectedView, setSelectedView] = useState<"markets" | "news">("markets");
   const active = useMemo(() => symbols.find(symbol => symbol.id === selected) ?? symbols[0], [selected]);
+
   return <section className="section markets-section" id="markets" aria-labelledby="markets-title">
-    <div className="section-top"><div><div className="eyebrow"><BarChart3 size={15} /> 04 / THE MARKET</div><h2 id="markets-title">WATCH<br />THE TAPE<span className="orange-text">.</span></h2></div><p>Live charting for the names people are watching.<br />Open the full view when you need more.</p></div>
-    <div className="markets-panel">
-      <div className="markets-header"><div><span className="markets-kicker">LIVE MARKET VIEW</span><h3>{active.label} <span>{active.id}</span></h3></div><a className="text-link" href={`https://www.tradingview.com/symbols/${active.tv.replace(":", "-")}/`} target="_blank" rel="noopener noreferrer">OPEN FULL CHART <ExternalLink size={15} /></a></div>
-      <div className="market-tabs" role="tablist" aria-label="Market symbols">{symbols.map(symbol => <button key={symbol.id} role="tab" aria-selected={active.id === symbol.id} className={active.id === symbol.id ? "selected" : ""} onClick={() => setSelected(symbol.id)}><strong>{symbol.id}</strong><span>{symbol.label}</span></button>)}</div>
-      <div className="market-chart-wrap"><iframe key={active.tv} title={`${active.label} live market chart`} src={chartUrl(active.tv)} loading="lazy" allow="fullscreen" /></div>
-      <div className="markets-footer"><span><i className="market-pulse" /> LIVE CHART / 5 MIN VIEW</span><span>DATA VIA TRADINGVIEW · QUOTES MAY BE DELAYED BY VENUE</span><a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer">TRADINGVIEW <ArrowUpRight size={14} /></a></div>
-    </div>
-    <p className="source-note market-disclaimer">Informational market data only. This tracker is not investment advice, a recommendation, or a promise of execution-quality pricing.</p>
-    <div className="world-news-dock" aria-labelledby="world-news-title">
-      <div className="world-news-heading"><div><span className="markets-kicker"><Globe2 size={14} /> WORLD NEWS / SOURCE-LINKED</span><h3 id="world-news-title">THE OTHER<br />TAPE<span className="orange-text">.</span></h3></div><p><Newspaper size={17} /> International reporting and U.S. culture coverage.<br />Open the source for the full story.</p></div>
-      <div className="world-news-grid">{newsItems.map((item, index) => <a className={`world-news-card ${item.section === "U.S. CULTURE" ? "culture" : "international"}`} key={`${item.source}-${index}`} href={item.url} target="_blank" rel="noopener noreferrer"><div className="world-news-card-top"><span>{item.section}</span><b>{item.source}</b></div><h4>{item.title}</h4><span className="world-news-open">READ SOURCE <ArrowUpRight size={14} /></span></a>)}</div>
-      <p className="world-news-note">Source-transparent rather than “unbiased”: Reuters and AP are attributed wire services, and this rail does not replace reading the full article or comparing coverage.</p>
+    <div className="section-top"><div><div className="eyebrow"><BarChart3 size={15} /> 04 / THE MARKET</div><h2 id="markets-title">WATCH<br />THE TAPE<span className="orange-text">.</span></h2></div><p>The world outside of the stream</p></div>
+    <div className="beyond-stream-dock" aria-labelledby="beyond-stream-title">
+      <div className="beyond-stream-heading"><div><span className="markets-kicker"><Globe2 size={14} /> TWO WINDOWS / ONE DOCK</span><h3 id="beyond-stream-title">BEYOND<br />THE STREAM<span className="orange-text">.</span></h3></div><p>Markets, headlines, and the signals moving around the feed.<br />Open the source when you want the full picture.</p></div>
+      <div className="beyond-stream-tabs" role="tablist" aria-label="Beyond the Stream views"><button role="tab" aria-selected={selectedView === "markets"} className={selectedView === "markets" ? "selected" : ""} onClick={() => setSelectedView("markets")}><strong>WATCH THE TAPE</strong><span>LIVE MARKETS</span></button><button role="tab" aria-selected={selectedView === "news"} className={selectedView === "news" ? "selected" : ""} onClick={() => setSelectedView("news")}><strong>BEYOND THE STREAM</strong><span>WORLD NEWS</span></button></div>
+      {selectedView === "markets" ? <div className="markets-panel beyond-stream-panel">
+        <div className="markets-header"><div><span className="markets-kicker">LIVE MARKET VIEW</span><h3>{active.label} <span>{active.id}</span></h3></div><a className="text-link" href={`https://www.tradingview.com/symbols/${active.tv.replace(":", "-")}/`} target="_blank" rel="noopener noreferrer">OPEN FULL CHART <ExternalLink size={15} /></a></div>
+        <div className="market-tabs" role="tablist" aria-label="Market symbols">{symbols.map(symbol => <button key={symbol.id} role="tab" aria-selected={active.id === symbol.id} className={active.id === symbol.id ? "selected" : ""} onClick={() => setSelected(symbol.id)}><strong>{symbol.id}</strong><span>{symbol.label}</span></button>)}</div>
+        <div className="market-chart-wrap"><iframe key={active.tv} title={`${active.label} live market chart`} src={chartUrl(active.tv)} loading="lazy" allow="fullscreen" /></div>
+        <div className="markets-footer"><span><i className="market-pulse" /> LIVE CHART / 5 MIN VIEW</span><span>DATA VIA TRADINGVIEW · QUOTES MAY BE DELAYED BY VENUE</span><a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer">TRADINGVIEW <ArrowUpRight size={14} /></a></div>
+        <p className="source-note market-disclaimer">Informational market data only. This tracker is not investment advice, a recommendation, or a promise of execution-quality pricing.</p>
+      </div> : <div className="world-news-dock beyond-stream-panel">
+        <div className="world-news-heading"><div><span className="markets-kicker"><Newspaper size={14} /> SOURCE-LINKED WORLD NEWS</span><h3>THE OTHER<br />TAPE<span className="orange-text">.</span></h3></div><p>International reporting and U.S. culture coverage.<br />Open the source for the full story.</p></div>
+        <div className="world-news-grid">{newsItems.map((item, index) => <a className={`world-news-card ${item.section === "U.S. CULTURE" ? "culture" : "international"}`} key={`${item.source}-${index}`} href={item.url} target="_blank" rel="noopener noreferrer"><div className="world-news-card-top"><span>{item.section}</span><b>{item.source}</b></div><h4>{item.title}</h4><span className="world-news-open">READ SOURCE <ArrowUpRight size={14} /></span></a>)}</div>
+        <p className="world-news-note">Source-transparent rather than “unbiased”: Reuters and AP are attributed wire services, and this rail does not replace reading the full article or comparing coverage.</p>
+      </div>}
     </div>
   </section>;
 }

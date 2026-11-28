@@ -1,50 +1,32 @@
-import { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Headphones, Music2, Pause, Play, Radio, Sparkles } from "lucide-react";
-import type { ActivityResponse, MusicResponse, Playlist } from "../../../shared/integrations";
-import snapshot from "@/data/spotify-snapshot.json";
-import { spotifyProfile } from "@/data/content";
-import { useReducedMotion } from "./AlbumWall";
+import { useState } from "react";
+import { ArrowRight, ArrowUpRight, Headphones, Radio } from "lucide-react";
+import type { ActivityResponse, MusicResponse } from "../../../shared/integrations";
 
-type DisplayPlaylist = Playlist & { available?: boolean };
+const spotifyStats = {
+  streams: "1,997",
+  minutes: "7,122",
+  hours: "119",
+  tracks: "1,582",
+  artists: "874",
+  albums: "1,006",
+  genres: ["hip-hop/rap", "r&b/soul", "experimental hip hop", "alternative hip hop", "jazz rap"],
+  topTracks: ["THANK ALLAH — Niontay", "Amphetamine — Smino", "So High — John Legend", "Burgundy — Vince Staples / Earl Sweatshirt", "Indecision — Rex Orange County"],
+  topArtists: ["Kanye West", "MIKE", "The Weeknd", "Earl Sweatshirt", "Sideshow"],
+  topAlbums: ["Doris", "Late Registration", "BULLY - DELUXE", "Beware of the Monkey", "Dontay's Inferno"],
+};
 
-function usablePlaylists(items: DisplayPlaylist[]): DisplayPlaylist[] {
-  return items.filter(item => item.available !== false && item.totalTracks !== 0 && Boolean(item.id && item.name && item.url && item.image));
-}
-
-function shuffled<T>(items: T[]): T[] {
-  return [...items].sort(() => Math.random() - 0.5);
-}
-
-function SpotifyMark() {
-  return <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor" /><path d="M6.5 9c4.2-1.2 8.2-.8 11.4 1M7.3 12.2c3.5-.9 6.8-.5 9.6 1M8.2 15.2c2.9-.6 5.1-.3 7.8.9" stroke="#fff" strokeWidth="1.7" fill="none" strokeLinecap="round" /></svg>;
+function StatsPanel() {
+  const [provider, setProvider] = useState<"spotify" | "apple">("spotify");
+  const [window, setWindow] = useState<"4-weeks" | "6-months" | "lifetime">("4-weeks");
+  const spotifyProfile = "https://stats.fm/kw8640173";
+  return <div className="stats-panel">
+    <div className="card-overline"><span>LISTENING STATS / PUBLIC SNAPSHOT</span><a href={provider === "spotify" ? spotifyProfile : "https://developer.apple.com/documentation/applemusicapi/get-v1-me-recent-played-tracks"} target="_blank" rel="noopener noreferrer">OPEN SOURCE <ArrowUpRight size={14} /></a></div>
+    <div className="stats-provider-tabs" role="tablist" aria-label="Listening stats provider"><button className={provider === "spotify" ? "selected" : ""} onClick={() => setProvider("spotify")} role="tab" aria-selected={provider === "spotify"}>SPOTIFY / STATS.FM</button><button className={provider === "apple" ? "selected" : ""} onClick={() => setProvider("apple")} role="tab" aria-selected={provider === "apple"}>APPLE MUSIC</button></div>
+    {provider === "spotify" ? <><div className="stats-window-tabs" role="tablist" aria-label="Stats time window">{([["4-weeks", "4 WEEKS"], ["6-months", "6 MONTHS"], ["lifetime", "LIFETIME"]] as const).map(([id, label]) => <button key={id} className={window === id ? "selected" : ""} onClick={() => setWindow(id)} role="tab" aria-selected={window === id}>{label}</button>)}</div>{window === "4-weeks" ? <><div className="stats-window-note">BIG NIG KENNY / STATS.FM PUBLIC SNAPSHOT / PAST 4 WEEKS</div><div className="stats-metrics"><div><strong>{spotifyStats.streams}</strong><span>STREAMS</span></div><div><strong>{spotifyStats.minutes}</strong><span>MINUTES</span></div><div><strong>{spotifyStats.tracks}</strong><span>TRACKS</span></div><div><strong>{spotifyStats.artists}</strong><span>ARTISTS</span></div><div><strong>{spotifyStats.albums}</strong><span>ALBUMS</span></div><div><strong>{spotifyStats.hours}</strong><span>HOURS</span></div></div><div className="stats-lists"><div><span className="stats-list-label">TOP TRACKS</span>{spotifyStats.topTracks.map((item, index) => <p key={item}><b>0{index + 1}</b>{item}</p>)}</div><div><span className="stats-list-label">TOP ARTISTS</span>{spotifyStats.topArtists.map((item, index) => <p key={item}><b>0{index + 1}</b>{item}</p>)}</div><div><span className="stats-list-label">TOP ALBUMS</span>{spotifyStats.topAlbums.map((item, index) => <p key={item}><b>0{index + 1}</b>{item}</p>)}</div><div><span className="stats-list-label">TOP GENRES</span>{spotifyStats.genres.map((item, index) => <p key={item}><b>0{index + 1}</b>{item}</p>)}</div></div></> : <div className="stats-unavailable"><strong>{window === "6-months" ? "6 MONTHS" : "LIFETIME"} LIVES ON STATS.FM.</strong><p>The public snapshot available here is the last four weeks. Open the live profile to switch into the longer source window without putting stale numbers on the site.</p><a className="text-link" href={spotifyProfile} target="_blank" rel="noopener noreferrer">OPEN LIVE STATS <ArrowUpRight size={16} /></a></div>}</> : <div className="stats-unavailable"><strong>APPLE MUSIC IS NOT CONNECTED.</strong><p>Apple Music personal history and replay stats require a Music User Token. No Apple Music listening data is being guessed or substituted here.</p><a className="text-link" href="https://developer.apple.com/documentation/applemusicapi/get-v1-me-recent-played-tracks" target="_blank" rel="noopener noreferrer">SEE THE AUTH REQUIREMENT <ArrowUpRight size={16} /></a></div>}
+  </div>;
 }
 
 export default function MusicSection({ data, loading, error, retry, activity, activityLoading, activityError, retryActivity }: { data?: MusicResponse; loading: boolean; error: boolean; retry: () => void; activity?: ActivityResponse; activityLoading: boolean; activityError: boolean; retryActivity: () => void }) {
-  const fallbackPlaylists = usablePlaylists(snapshot.playlists as DisplayPlaylist[]);
-  const [playlists, setPlaylists] = useState<DisplayPlaylist[]>(() => shuffled(fallbackPlaylists));
-  useEffect(() => {
-    const live = usablePlaylists((data?.playlists ?? []) as DisplayPlaylist[]);
-    setPlaylists(shuffled(live.length ? live : fallbackPlaylists));
-  }, [data?.playlists]);
-  const [position, setPosition] = useState(0);
-  const [rotating, setRotating] = useState(true);
-  const reduced = useReducedMotion();
-  useEffect(() => {
-    if (!rotating || reduced || playlists.length < 2) return;
-    const timer = setInterval(() => setPosition(value => value + 1), 12000);
-    return () => clearInterval(timer);
-  }, [rotating, reduced, playlists.length]);
-  const active = playlists[position % playlists.length];
-  const move = (direction: number) => { setPosition(value => (value + direction + playlists.length) % playlists.length); setRotating(false); };
-  const surpriseMe = () => {
-    if (!playlists.length) return;
-    const current = position % playlists.length;
-    const choices = playlists.map((_, index) => index).filter(index => index !== current);
-    const next = choices[Math.floor(Math.random() * choices.length)] ?? current;
-    setPosition(next);
-    setRotating(false);
-    window.open(playlists[next].url, "_blank", "noopener,noreferrer");
-  };
   const now = error ? null : data?.nowPlaying;
   const liveActivity = activity?.activities[0];
   const spotifyActivity = activity?.spotify;
@@ -57,14 +39,7 @@ export default function MusicSection({ data, loading, error, retry, activity, ac
   return <section className="section music-section" id="music" aria-labelledby="music-title">
     <div className="section-top"><div><div className="eyebrow">01 / MUSIC</div><h2 id="music-title">WHAT I'M PLAYING<span className="orange-text">.</span></h2></div><p>{topArtists}.<br />The names getting the most spins.</p></div>
     <div className="music-layout">
-      <div className="playlist-card">
-        <div className="card-overline"><span><SpotifyMark /> SURPRISE ME / SPOTIFY</span><button className="surprise-button" onClick={surpriseMe}>SURPRISE ME <ArrowUpRight size={14} /></button></div>
-        <div className="playlist-info">
-          <div className="playlist-cover">{active.image ? <img src={active.image} alt={`${active.name} playlist cover`} loading="lazy" /> : <Music2 size={64} />}</div>
-          <div><span className="tiny-label">FROM THE PROFILE</span><h3>{active.name}</h3><p>{active.description}</p><a className="text-link" href={active.url} target="_blank" rel="noopener noreferrer">OPEN IN SPOTIFY <ArrowUpRight size={18} /></a></div>
-        </div>
-        <div className="playlist-footer"><a href={spotifyProfile} target="_blank" rel="noopener noreferrer">MY SPOTIFY PROFILE <ArrowUpRight size={15} /></a><div className="pager"><button aria-label="Previous playlist" onClick={() => move(-1)}><ArrowLeft size={18} /></button><button aria-label="Choose another public playlist" onClick={surpriseMe}><Sparkles size={15} /></button><button aria-label="Next playlist" onClick={() => move(1)}><ArrowRight size={18} /></button></div></div>
-      </div>
+      <StatsPanel />
       <aside className="listening-card activity-card retro-mp3-player" aria-label="Live Discord activity">
         <div className="card-overline"><span><Radio size={18} /> LIVE ACTIVITY</span><span className={`listening-status ${activity?.discordStatus === "online" ? "playing" : ""}`}><span />{activityLoading ? "CHECKING" : (activity?.discordStatus ?? "OFFLINE").toUpperCase()}</span></div>
         <div className={`listening-art ${spotifyActivity ? "vinyl-stage" : ""}`}>{spotifyActivity?.image ? <a className="vinyl-record" href={spotifyActivity.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${spotifyActivity.name} on Spotify`}><img src={spotifyActivity.image} alt={`${spotifyActivity.album} album art`} /><span className="vinyl-hole" /></a> : liveActivity?.largeImage ? <img src={liveActivity.largeImage} alt={liveActivity.largeText || `${liveActivity.name} activity`} /> : now?.image ? <img src={now.image} alt={`${now.album} cover`} /> : <div className="record"><div><Headphones size={25} /></div></div>}</div>
