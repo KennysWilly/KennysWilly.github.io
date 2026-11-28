@@ -494,3 +494,71 @@ body { background:#0b0809 !important; }
 .full-page-album-wall .album-tile img { filter:saturate(.68) contrast(1.34) brightness(.55) sepia(.2) !important; }
 .full-page-album-wall .album-tile:nth-child(3n+1) img { filter:saturate(.82) contrast(1.38) brightness(.6) hue-rotate(-12deg) !important; }
 .full-page-album-wall .album-tile:nth-child(5n+2) img { filter:saturate(.74) contrast(1.4) brightness(.5) hue-rotate(14deg) !important; }
+
+/* RETRO MP3 PLAYER SHELL AROUND THE SPINNING RECORD */
+.retro-mp3-player {
+  position:relative;
+  overflow:hidden;
+  padding:22px !important;
+  border:4px solid #090607 !important;
+  border-radius:14px !important;
+  background:
+    linear-gradient(145deg,rgba(255,232,228,.14),transparent 17%),
+    linear-gradient(155deg,#431923 0%,#281018 38%,#120a0e 100%) !important;
+  box-shadow:inset 2px 2px rgba(255,235,230,.2), inset -4px -5px rgba(0,0,0,.72), 10px 10px 0 #451723, 16px 16px 0 #080607 !important;
+}
+.retro-mp3-player::before {
+  content:'KENNYSWILLY MP3  /  01';
+  position:absolute;
+  top:9px;
+  left:17px;
+  right:17px;
+  padding:5px 8px;
+  color:#efb1b3;
+  border:1px solid #6c2937;
+  border-radius:4px;
+  background:linear-gradient(180deg,#34131d,#180a10);
+  box-shadow:inset 1px 1px rgba(255,230,225,.13), inset -2px -2px #0b0608;
+  font:700 8px/1 'Space Mono',monospace;
+  letter-spacing:.08em;
+  text-align:left;
+}
+.retro-mp3-player::after {
+  content:'▮▮▮  74%   STEREO';
+  position:absolute;
+  top:10px;
+  right:23px;
+  padding:4px 5px;
+  color:#b7c274;
+  font:700 7px/1 'Space Mono',monospace;
+  letter-spacing:.05em;
+  pointer-events:none;
+}
+.retro-mp3-player > .card-overline { margin-top:25px; padding:9px 10px; border:2px solid #0b0709; border-radius:5px; background:linear-gradient(180deg,#160b0f,#2b111a); box-shadow:inset 1px 1px rgba(255,235,230,.12), inset -2px -2px #090607; }
+.retro-mp3-player > .card-overline span:first-child { color:#e7c4bf !important; }
+.retro-mp3-player > .card-overline span:last-child { color:#b7c274 !important; }
+.retro-mp3-player .listening-art {
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:205px;
+  margin:14px 0 12px;
+  padding:16px;
+  border:2px solid #0a0608;
+  border-radius:6px;
+  background:radial-gradient(circle at 50% 22%,#612132 0,transparent 43%),linear-gradient(145deg,#201016,#0b080a);
+  box-shadow:inset 3px 3px rgba(255,235,230,.08), inset -4px -4px rgba(0,0,0,.7), 3px 3px 0 #5a1d2b;
+}
+.retro-mp3-player .listening-art::before { content:'NOW PLAYING'; position:absolute; left:10px; top:8px; color:#d58b91; font:700 7px/1 'Space Mono',monospace; letter-spacing:.12em; }
+.retro-mp3-player .listening-art::after { content:'REC  •  128 KBPS'; position:absolute; right:10px; bottom:8px; color:#8e7072; font:700 7px/1 'Space Mono',monospace; }
+.retro-mp3-player .vinyl-stage { height:205px !important; margin:14px 0 12px !important; }
+.retro-mp3-player .vinyl-record { width:178px; height:178px; border-width:6px !important; }
+.retro-mp3-player .listening-copy { padding:12px 13px; border:2px solid #0a0608; border-radius:5px; background:linear-gradient(180deg,#263025,#18201a 47%,#111712); box-shadow:inset 2px 2px rgba(214,233,176,.14), inset -3px -3px rgba(0,0,0,.66), 3px 3px 0 #080607; }
+.retro-mp3-player .listening-copy .tiny-label { color:#b7c274 !important; font:700 8px/1.3 'Space Mono',monospace; letter-spacing:.08em; }
+.retro-mp3-player .listening-copy h3 { margin:6px 0 5px; color:#dbe1bd !important; font-family:'Space Mono',monospace; font-size:clamp(16px,2vw,23px); letter-spacing:-.06em; text-shadow:1px 1px #0b0f0b; }
+.retro-mp3-player .listening-copy p { color:#aeb49a !important; font:11px/1.45 'Space Mono',monospace; }
+.retro-mp3-player > .text-link, .retro-mp3-player > button { border-radius:4px; margin-top:12px; justify-content:center; width:100%; background-image:linear-gradient(180deg,#8e3547,#481b28) !important; }
+.retro-mp3-player .track-progress { height:8px; margin:12px 2px 3px; padding:2px; border:1px solid #0a0608; border-radius:8px; background:#10090c; box-shadow:inset 1px 1px #000; }
+.retro-mp3-player .track-progress span { display:block; height:100%; border-radius:5px; background:linear-gradient(90deg,#8c2b3b,#d06a76); box-shadow:0 0 8px rgba(208,106,118,.55); }
+@media(max-width:680px) { .retro-mp3-player { padding:16px !important; border-radius:10px !important; } .retro-mp3-player::after { display:none; } .retro-mp3-player .vinyl-record { width:160px; height:160px; } }
