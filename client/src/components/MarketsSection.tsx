@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowUpRight, BarChart3, ExternalLink } from "lucide-react";
+import { ArrowUpRight, BarChart3, ExternalLink, Globe2, Newspaper } from "lucide-react";
 
 const symbols = [
   { id: "SPY", label: "S&P 500", tv: "AMEX:SPY" },
@@ -8,6 +8,14 @@ const symbols = [
   { id: "NVDA", label: "NVIDIA", tv: "NASDAQ:NVDA" },
   { id: "TSLA", label: "Tesla", tv: "NASDAQ:TSLA" },
   { id: "BTCUSD", label: "Bitcoin", tv: "COINBASE:BTCUSD" },
+];
+const newsItems = [
+  { section: "INTERNATIONAL", source: "REUTERS", title: "Trump announces new tariffs, undeterred by midterms defeat", url: "https://www.reuters.com/world/china/us-proposes-new-tariffs-14-trading-partners-fight-excess-factory-capacity-2026-11-25/" },
+  { section: "INTERNATIONAL", source: "AP", title: "Trump heads to China, betting on unscripted diplomacy with Xi and Putin", url: "https://apnews.com/article/trump-xi-marcos-apec-china-philippines-3fc8110f4b4414bfb2c03596f61da862" },
+  { section: "INTERNATIONAL", source: "AP", title: "Ukrainian drones and missiles strike Kerch Bridge that links Russia with Crimea", url: "https://apnews.com/article/russia-ukraine-war-bridge-crimea-drones-missiles-df4b867cf8f70e88843d8fefea5d643c" },
+  { section: "U.S. CULTURE", source: "REUTERS", title: "Culture Current: interviews with the people shaping music, film, fashion, and ideas", url: "https://www.reuters.com/lifestyle/culture-current/" },
+  { section: "U.S. CULTURE", source: "REUTERS", title: "Bella Poarch on her debut album and making music beyond virality", url: "https://www.reuters.com/lifestyle/culture-current/" },
+  { section: "U.S. CULTURE", source: "AP", title: "David Beckham sues after his fragrance is sold in gas stations and discount stores", url: "https://apnews.com/article/david-beckham-perfume-lawsuit-poundland-48901f3e47194ae00b855dc626d9cfe4" },
 ];
 
 function chartUrl(symbol: string) {
@@ -40,5 +48,10 @@ export default function MarketsSection() {
       <div className="markets-footer"><span><i className="market-pulse" /> LIVE CHART / 5 MIN VIEW</span><span>DATA VIA TRADINGVIEW · QUOTES MAY BE DELAYED BY VENUE</span><a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer">TRADINGVIEW <ArrowUpRight size={14} /></a></div>
     </div>
     <p className="source-note market-disclaimer">Informational market data only. This tracker is not investment advice, a recommendation, or a promise of execution-quality pricing.</p>
+    <div className="world-news-dock" aria-labelledby="world-news-title">
+      <div className="world-news-heading"><div><span className="markets-kicker"><Globe2 size={14} /> WORLD NEWS / SOURCE-LINKED</span><h3 id="world-news-title">THE OTHER<br />TAPE<span className="orange-text">.</span></h3></div><p><Newspaper size={17} /> International reporting and U.S. culture coverage.<br />Open the source for the full story.</p></div>
+      <div className="world-news-grid">{newsItems.map((item, index) => <a className={`world-news-card ${item.section === "U.S. CULTURE" ? "culture" : "international"}`} key={`${item.source}-${index}`} href={item.url} target="_blank" rel="noopener noreferrer"><div className="world-news-card-top"><span>{item.section}</span><b>{item.source}</b></div><h4>{item.title}</h4><span className="world-news-open">READ SOURCE <ArrowUpRight size={14} /></span></a>)}</div>
+      <p className="world-news-note">Source-transparent rather than “unbiased”: Reuters and AP are attributed wire services, and this rail does not replace reading the full article or comparing coverage.</p>
+    </div>
   </section>;
 }

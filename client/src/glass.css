@@ -562,3 +562,22 @@ body { background:#0b0809 !important; }
 .retro-mp3-player .track-progress { height:8px; margin:12px 2px 3px; padding:2px; border:1px solid #0a0608; border-radius:8px; background:#10090c; box-shadow:inset 1px 1px #000; }
 .retro-mp3-player .track-progress span { display:block; height:100%; border-radius:5px; background:linear-gradient(90deg,#8c2b3b,#d06a76); box-shadow:0 0 8px rgba(208,106,118,.55); }
 @media(max-width:680px) { .retro-mp3-player { padding:16px !important; border-radius:10px !important; } .retro-mp3-player::after { display:none; } .retro-mp3-player .vinyl-record { width:160px; height:160px; } }
+
+/* WORLD NEWS RAIL INSIDE WATCH THE TAPE */
+.world-news-dock { margin-top:34px; padding:24px; border:3px solid #0b0809; background:linear-gradient(145deg,rgba(140,43,59,.28),transparent 30%),linear-gradient(135deg,#32121d,#180b10 62%,#0d080a); box-shadow:inset 1px 1px rgba(255,235,230,.13),inset -3px -3px rgba(0,0,0,.62),8px 8px 0 #451723; }
+.world-news-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:20px; }
+.world-news-heading .markets-kicker { display:flex; align-items:center; gap:6px; }
+.world-news-heading h3 { margin:0; font:400 clamp(30px,4vw,48px)/.9 'Anton',Impact,sans-serif; letter-spacing:-.05em; text-shadow:3px 3px #090607; }
+.world-news-heading p { max-width:330px; margin:0; color:#c1a8a7; font:11px/1.5 'Space Mono',monospace; }
+.world-news-heading p svg { vertical-align:middle; color:#c56b75; margin-right:5px; }
+.world-news-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.world-news-card { position:relative; min-height:190px; display:flex; flex-direction:column; justify-content:space-between; padding:16px; color:#eee3df !important; border:2px solid #5e202d; background:linear-gradient(145deg,#3d1823,#211016 55%,#10090d); box-shadow:inset 1px 1px rgba(255,235,230,.13),inset -2px -2px rgba(0,0,0,.55),4px 4px 0 #090607; transition:transform .2s ease,filter .2s ease,box-shadow .2s ease; }
+.world-news-card.culture { background:linear-gradient(145deg,#45202c,#28121a 55%,#10090d); }
+.world-news-card:hover { color:#fff !important; filter:brightness(1.14) saturate(1.1); transform:translate(-2px,-4px); box-shadow:inset 1px 1px rgba(255,235,230,.2),inset -2px -2px rgba(0,0,0,.55),7px 7px 0 #090607; }
+.world-news-card-top { display:flex; justify-content:space-between; gap:10px; color:#dc8d96; font:700 8px/1.2 'Space Mono',monospace; letter-spacing:.06em; }
+.world-news-card-top b { color:#b7c274; }
+.world-news-card h4 { margin:22px 0; color:#f0e5e1; font:700 16px/1.16 'Space Mono',monospace; letter-spacing:-.04em; }
+.world-news-open { display:inline-flex; align-items:center; gap:5px; color:#e29aa1; font:700 8px/1 'Space Mono',monospace; }
+.world-news-note { margin:16px 0 0; color:#9e8586; font:9px/1.5 'Space Mono',monospace; }
+@media(max-width:800px) { .world-news-grid { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:580px) { .world-news-dock { padding:16px; } .world-news-heading { align-items:flex-start; flex-direction:column; gap:12px; } .world-news-grid { grid-template-columns:1fr; } .world-news-card { min-height:145px; } }

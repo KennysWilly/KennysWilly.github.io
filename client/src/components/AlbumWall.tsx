@@ -52,7 +52,8 @@ function Tile({ album, index, paused, rotate, interactive }: { album?: Album; in
     return () => { active = false; clearTimeout(timer); };
   }, [paused, index, rotate]);
   if (!album) return null;
-  const image = <img key={album.image} src={album.image} alt="" loading={index < 12 ? "eager" : "lazy"} />;
+  const imageSrc = interactive ? album.image : album.alternateImage ?? album.image;
+  const image = <img key={imageSrc} src={imageSrc} alt="" loading={index < 12 ? "eager" : "lazy"} />;
   if (!interactive) return <div className="album-tile" aria-hidden="true">{image}</div>;
   return <a className="album-tile" href={album.url} target="_blank" rel="noopener noreferrer" title={`${album.name} · ${album.artist}`} tabIndex={-1} aria-hidden="true">{image}</a>;
 }
