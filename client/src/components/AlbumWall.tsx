@@ -46,9 +46,9 @@ function Tile({ album, index, paused, rotate, interactive }: { album?: Album; in
     const change = () => {
       if (!active) return;
       rotate(index);
-      timer = setTimeout(change, 14000 + Math.random() * 9000);
+      timer = setTimeout(change, 11000 + Math.random() * 24000);
     };
-    timer = setTimeout(change, 9000 + ((index * 773) % 8500));
+    timer = setTimeout(change, 7000 + Math.random() * 21000);
     return () => { active = false; clearTimeout(timer); };
   }, [paused, index, rotate]);
   if (!album) return null;
