@@ -341,3 +341,98 @@ body { background:#0b0809 !important; }
   .brutal-button, .header-cta, .text-link, .network-link, .platform-link, .surprise-button, .form-dock-tabs button, .market-tabs button { transition:none !important; }
 }
 @media(max-width:700px) { .site { background-attachment:scroll !important; } .site::after { opacity:.06; } }
+
+/* FULL-PAGE PSYCHOLOGICAL CUBISM / POP-SURREAL ALBUM BACKDROP */
+.site { position:relative; isolation:isolate; }
+.full-page-album-wall {
+  position:fixed !important;
+  inset:0 !important;
+  z-index:-1 !important;
+  display:block !important;
+  overflow:hidden !important;
+  opacity:.72;
+  pointer-events:none !important;
+  background:
+    radial-gradient(ellipse at 50% 35%,rgba(103,26,42,.52),transparent 54%),
+    linear-gradient(145deg,#12090d 0%,#32101c 46%,#0c080a 100%) !important;
+}
+.full-page-album-wall::before {
+  content:'';
+  position:absolute;
+  z-index:3;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(118deg,rgba(12,5,8,.76) 0 18%,transparent 37% 62%,rgba(12,5,8,.62) 84%),
+    radial-gradient(ellipse at 46% 43%,transparent 0 25%,rgba(41,8,18,.46) 72%,rgba(6,4,5,.88) 100%),
+    repeating-linear-gradient(135deg,transparent 0 19px,rgba(181,55,74,.08) 20px 22px,transparent 23px 46px);
+  mix-blend-mode:multiply;
+}
+.full-page-album-wall::after {
+  content:'PSYCHO / POP / KW';
+  position:absolute;
+  z-index:4;
+  right:4vw;
+  bottom:8vh;
+  padding:7px 9px;
+  color:rgba(234,187,189,.55);
+  border:1px solid rgba(174,64,81,.52);
+  font:700 8px/1 'Space Mono',monospace;
+  letter-spacing:.1em;
+  transform:rotate(-7deg);
+  pointer-events:none;
+}
+.full-page-album-wall .album-mosaic {
+  position:absolute !important;
+  inset:-12% -8% !important;
+  width:auto !important;
+  height:124% !important;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(130px,1fr)) !important;
+  grid-auto-rows:1fr;
+  gap:13px !important;
+  transform:rotate(-6deg) scale(1.08) !important;
+  transform-origin:center;
+  filter:saturate(.72) contrast(1.24) brightness(.7) sepia(.14);
+  animation:full-mosaic-drift 34s ease-in-out infinite alternate;
+}
+.full-page-album-wall .album-tile {
+  display:block;
+  min-height:0;
+  overflow:hidden;
+  border:2px solid rgba(159,49,66,.32);
+  border-radius:0 !important;
+  opacity:.78;
+  pointer-events:none !important;
+  box-shadow:inset 7px 7px 16px rgba(255,210,205,.08), inset -12px -12px 22px rgba(0,0,0,.64), 5px 7px 0 rgba(20,4,10,.66) !important;
+  transform:none !important;
+}
+.full-page-album-wall .album-tile img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.58) saturate(.72) contrast(1.25);
+  transition:filter 1.2s ease, transform 1.2s ease;
+}
+.full-page-album-wall .album-tile:nth-child(5n+1) { clip-path:polygon(0 4%,92% 0,100% 88%,8% 100%); transform:rotate(-1.2deg) !important; }
+.full-page-album-wall .album-tile:nth-child(5n+2) { clip-path:polygon(7% 0,100% 8%,94% 100%,0 91%); transform:rotate(1.6deg) !important; }
+.full-page-album-wall .album-tile:nth-child(5n+3) { clip-path:polygon(0 10%,86% 0,100% 94%,13% 100%); transform:rotate(-.7deg) !important; }
+.full-page-album-wall .album-tile:nth-child(5n+4) { clip-path:polygon(4% 0,100% 5%,91% 100%,0 93%); transform:rotate(1.1deg) !important; }
+.full-page-album-wall .album-tile:nth-child(5n) { clip-path:polygon(0 2%,94% 10%,100% 91%,5% 100%); transform:rotate(-1.8deg) !important; }
+.full-page-album-wall .album-tile:nth-child(4n+2) img { filter:brightness(.5) saturate(.75) contrast(1.32) hue-rotate(-7deg); }
+.full-page-album-wall .album-tile:nth-child(4n+3) img { filter:brightness(.62) saturate(.8) contrast(1.26) hue-rotate(8deg); }
+.full-page-album-wall .album-tile:nth-child(7n) img { filter:brightness(.54) saturate(.9) contrast(1.3) hue-rotate(18deg); }
+.full-page-album-wall .album-tile:nth-child(3n)::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,transparent 0 42%,rgba(190,51,75,.2) 43% 55%,transparent 56%); mix-blend-mode:screen; pointer-events:none; }
+.full-page-album-wall + .skip-link, .full-page-album-wall ~ header, .full-page-album-wall ~ main, .full-page-album-wall ~ footer { position:relative; z-index:1; }
+.motion-paused .full-page-album-wall .album-mosaic { animation-play-state:paused; }
+@keyframes full-mosaic-drift { from { transform:rotate(-6deg) scale(1.08) translate3d(-1.5%,0,0); } to { transform:rotate(-4deg) scale(1.11) translate3d(1.5%,-1.2%,0); } }
+@media(max-width:800px) {
+  .full-page-album-wall .album-mosaic { grid-template-columns:repeat(4,minmax(105px,1fr)) !important; gap:9px !important; }
+  .full-page-album-wall { opacity:.58; }
+  .full-page-album-wall::after { display:none; }
+}
+@media(max-width:580px) {
+  .full-page-album-wall .album-mosaic { grid-template-columns:repeat(3,minmax(100px,1fr)) !important; inset:-8% -18% !important; width:auto !important; height:116% !important; }
+  .full-page-album-wall { opacity:.48; }
+}
+@media(prefers-reduced-motion:reduce) { .full-page-album-wall .album-mosaic { animation:none; } }

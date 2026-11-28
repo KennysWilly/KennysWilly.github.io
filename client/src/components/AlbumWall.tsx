@@ -38,7 +38,7 @@ export function useReducedMotion() {
   return reduced;
 }
 
-function Tile({ album, index, paused, rotate }: { album?: Album; index: number; paused: boolean; rotate: (index: number) => void }) {
+function Tile({ album, index, paused, rotate, interactive }: { album?: Album; index: number; paused: boolean; rotate: (index: number) => void; interactive: boolean }) {
   useEffect(() => {
     if (paused) return;
     let timer: ReturnType<typeof setTimeout>;
@@ -52,12 +52,12 @@ function Tile({ album, index, paused, rotate }: { album?: Album; index: number; 
     return () => { active = false; clearTimeout(timer); };
   }, [paused, index, rotate]);
   if (!album) return null;
-  return <a className="album-tile" href={album.url} target="_blank" rel="noopener noreferrer" title={`${album.name} · ${album.artist}`} tabIndex={-1} aria-hidden="true">
-    <img key={album.image} src={album.image} alt="" loading={index < 12 ? "eager" : "lazy"} />
-  </a>;
+  const image = <img key={album.image} src={album.image} alt="" loading={index < 12 ? "eager" : "lazy"} />;
+  if (!interactive) return <div className="album-tile" aria-hidden="true">{image}</div>;
+  return <a className="album-tile" href={album.url} target="_blank" rel="noopener noreferrer" title={`${album.name} · ${album.artist}`} tabIndex={-1} aria-hidden="true">{image}</a>;
 }
 
-export default function AlbumWall({ albums, paused }: { albums: Album[]; paused: boolean }) {
+export default function AlbumWall({ albums, paused, interactive = true, className = "" }: { albums: Album[]; paused: boolean; interactive?: boolean; className?: string }) {
   const source = useMemo(() => uniqueAlbums(albums), [albums]);
   const [rotation, setRotation] = useState<RotationState>(() => createRotation(source));
 
@@ -84,8 +84,8 @@ export default function AlbumWall({ albums, paused }: { albums: Album[]; paused:
     });
   }, [source]);
 
-  return <div className="album-wall" aria-hidden="true">
-    <div className="album-mosaic">{Array.from({ length: TILE_COUNT }, (_, index) => <Tile key={index} index={index} album={rotation.visible[index]} paused={paused} rotate={rotate} />)}</div>
+  return <div className={`album-wall ${className}`} aria-hidden="true">
+    <div className="album-mosaic">{Array.from({ length: TILE_COUNT }, (_, index) => <Tile key={index} index={index} album={rotation.visible[index]} paused={paused} rotate={rotate} interactive={interactive} />)}</div>
     <div className="wall-grain" />
   </div>;
 }
