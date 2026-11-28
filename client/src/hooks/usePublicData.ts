@@ -17,7 +17,7 @@ async function readPublicTwitchStatus(): Promise<TwitchStatusResponse> {
   const response = await fetch("https://decapi.me/twitch/uptime/kennyswillyy", { signal: AbortSignal.timeout(10000), cache: "no-store" });
   if (!response.ok) throw new Error("The public Twitch status check is unavailable.");
   const uptime = (await response.text()).trim();
-  const live = Boolean(uptime) && !/^offline$/i.test(uptime);
+  const live = Boolean(uptime) && !/\boffline\b/i.test(uptime);
   return {
     status: "connected",
     username: "kennyswillyy",
@@ -29,6 +29,11 @@ async function readPublicTwitchStatus(): Promise<TwitchStatusResponse> {
     startedAt: null,
     updatedAt: new Date().toISOString(),
   };
+}
+
+async function readTwitchStatus(): Promise<TwitchStatusResponse> {
+  if (!isStaticBuild) return readJson<TwitchStatusResponse>("/api/twitch");
+  return readPublicTwitchStatus();
 }
 
 function staticActivity(value: unknown): ActivityResponse {
@@ -83,5 +88,5 @@ export function useClips(platform: "youtube" | "twitch") {
 }
 
 export function useTwitchStatus() {
-  return useQuery({ queryKey: ["twitch-status"], queryFn: readPublicTwitchStatus, refetchInterval: 60000, staleTime: 30000, retry: 1 });
+  return useQuery({ queryKey: ["twitch-status"], queryFn: readTwitchStatus, refetchInterval: 15000, staleTime: 12000, retry: 1 });
 }

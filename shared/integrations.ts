@@ -90,6 +90,7 @@ export interface Clip {
   id: string;
   platform: ClipPlatform;
   title: string;
+  publishedAt?: string;
   thumbnail: string;
   url: string;
   /** Twitch embeds require the frontend to append parent=window.location.hostname. */

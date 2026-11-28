@@ -378,6 +378,7 @@ export function normalizeYouTubeClips(rows: unknown[]): Clip[] {
           id: videoId,
           platform: "youtube" as const,
           title: text(snippet.title),
+          ...(text(snippet.publishedAt) ? { publishedAt: text(snippet.publishedAt) } : {}),
           thumbnail,
           url: `https://www.youtube.com/watch?v=${videoId}`,
           embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}`,
@@ -946,7 +947,10 @@ export function createIntegrations(options: Options = {}) {
         )
       );
     }
-    return normalizeYouTubeClips(rows).slice(0, MAX_CLIPS);
+    return normalizeYouTubeClips(rows).sort((a, b) => {
+      if (a.publishedAt && b.publishedAt) return b.publishedAt.localeCompare(a.publishedAt);
+      return 0;
+    }).slice(0, MAX_CLIPS);
   }
   async function getClips(platform: ClipPlatform): Promise<ClipsResponse> {
     const env = configuration();
@@ -954,7 +958,7 @@ export function createIntegrations(options: Options = {}) {
     const rankingLabel =
       platform === "twitch"
         ? "Top available Twitch clips by views · all available dates · up to 100 sampled"
-        : "Most-viewed public embeddable YouTube uploads · up to 100 API search results";
+        : "Public embeddable YouTube uploads · up to 100 API search results";
     return memo(
       `clips-${platform}`,
       value => (value.status === "connected" ? 15 * MINUTE : 15 * SECOND),
